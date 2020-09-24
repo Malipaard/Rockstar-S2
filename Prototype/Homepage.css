@@ -1,0 +1,328 @@
+﻿@charset "UTF-8";
+/* Body */
+body {
+	font-family: Baskerville, "Palatino Linotype", Palatino, "Century Schoolbook L", "Times New Roman", "serif";
+	background-color: black;
+	margin: 0;
+}
+/* Container */
+.container {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #2D2D2D;
+}
+/* Header */
+header {
+	width: 100%;
+	height: 8%;
+	background-color: black;
+	border-bottom: 1px solid #353635;
+}
+
+.headline {
+	color: #F7E81A;
+	/*
+	font-weight: bold;
+	margin-left: auto;
+	letter-spacing: 7px;
+	margin-right: auto;
+	text-align: center;
+	padding-top: 25px;
+	line-height: 0.5em;
+	font-size: 33px;
+*/
+	margin-left: auto;
+	margin-right: auto;
+	font: 1.125em/1.33333 sans-serif;
+	font-size: 3.88889rem;
+	line-height: 1.02857;
+	margin-bottom: 0;
+	font-weight: 800;
+	text-align: center;
+	padding-bottom: 30px;
+}
+
+/* About Section */
+.text_column {
+	width: 90%;
+	text-align: left;
+	font-weight: lighter;
+	line-height: 25px;
+	float: left;
+	padding-left: 20px;
+	padding-right: 20px;
+	color: #A3A3A3;
+}
+
+.gallery {
+	clear: both;
+	display: inline-block;
+	width: 100%;
+	background-color: #FFFFFF;
+	padding-bottom: 35px;
+	padding-top: 0px;
+	margin-top: 20px;
+	margin-bottom: 0px;
+	box-shadow: 0px 0px 10px 1em #ffffff;
+}
+
+.thumbnail {
+	width: 23%;
+	text-align: center;
+	float: left;
+	margin-top: 35px;
+	background-color: #F8F8F8;
+	padding-bottom: 20px;
+	margin-left: 1%;
+	margin-right: 1%;
+	border-radius: 3px;
+	padding-top: 20px;
+	border-bottom: 4px solid #F7E81A;
+}
+
+.gallery .thumbnail h4 {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	color: black;
+	text-align: left;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.gallery .thumbnail p {
+	margin: 0;
+	color: #B3B3B3;
+	text-align: left;
+	padding-left: 20px;
+}
+/* More info */
+.intro {
+	background-color: #FFFFFF;
+	padding-bottom: 35px;
+}
+
+.column {
+	width: 50%;
+	text-align: center;
+	padding-top: 30px;
+	float: left;
+}
+
+.intro .column h3 {
+	color: #FFFFFF;
+	text-align: center;
+}
+
+.intro .column p {
+	color: #2D2D2D;
+}
+
+.cards {
+	width: 100%;
+	height: auto;
+	max-width: 400px;
+	max-height: 200px;
+	opacity: 0.8;
+}
+
+.intro .column p {
+	padding-left: 30px;
+	padding-right: 30px;
+	text-align: justify;
+	line-height: 25px;
+	font-weight: lighter;
+	margin-left: 20px;
+	margin-right: 20px;
+	width: 80%;
+	margin-top: 4%;
+}
+
+footer {
+	background-color: black;
+	padding-top: 100px;
+	padding-bottom: 60PX;
+}
+
+11footer {
+	background-color: black;
+	padding-top: 60px;
+	padding-bottom: 60px;
+	border-top: 0.5px solid white;
+	width: 50%;
+	margin: auto;
+}
+
+.footerText {
+	text-align: center;
+	color: white;
+}
+
+.intro {
+	display: inline-block;
+	background-color: #F8FF92;
+	box-shadow: 0px 0px 10px 1em #F8FF92;
+}
+
+.logo {
+	padding-top: 10px;
+	padding-left: 35px;
+	width: 30%;
+}
+
+.gallery .thumbnail .tag {
+	color: #5D5E5D;
+	padding-bottom: 4px;
+	padding-top: 4px;
+	text-align: left;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+/* Mobile */
+@media (max-width: 320px) {
+	.headline {
+		width: 100%;
+		text-align: center;
+		margin-top: 13px;
+		margin-right: 0px;
+		margin-bottom: 0px;
+		margin-left: 0px;
+	}
+
+	.text_column {
+		width: 100%;
+		text-align: justify;
+		padding: 0;
+	}
+
+	.intro .column p {
+		width: 80%;
+		margin-left: 0px;
+	}
+
+	.text_column {
+		padding-left: 20px;
+	}
+
+	.thumbnail {
+		width: 100%;
+	}
+
+	.column {
+		width: 100%;
+		margin-top: 0px;
+	}
+
+
+	/* Small Tablets */
+	@media (min-width: 321px)and (max-width: 767px) {
+		.headline {
+			width: 100%;
+			text-align: center;
+			margin-top: 13px;
+			margin-right: 0px;
+			margin-bottom: 0px;
+			margin-left: 0px;
+		}
+
+		.text_column {
+			width: 100%;
+			text-align: left;
+			padding: 0;
+		}
+
+		.thumbnail {
+			width: 100%;
+		}
+
+		.column {
+			width: 100%;
+			margin-top: 0px;
+		}
+
+		.thumbnail {
+			width: 100%;
+		}
+
+		.text_column {
+			padding-left: 20px;
+			padding-right: 20px;
+			width: 90%;
+		}
+
+		.column {
+			width: 100%;
+			margin-left: 0px;
+			margin-right: 0px;
+		}
+
+		.logo {
+			width: 100%;
+		}
+
+		.intro .column p {
+			width: 90%;
+			text-align: center;
+			padding-left: 0px;
+		}
+	}
+
+	/* Small Desktops */
+	@media (min-width: 768px) and (max-width: 1096px) {
+		.text_column {
+			width: 100%;
+		}
+
+		.thumbnail {
+			width: 48%;
+		}
+
+		.text_column {
+			width: 90%;
+			margin: 0;
+			padding: 20px;
+		}
+
+		.intro .column p {
+			width: 80%;
+		}
+	}
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+	background-color: #333;
+	overflow: hidden;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 9;
+}
+
+	/* Style the links inside the navigation bar */
+	.topnav a {
+		float: left;
+		color: #f2f2f2;
+		text-align: center;
+		padding: 14px 16px;
+		text-decoration: none;
+		font-size: 17px;
+	}
+
+		/* Change the color of links on hover */
+		.topnav a:hover {
+			background-color: #ddd;
+			color: black;
+		}
+
+		/* Add a color to the active/current link */
+		.topnav a.active {
+			background-color: #F7E81A;
+			color: black;
+		}
+
+.shadow {
+	/*box-shadow: 0px 10px 8px red;*/
+}
