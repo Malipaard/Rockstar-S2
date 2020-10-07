@@ -10,4 +10,8 @@
     <ProjectReference Include="..\Rockstars_ITtrainees\ITtrainees.MVC.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Logic\" />
+  </ItemGroup>
+
 </Project>

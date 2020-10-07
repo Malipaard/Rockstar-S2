@@ -1,7 +1,7 @@
 ﻿using System;
 using ITtrainees.Persistence.Interface.Interfaces;
 
-namespace ITtrainees.App
+namespace ITtrainees.App.Models
 {
     public class User : IUser
     {
