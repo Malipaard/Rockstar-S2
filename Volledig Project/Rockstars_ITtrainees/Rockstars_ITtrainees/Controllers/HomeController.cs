@@ -41,6 +41,11 @@ namespace Rockstars_ITtrainees.Controllers
             return View();
         }
 
+        public IActionResult TestPage()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult SignUp(User user)
         {
@@ -65,6 +70,7 @@ namespace Rockstars_ITtrainees.Controllers
                     LastName = user.LastName
                 });
             }
+
 
             return View(users);
         }
