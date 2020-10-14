@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using ITtrainees.MVC.Models;
+using ITtrainees.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Rockstars_ITtrainees.Models;
-using static ITtrainees.App.BusinessLogic.UserProcessor;
+using static ITtrainees.Logic.UserProcessor;
 
 namespace Rockstars_ITtrainees.Controllers
 {
@@ -34,39 +34,6 @@ namespace Rockstars_ITtrainees.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        public IActionResult SignUp()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult SignUp(User user)
-        {
-            if (ModelState.IsValid)
-            {
-                CreateUser(user.FirstName, user.LastName);
-            }
-
-            return View();
-        }
-
-        public IActionResult ViewUsers()
-        {
-            var data = LoadUsers();
-            List<User> users = new List<User>();
-
-            foreach (var user in data)
-            {
-                users.Add(new User
-                {
-                    FirstName = user.FirstName,
-                    LastName = user.LastName
-                });
-            }
-
-            return View(users);
         }
     }
 }

@@ -5,13 +5,11 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITtrainees.MVC", "Rockstars_ITtrainees\ITtrainees.MVC.csproj", "{A8C0FB00-A7F0-48CD-A3B5-8AA6E02B0813}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITtrainees.App", "ITtrainees.App\ITtrainees.App.csproj", "{1B2CF650-3974-4C0F-8E39-0855BB350472}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITtrainees.Logic", "ITtrainees.App\ITtrainees.Logic.csproj", "{1B2CF650-3974-4C0F-8E39-0855BB350472}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITtrainees.Persistence", "ITtrainees.Persistence\ITtrainees.Persistence.csproj", "{FF4D6FF6-0C11-414C-B510-CCAC5B0D7694}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITtrainees.DataAcces", "ITtrainees.Persistence\ITtrainees.DataAcces.csproj", "{FF4D6FF6-0C11-414C-B510-CCAC5B0D7694}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITtrainees.Persistence.Interface", "ITtrainees.Persistence.Interface\ITtrainees.Persistence.Interface.csproj", "{ECC837C4-32DA-463E-9A70-7EDC891318FC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITtrainees.Factory", "ITtrainees.Factory\ITtrainees.Factory.csproj", "{D2ADD5B3-60F6-487B-8A9D-BDDA5BD44FC5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITtrainees.Models", "ITtrainees.Models\ITtrainees.Models.csproj", "{68717552-5D3B-4A18-9D24-506CB87C2051}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,14 +29,10 @@ Global
 		{FF4D6FF6-0C11-414C-B510-CCAC5B0D7694}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF4D6FF6-0C11-414C-B510-CCAC5B0D7694}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF4D6FF6-0C11-414C-B510-CCAC5B0D7694}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ECC837C4-32DA-463E-9A70-7EDC891318FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ECC837C4-32DA-463E-9A70-7EDC891318FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ECC837C4-32DA-463E-9A70-7EDC891318FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ECC837C4-32DA-463E-9A70-7EDC891318FC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D2ADD5B3-60F6-487B-8A9D-BDDA5BD44FC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D2ADD5B3-60F6-487B-8A9D-BDDA5BD44FC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D2ADD5B3-60F6-487B-8A9D-BDDA5BD44FC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D2ADD5B3-60F6-487B-8A9D-BDDA5BD44FC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68717552-5D3B-4A18-9D24-506CB87C2051}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68717552-5D3B-4A18-9D24-506CB87C2051}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68717552-5D3B-4A18-9D24-506CB87C2051}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68717552-5D3B-4A18-9D24-506CB87C2051}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
