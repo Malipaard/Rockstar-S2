@@ -7,7 +7,6 @@ using ITtrainees.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Rockstars_ITtrainees.Models;
-using static ITtrainees.Logic.UserProcessor;
 
 namespace Rockstars_ITtrainees.Controllers
 {
