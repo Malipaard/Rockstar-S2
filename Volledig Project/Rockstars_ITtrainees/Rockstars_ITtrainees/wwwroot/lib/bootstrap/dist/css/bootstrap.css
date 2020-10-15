@@ -4170,13 +4170,14 @@ input[type="button"].btn-block {
 }
 
 .navbar-brand {
-  display: inline-block;
-  padding-top: 0.3125rem;
-  padding-bottom: 0.3125rem;
-  margin-right: 1rem;
-  font-size: 1.25rem;
-  line-height: inherit;
-  white-space: nowrap;
+    display: inline-block;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+    color: #ffe000;
 }
 
 .navbar-brand:hover, .navbar-brand:focus {
@@ -6578,13 +6579,13 @@ button.bg-light:focus {
 }
 
 .bg-dark {
-  background-color: #343a40 !important;
+  background-color: #232323 !important;
 }
 
 a.bg-dark:hover, a.bg-dark:focus,
 button.bg-dark:hover,
-button.bg-dark:focus {
-  background-color: #1d2124 !important;
+button.bg-dark:focus {  
+  background-color: #232323 !important;
 }
 
 .bg-white {
@@ -10036,3 +10037,8 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+/*Custom styling*/
+.bg-custom{
+    background-color: yellow;
+}
