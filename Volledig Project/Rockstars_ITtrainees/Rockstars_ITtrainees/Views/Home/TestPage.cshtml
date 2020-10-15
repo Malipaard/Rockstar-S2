@@ -2,72 +2,106 @@
     ViewData["Title"] = "Test Page";
 }
 <link rel="stylesheet" href="~/css/test.css" />
-<script type="text/javascript" src="~/js/test.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 <body>
-    <div class="header">
-        <h1>Test page</h1>
-    </div>
+    <div class="container">
+        <h2>Featured</h2>
+        <!--Slideshow-->
+        <div id="demo" class="carousel slide" data-ride="carousel">
 
-    <!--Slideshow-->
-    <div id="demo" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ul class="carousel-indicators">
+                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                <li data-target="#demo" data-slide-to="1"></li>
+                <li data-target="#demo" data-slide-to="2"></li>
+            </ul>
 
-        <!-- Indicators -->
-        <ul class="carousel-indicators">
-            <li data-target="#demo" data-slide-to="0" class="active"></li>
-            <li data-target="#demo" data-slide-to="1"></li>
-            <li data-target="#demo" data-slide-to="2"></li>
-        </ul>
-
-        <!-- The slideshow -->
-        <div class="carousel-inner">
-            fefefef
-            <div class="carousel-item active">
-                <img src="~/Assets/black-square.png" alt="black" style="width:100%; height:500px">
+            <!-- The slideshow -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="card mb-4">
+                        <img class="card-img-top" src="~/Assets/black-square.png" alt="placeholder" style="width:100%">
+                        <div class="card-body">
+                            <h5 class="card-title">Hello</h5>
+                            <p class="card-text">Test description</p>
+                            <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-dark">View</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card mb-4">
+                        <img class="card-img-top" src="~/Assets/black-square.png" alt="placeholder" style="width:100%">
+                        <div class="card-body">
+                            <h5 class="card-title">Hello</h5>
+                            <p class="card-text">Test description</p>
+                            <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-dark">View</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card mb-4">
+                        <img class="card-img-top" src="~/Assets/black-square.png" alt="placeholder" style="width:100%">
+                        <div class="card-body">
+                            <h5 class="card-title">Hello</h5>
+                            <p class="card-text">Test description</p>
+                            <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-dark">View</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="carousel-item">
-                <img src="~/Assets/grey-square.jpg" alt="grey" style="width:100%; height:500px">
-            </div>
-            <div class="carousel-item">
-                <img src="~/Assets/yellow-square.jpg" alt="yellow" style="width:100%; height:500px">
-            </div>
-        </div>
 
-        <!-- Left and right controls -->
-        <a class="carousel-control-prev" href="#demo" data-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </a>
-        <a class="carousel-control-next" href="#demo" data-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </a>
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
 
-    </div>
-
-    <!--cards-->
-    <div class="column">
-        <div class="card">
-            <img src="~/Assets/black-square.png" alt="placeholder" style="width:100%">
-            <div class="container">
-                <p>Hello</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="column">
-        <div class="card">
-            <img src="~/Assets/black-square.png" alt="placeholder" style="width:100%">
-            <div class="container">
-                <p>And</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="column">
-        <div class="card">
-            <img src="~/Assets/black-square.png" alt="placeholder" style="width:100%">
-            <div class="container">
-                <p>Welcome</p>
-            </div>
         </div>
     </div>
+
+
+    <div class="container">
+        <h2>Generic genre</h2>
+        <div class="row">
+            <div class="col-12 col-md-4">
+
+
+                <div class="card mb-4">
+                    <img class="card-img-top" src="~/Assets/black-square.png" alt="placeholder" style="width:100%">
+                    <div class="card-body">
+                        <h5 class="card-title">Hello</h5>
+                        <p class="card-text">Test description</p>
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-dark">View</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <div class="card mb-4">
+                    <img class="card-img-top" src="~/Assets/black-square.png" alt="placeholder" style="width:100%">
+                    <div class="card-body">
+                        <h5 class="card-title">Hello</h5>
+                        <p class="card-text">Test description</p>
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-dark">View</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <div class="card mb-4">
+                    <img class="card-img-top" src="~/Assets/black-square.png" alt="placeholder" style="width:100%">
+                    <div class="card-body">
+                        <h5 class="card-title">Hello</h5>
+                        <p class="card-text">Test description</p>
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-dark">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+
 
 </body>
