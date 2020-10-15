@@ -4,14 +4,32 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Rockstars_ITtrainees</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/NavBar.css" />
+    
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-md">
-            
-        </nav>
+         <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
+             
+             <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><img src="~/Assets/RST-073-logo-Team-Rockstars-IT.png"  height="60"/></a>
+             <a class="navbar-brand text-RSyellow">Tech Burst</a>
+             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+                 <span class="navbar-toggler-icon"></span>
+             </button>
+
+             <div class="collapse navbar-collapse" id="navbarMenu">
+                 <ul class="navbar-nav ml-5">
+                     <li class="nav-item px-2">
+                         <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home <img class="menuArrow" src="~/Assets/MenuArrow.png"  height="25"/></a>
+                     </li>
+                     <li class="nav-item px-2">
+                         <a class="nav-link" asp-area="" asp-controller="Home" asp-action="TestPage">Test Page <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
+                     </li>
+                 </ul>
+             </div>
+         </nav>
     </header>
 
 
@@ -28,10 +46,9 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - Rockstars_ITtrainees - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 - Rockstars IT - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-
 
 
 
