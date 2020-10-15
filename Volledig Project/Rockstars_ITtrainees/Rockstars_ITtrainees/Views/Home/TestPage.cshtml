@@ -1,5 +1,73 @@
 ﻿@{
     ViewData["Title"] = "Test Page";
 }
+<link rel="stylesheet" href="~/css/test.css" />
+<script type="text/javascript" src="~/js/test.js"></script>
+<body>
+    <div class="header">
+        <h1>Test page</h1>
+    </div>
 
-<h1>Test page</h1>
+    <!--Slideshow-->
+    <div id="demo" class="carousel slide" data-ride="carousel">
+
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+            fefefef
+            <div class="carousel-item active">
+                <img src="~/Assets/black-square.png" alt="black" style="width:100%; height:500px">
+            </div>
+            <div class="carousel-item">
+                <img src="~/Assets/grey-square.jpg" alt="grey" style="width:100%; height:500px">
+            </div>
+            <div class="carousel-item">
+                <img src="~/Assets/yellow-square.jpg" alt="yellow" style="width:100%; height:500px">
+            </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+
+    </div>
+
+    <!--cards-->
+    <div class="column">
+        <div class="card">
+            <img src="~/Assets/black-square.png" alt="placeholder" style="width:100%">
+            <div class="container">
+                <p>Hello</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="card">
+            <img src="~/Assets/black-square.png" alt="placeholder" style="width:100%">
+            <div class="container">
+                <p>And</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="card">
+            <img src="~/Assets/black-square.png" alt="placeholder" style="width:100%">
+            <div class="container">
+                <p>Welcome</p>
+            </div>
+        </div>
+    </div>
+
+</body>
