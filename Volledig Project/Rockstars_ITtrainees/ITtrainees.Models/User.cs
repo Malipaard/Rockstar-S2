@@ -1,12 +1,17 @@
 ﻿using System;
-using ITtrainees.Persistence.Interface.Interfaces;
 
-namespace ITtrainees.App.Models
+namespace ITtrainees.Models
 {
-    public class User : IUser
+    public class User
     {
         public int UserId { get; private set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+
+        public string FullName()
+        {
+            return $"{FirstName} {LastName}";
+        }
     }
 }
