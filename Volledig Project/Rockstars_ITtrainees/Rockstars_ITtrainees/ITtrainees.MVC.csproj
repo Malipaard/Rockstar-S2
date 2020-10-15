@@ -10,7 +10,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ITtrainees.App\ITtrainees.App.csproj" />
+    <ProjectReference Include="..\ITtrainees.App\ITtrainees.Logic.csproj" />
+    <ProjectReference Include="..\ITtrainees.Models\ITtrainees.Models.csproj" />
   </ItemGroup>
 
 
