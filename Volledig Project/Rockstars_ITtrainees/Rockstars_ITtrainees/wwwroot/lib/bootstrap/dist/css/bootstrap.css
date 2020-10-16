@@ -10068,8 +10068,9 @@ a.text-dark:hover, a.text-dark:focus {
 /*# sourceMappingURL=bootstrap.css.map */
 
 /*Custom styling*/
-.bg-custom{
-    background-color: yellow;
+.bg-custom {
+    background: #232323;
+    background: linear-gradient(50deg,#333333 0%, #282828 50%, #232323 100%);
 }
 
 body::-webkit-scrollbar {
@@ -10079,4 +10080,9 @@ body::-webkit-scrollbar {
 body {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
+
+}
+
+.gradientBG {
+        background-image: url(~/Assets/gradientBG.png);
 }
