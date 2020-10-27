@@ -10069,7 +10069,6 @@ a.text-dark:hover, a.text-dark:focus {
 
 /*Custom styling*/
 .bg-custom {
-    background: #232323;
     background: linear-gradient(50deg,#333333 0%, #282828 50%, #232323 100%);
 }
 
