@@ -10068,10 +10068,6 @@ a.text-dark:hover, a.text-dark:focus {
 /*# sourceMappingURL=bootstrap.css.map */
 
 /*Custom styling*/
-.bg-custom {
-    background: linear-gradient(50deg,#333333 0%, #282828 50%, #232323 100%);
-}
-
 body::-webkit-scrollbar {
     display: none;
 }
