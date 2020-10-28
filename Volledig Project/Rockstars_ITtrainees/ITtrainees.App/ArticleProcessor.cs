@@ -9,7 +9,7 @@ namespace ITtrainees.Logic
     {
         //class is volledig tijdelijk
 
-        static List<Article> ArticleStorage = new List<Article>() { 
+        public static List<Article> ArticleStorage = new List<Article>() { 
             new Article (00,"Australian Scientists Discover 500-Meter-Tall Coral Reef in the Great Barrier Reef", "Ruud" ,
                 "Scientists have discovered a massive detached coral reef in the Great Barrier Reef, measuring more than 500 meters high -- taller than the Empire ..."),
             new Article (01,"Geologists Simulate Soil Conditions to Help Grow Plants on Mars","Ruud",
