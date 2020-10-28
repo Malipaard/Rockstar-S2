@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITtrainees.Logic", "ITtrain
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITtrainees.DataAcces", "ITtrainees.Persistence\ITtrainees.DataAcces.csproj", "{FF4D6FF6-0C11-414C-B510-CCAC5B0D7694}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITtrainees.Models", "ITtrainees.Models\ITtrainees.Models.csproj", "{68717552-5D3B-4A18-9D24-506CB87C2051}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITtrainees.Models", "ITtrainees.Models\ITtrainees.Models.csproj", "{68717552-5D3B-4A18-9D24-506CB87C2051}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

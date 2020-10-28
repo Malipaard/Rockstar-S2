@@ -1,8 +1,149 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home page";
 }
+<link rel="stylesheet" href="~/css/test.css" />
+<link rel="stylesheet" href="~/css/navb.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<body>
+    <div class="container-fluid">
+        <h2 class="text-light">Featured</h2>
+        <!--Slideshow-->
+        <div id="demo" class="carousel slide" data-ride="carousel">
+
+            <!-- Indicators -->
+            <ul class="carousel-indicators">
+                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                <li data-target="#demo" data-slide-to="1"></li>
+                <li data-target="#demo" data-slide-to="2"></li>
+            </ul>
+
+            <!-- The slideshow -->
+            <div class="carousel-inner text-light">
+                <div class="carousel-item active">
+                    <div class="card mb-4">
+                        <img class="card-img-top midHeight" src="~/Assets/black-square.png" alt="placeholder">
+                        <div class="card-body d-inline-flex flex-column">
+                            <h5 class="card-title">Hello</h5>
+                            <p class="card-text">Test description</p>
+                            <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-dark">View</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card mb-4">
+                        <img class="card-img-top midHeight" src="~/Assets/black-square.png" alt="placeholder">
+                        <div class="card-body d-inline-flex flex-column">
+                            <h5 class="card-title">Hello</h5>
+                            <p class="card-text">Test description</p>
+                            <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-dark">View</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card mb-4">
+                        <img class="card-img-top midHeight" src="~/Assets/black-square.png" alt="placeholder">
+                        <div class="card-body d-inline-flex flex-column">
+                            <h5 class="card-title">Hello</h5>
+                            <p class="card-text">Test description</p>
+                            <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-dark">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <h2 class="text-light">Generic genre</h2>
+        <div class="row text-light">
+            <div class="col-12 col-md-4">
+
+
+                <div class="card mb-4">
+                    <img class="card-img-top" src="~/Assets/black-square.png" alt="placeholder" style="width:100%">
+                    <div class="card-body d-inline-flex flex-column">
+                        <h5 class="card-title">Hello</h5>
+                        <p class="card-text">Test description</p>
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-dark float-right">View</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <div class="card mb-4">
+                    <img class="card-img-top" src="~/Assets/black-square.png" alt="placeholder" style="width:100%">
+                    <div class="card-body d-inline-flex flex-column">
+                        <h5 class="card-title">Hello</h5>
+                        <p class="card-text">Test description</p>
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-dark">View</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <div class="card mb-4">
+                    <img class="card-img-top" src="~/Assets/black-square.png" alt="placeholder" style="width:100%">
+                    <div class="card-body d-inline-flex flex-column">
+                        <h5 class="card-title">Hello</h5>
+                        <p class="card-text">Test description</p>
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-dark">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <h2 class="text-light">Generic genre</h2>
+        <div class="row text-light">
+
+            <div class="col-12 col-md-4">
+                <div class="card mb-4">
+                    <img class="card-img-top" src="~/Assets/grey-square.jpg" alt="placeholder" style="width:100%">
+                    <div class="card-body d-inline-flex flex-column">
+                        <h5 class="card-title">Hello</h5>
+                        <p class="card-text">Test description</p>
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-dark float-right">View</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <div class="card mb-4">
+                    <img class="card-img-top" src="~/Assets/black-square.png" alt="placeholder" style="width:100%">
+                    <div class="card-body d-inline-flex flex-column">
+                        <h5 class="card-title">Hello</h5>
+                        <p class="card-text">Test description</p>
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-dark">View</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <div class="card mb-4">
+                    <img class="card-img-top" src="~/Assets/black-square.png" alt="placeholder" style="width:100%">
+                    <div class="card-body d-inline-flex flex-column">
+                        <h5 class="card-title">Hello</h5>
+                        <p class="card-text">Test description</p>
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-dark">View</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</body>
