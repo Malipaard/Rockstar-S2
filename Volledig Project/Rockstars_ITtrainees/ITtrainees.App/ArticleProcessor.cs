@@ -9,11 +9,11 @@ namespace ITtrainees.Logic
     {
         //class is volledig tijdelijk
 
-        static List<Article> ArticleStorage = new List<Article>() { new Article {
-            Title = "Test Artikel",
-            Author = "Ruud",
-            Summary = "GEFELICITEERD JE HEBT HET TESTARTIKEL GELADEN"
-        } };
+        static List<Article> ArticleStorage = new List<Article>() { new Article ("Test Artikel",
+             "Ruud",
+             "GEFELICITEERD JE HEBT HET TESTARTIKEL GELADEN")
+             
+        };
 
         public static string Save(Article article)
         {
