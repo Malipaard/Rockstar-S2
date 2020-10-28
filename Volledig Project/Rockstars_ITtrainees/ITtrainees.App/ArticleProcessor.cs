@@ -28,17 +28,9 @@ namespace ITtrainees.Logic
             return $"Artikel \"{ article.Title }\" is opgeslagen!";
         }
 
-        public static Article Get(string title)
+        public static Article Get(int id)
         {
-            for (var i = 0; i < ArticleStorage.Count; i++)
-            {
-                Article article = ArticleStorage[i];
-                if (article.Title == title)
-                {
-                    return article;
-                }
-            }
-            return null;
+            return ArticleStorage[id];
         }
 
         public static List<Article> GetAll()
