@@ -31,7 +31,8 @@ namespace ITtrainees.Logic
                     return article;
                 }
             }
-            return null;
+
+            return ArticleStorage[0];
         }
 
         public static List<Article> GetAll()

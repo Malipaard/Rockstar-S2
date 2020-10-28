@@ -15,9 +15,11 @@ namespace ITtrainees.Models
         //public string HeaderImage { get; private set; }
 
 
-        public Article(string a, string b, string c)
+        public Article(string title, string author, string summary)
         {
-
+            Title = title;
+            Author = author;
+            Summary = summary;
         }
         //public List<Review> Reviews { get; set; }
 
