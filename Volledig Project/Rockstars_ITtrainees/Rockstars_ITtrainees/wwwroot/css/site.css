@@ -126,3 +126,11 @@ h1 {
     width: 100%;
     height: 500px;
 }
+
+.yellow_bg {
+    background-color: #ffe000 !important;
+}
+
+.bg-custom {
+    background-image: linear-gradient(90deg, #232323, #282828, #353535) !important;
+}
