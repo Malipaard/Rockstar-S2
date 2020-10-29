@@ -4240,12 +4240,12 @@ input[type="button"].btn-block {
     display: block;
     padding: 0.5rem 1rem;
     border-bottom: 3px solid #232323;
+
 }
 
     .nav-link:hover, .nav-link:focus {
         text-decoration: none;
-        -webkit-transform: scale(1.2);
-        border-bottom: 3px solid #ffe000;
+
     }
 
     .nav-link.disabled {

@@ -95,10 +95,11 @@ h1 {
     margin: 8px;
     display: flex;
     justify-content: space-between;
+    transition: transform 0.3s;
 }
 
 .card-scale:hover {
-    transform: scale(1.02);
+    transform: scale(1.05);
 }
 .text-deco-none:hover{
     text-decoration:none;
@@ -134,3 +135,12 @@ h1 {
 .bg-custom {
     background-image: linear-gradient(90deg, #232323, #282828, #353535) !important;
 }
+
+.nav-link {
+    transition: transform 0.3s;
+}
+
+    .nav-link:hover, nav-link:focus {
+        transform: scale(1.1);
+        border-bottom: 3px solid #ffe000;
+    }
