@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Security.Principal;
 using System.Text;
 
 namespace ITtrainees.Models
@@ -15,9 +16,12 @@ namespace ITtrainees.Models
         //public string HeaderImage { get; private set; }
 
 
-        public Article(string a, string b, string c)
+        public Article(int id, string title, string author, string summary)
         {
-
+            this.ArticleId = id;
+            this.Title = title;
+            this.Author = author;
+            this.Summary = summary;
         }
 
         public Article()

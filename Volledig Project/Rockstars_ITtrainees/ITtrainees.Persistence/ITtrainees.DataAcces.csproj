@@ -14,10 +14,9 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <ProjectReference Include="..\ITtrainees.Models\ITtrainees.Models.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.9" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ITtrainees.Models\ITtrainees.Models.csproj" />
-  </ItemGroup>
 
 </Project>
