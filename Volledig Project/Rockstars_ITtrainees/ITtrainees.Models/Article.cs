@@ -7,15 +7,20 @@ namespace ITtrainees.Models
 {
     public class Article
     {
-        public int ArticleId { get; private set; }
-        public string Title { get;  private set; }
-        public string Author { get; private set; }
-        public string Summary { get; private set; }
+        public int ArticleId { get; set; }
+        public string Title { get;  set; }
+        public string Author { get; set; }
+        public string Summary { get; set; }
         //public string Content { get; private set; }
         //public string HeaderImage { get; private set; }
 
 
         public Article(string a, string b, string c)
+        {
+
+        }
+
+        public Article()
         {
 
         }

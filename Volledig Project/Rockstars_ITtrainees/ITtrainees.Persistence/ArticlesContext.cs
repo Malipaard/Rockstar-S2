@@ -22,5 +22,17 @@ namespace ITtrainees.DataAcces
         {
             optionsBuilder.UseSqlServer("Data Source=LAPTOP-7SORRU5A; Integrated Security=SSPI; Initial Catalog=TechBurstArticles;");
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Article>().HasData(
+                new Article()
+                {
+                    ArticleId = 1,
+                    Title = "First Article",
+                    Author = "Sem",
+                    Summary = "Description of the article"
+                });
+        }
     }
 }
