@@ -29,7 +29,7 @@ namespace Rockstars_ITtrainees.Controllers
             return View();
         }
 
-        public IActionResult TestPage()
+        public IActionResult OutEnv()
         {
             return View();
         }

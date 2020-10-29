@@ -100,6 +100,9 @@ h1 {
 .card-scale:hover {
     transform: scale(1.02);
 }
+.text-deco-none:hover{
+    text-decoration:none;
+}
 
 .container {
     padding: 0 16px;
