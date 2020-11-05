@@ -36,5 +36,14 @@ namespace ITtrainees.DataAcces
                 context.SaveChanges();
             }
         }
+
+        public Models.Article GetArticle(int id)
+        {
+            using (var context = new ArticlesContext())
+            {
+                var article = context.Articles.Single(a => a.ArticleId == id);
+                return article;
+            }
+        }
     }
 }

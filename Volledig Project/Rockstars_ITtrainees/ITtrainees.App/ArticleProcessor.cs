@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ITtrainees.Factory;
 using ITtrainees.Interface.Interfaces;
 using ITtrainees.Models;
-using ITtrainees.Factory;
-using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace ITtrainees.Logic
 {
@@ -31,9 +28,12 @@ namespace ITtrainees.Logic
             return $"Artikel \"{ article.Title }\" is opgeslagen!";
         }
 
-        public static Article Get(int id)
+        public static Article GetArticle(int id)
         {
-            return ArticleStorage[id];
+            //return ArticleStorage[id];
+            IArticleDAL dal = ArticleFactory.GetArticleDAL();
+            var article = dal.GetArticle(id);
+            return article;
         }
 
         public static List<Article> GetAll()
