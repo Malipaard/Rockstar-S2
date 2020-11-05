@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ITtrainees.Interface.Interfaces;
 using ITtrainees.Models;
+using ITtrainees.Factory;
+using Microsoft.EntityFrameworkCore;
 
 namespace ITtrainees.Logic
 {
@@ -35,7 +38,17 @@ namespace ITtrainees.Logic
 
         public static List<Article> GetAll()
         {
-            return ArticleStorage;
+            //return ArticleStorage;
+
+            IArticleDAL dal = ArticleFactory.GetArticleDAL();
+            List<Article> articles = dal.GetAll();
+            return articles;
+        }
+
+        public static void Delete(int id)
+        {
+            IArticleDAL dal = ArticleFactory.GetArticleDAL();
+            dal.DeleteArticle(id);
         }
     }
 }

@@ -10,8 +10,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ITtrainees.Factory\ITtrainees.Factory.csproj" />
+    <ProjectReference Include="..\ITtrainees.Interface\ITtrainees.Interface.csproj" />
     <ProjectReference Include="..\ITtrainees.Models\ITtrainees.Models.csproj" />
-    <ProjectReference Include="..\ITtrainees.Persistence\ITtrainees.DataAcces.csproj" />
   </ItemGroup>
 
 </Project>
