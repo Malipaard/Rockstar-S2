@@ -144,3 +144,10 @@ h1 {
         transform: scale(1.1);
         border-bottom: 3px solid #ffe000;
     }
+
+.card-tag{
+    width:50px;
+    font-size: 12px;
+    text-align: left;
+    border-bottom:3px solid #ffe000;
+}

@@ -20,6 +20,8 @@ namespace ITtrainees.Logic
                 "Some of the largest birds in history, called pelagornithids, arose a few million years after the mass extinction that killed off the dinosaurs and patrolled the oceans with giant wingspans for some ..."),
             new Article (04,"Cosmic Rays May Soon Stymie Quantum Computing","Ruud",
                 "Infinitesimally low levels of radiation, such as from incoming cosmic rays, may soon stymie progress in quantum ..."),
+            new Article (05,"Cosmic Rays May Soon Stymie Quantum Computing","Ruud",
+                "Infinitesimally low levels of radiation, such as from incoming cosmic rays, may soon stymie progress in quantum ..."),
         };
 
         public static string Save(Article article)
