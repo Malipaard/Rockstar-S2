@@ -16,11 +16,7 @@ namespace ITtrainees.Models
         //public string Content { get; private set; }
         //public string HeaderImage { get; private set; }
 
-
-
         //public List<Review> Reviews { get; set; }
-
-
 
     }
 }
