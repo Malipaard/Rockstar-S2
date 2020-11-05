@@ -22,13 +22,13 @@ namespace ITtrainees.Logic
                 "Infinitesimally low levels of radiation, such as from incoming cosmic rays, may soon stymie progress in quantum ..."),
             new Article (05,"Cosmic Rays May Soon Stymie Quantum Computing","Ruud",
                 "Infinitesimally low levels of radiation, such as from incoming cosmic rays, may soon stymie progress in quantum ..."),
-        };
+        };   
 
-        public static string Save(Article article)
-        {
+        public static void Save(Article article)
+        {            
+            article.ArticleId = ArticleStorage.Count;
             ArticleStorage.Add(article);
-            return $"Artikel \"{ article.Title }\" is opgeslagen!";
-        }
+        }    
 
         public static Article Get(int id)
         {

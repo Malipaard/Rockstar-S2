@@ -7,6 +7,7 @@ using ITtrainees.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Rockstars_ITtrainees.Models;
+using ITtrainees.Logic;
 
 namespace Rockstars_ITtrainees.Controllers
 {
@@ -38,11 +39,22 @@ namespace Rockstars_ITtrainees.Controllers
         {
             return View();
         }
+        public IActionResult ArticleUpload()
+        {
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpPost]
+        public IActionResult ArticleUpload(Article article)
+        {
+            Console.WriteLine(article);
+            return View();
         }
     }
 }
