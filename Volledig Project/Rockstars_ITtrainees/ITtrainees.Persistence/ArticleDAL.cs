@@ -30,7 +30,11 @@ namespace ITtrainees.DataAcces
 
         public void Create(Models.Article article)
         {
-            throw new NotImplementedException();
+            using (var context = new ArticlesContext())
+            {
+                context.Articles.Add(article);
+                context.SaveChanges();
+            }
         }
     }
 }

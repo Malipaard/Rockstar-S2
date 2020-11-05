@@ -50,5 +50,17 @@ namespace ITtrainees.Logic
             IArticleDAL dal = ArticleFactory.GetArticleDAL();
             dal.DeleteArticle(id);
         }
+
+        public static void Create()
+        {
+            IArticleDAL dal = ArticleFactory.GetArticleDAL();
+            Article article = new Article()
+            {
+                Title = "This is a title",
+                Author = "This is an author",
+                Summary = "This is a summary"
+            };
+            dal.Create(article);
+        }
     }
 }
