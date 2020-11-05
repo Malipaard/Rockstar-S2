@@ -151,3 +151,7 @@ h1 {
     text-align: left;
     border-bottom:3px solid #ffe000;
 }
+
+.card-author:last-child{
+    font-size:15px;
+}
