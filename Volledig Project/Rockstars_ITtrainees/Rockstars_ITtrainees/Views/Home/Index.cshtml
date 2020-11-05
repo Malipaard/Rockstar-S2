@@ -27,7 +27,7 @@
             <div class="carousel-inner text-light">
                 @{ bool firstItem = true;
                     string activeItem = null;
-                    foreach (var article in ArticleStorage.Skip(Math.Max(0, ArticleStorage.Count-3)))
+                    foreach (var article in ITtrainees.Logic.ArticleProcessor.GetAll().Skip(Math.Max(0, ArticleStorage.Count-3)))
                     {
                         @if (firstItem) { activeItem = "active"; firstItem = false; } else { activeItem = null; }
                         <div class="carousel-item @activeItem">
@@ -62,7 +62,7 @@
         <h2 class="text-light">Articles</h2>
         <div class="row text-light">
 
-            @{foreach (var article in ITtrainees.Logic.ArticleProcessor.ArticleStorage)
+            @{foreach (var article in ITtrainees.Logic.ArticleProcessor.GetAll())
                 {
                     <div class="col-12 col-md-3">
                         <a asp-area="" asp-controller="Home" asp-action="Index" class="btn-dark text-deco-none">
