@@ -26,13 +26,7 @@ namespace ITtrainees.DataAcces
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Article>().HasData(
-                new Article()
-                {
-                    ArticleId = 1,
-                    Title = "First Article",
-                    Author = "Sem",
-                    Summary = "Description of the article"
-                });
+                new Article(1, "First Article", "Sem", "Description of the article"));
         }
     }
 }
