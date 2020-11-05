@@ -53,7 +53,8 @@ namespace Rockstars_ITtrainees.Controllers
         [HttpPost]
         public IActionResult ArticleUpload(Article article)
         {
-            Console.WriteLine(article);
+            article.ArticleId = ITtrainees.Logic.ArticleProcessor.ArticleStorage.Count;
+            ITtrainees.Logic.ArticleProcessor.Save(article);
             return View();
         }
     }
