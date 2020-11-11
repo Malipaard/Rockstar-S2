@@ -8,23 +8,15 @@ namespace ITtrainees.Models
 {
     public class Article
     {
-        public int ArticleId { get; private set; }
-        public string Title { get; private set; }
-        public string Author { get; private set; }
-        public string Summary { get; private set; }
-
+        public int ArticleId { get; set; }
+        public string Title { get;  set; }
+        public string Author { get; set; }
+        public string Summary { get; set; }
+        public string Tag { get; set; }
         //public string Content { get; private set; }
         //public string HeaderImage { get; private set; }
 
         //public List<Review> Reviews { get; set; }
 
-
-        public Article(int id, string title, string author, string summary)
-        {
-            this.ArticleId = id;
-            this.Title = title;
-            this.Author = author;
-            this.Summary = summary;
-        }
     }
 }
