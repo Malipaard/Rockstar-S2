@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ITtrainees.Factory;
+using ITtrainees.Interface.Interfaces;
 using ITtrainees.Models;
+using System.Collections.Generic;
 
 namespace ITtrainees.Logic
 {
@@ -25,14 +25,39 @@ namespace ITtrainees.Logic
             ArticleStorage.Add(article);
         }    
 
-        public static Article Get(int id)
+        public static Article GetArticle(int id)
         {
-            return ArticleStorage[id];
+            //return ArticleStorage[id];
+            IArticleDAL dal = ArticleFactory.GetArticleDAL();
+            var article = dal.GetArticle(id);
+            return article;
         }
 
         public static List<Article> GetAll()
         {
-            return ArticleStorage;
+            //return ArticleStorage;
+
+            IArticleDAL dal = ArticleFactory.GetArticleDAL();
+            List<Article> articles = dal.GetAll();
+            return articles;
+        }
+
+        public static void Delete(int id)
+        {
+            IArticleDAL dal = ArticleFactory.GetArticleDAL();
+            dal.DeleteArticle(id);
+        }
+
+        public static void Create()
+        {
+            IArticleDAL dal = ArticleFactory.GetArticleDAL();
+            Article article = new Article()
+            {
+                Title = "This is a title",
+                Author = "This is an author",
+                Summary = "This is a summary"
+            };
+            dal.Create(article);
         }
     }
 }

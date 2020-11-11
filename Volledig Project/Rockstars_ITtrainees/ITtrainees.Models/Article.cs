@@ -16,6 +16,19 @@ namespace ITtrainees.Models
         //public string Content { get; private set; }
         //public string HeaderImage { get; private set; }
 
+
+        public Article(int id, string title, string author, string summary)
+        {
+            this.ArticleId = id;
+            this.Title = title;
+            this.Author = author;
+            this.Summary = summary;
+        }
+
+        public Article()
+        {
+
+        }
         //public List<Review> Reviews { get; set; }
 
     }
