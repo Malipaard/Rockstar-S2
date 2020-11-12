@@ -17,12 +17,13 @@ namespace ITtrainees.Models
         //public string HeaderImage { get; private set; }
 
 
-        public Article(int id, string title, string author, string summary)
+        public Article(int id, string title, string author, string summary, string tag)
         {
             this.ArticleId = id;
             this.Title = title;
             this.Author = author;
             this.Summary = summary;
+            this.Tag = tag;
         }
 
         public Article()

@@ -3,12 +3,14 @@
 }
 
 @using ITtrainees.Models;
+@using ITtrainees.Logic;
 
 <link rel="stylesheet" href="~/css/site.css" />
 <link rel="stylesheet" href="~/css/NavBar.css" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <body>
+    
     <div class="container-fluid">
         <h2 class="text-light">3 Newest articles</h2>
         <!--Slideshow-->
@@ -25,7 +27,7 @@
             <div class="carousel-inner text-light">
                 @{ bool firstItem = true;
                     string activeItem = null;
-                    foreach (var article in ITtrainees.Logic.ArticleProcessor.GetAll().Skip(Math.Max(0, ArticleStorage.Count-3)))
+                    foreach (var article in ITtrainees.Logic.ArticleProcessor.GetAll().Skip(Math.Max(0, ITtrainees.Logic.ArticleProcessor.GetAll().Count-3)))
                     {
                         @if (firstItem) { activeItem = "active"; firstItem = false; } else { activeItem = null; }
                         <div class="carousel-item @activeItem">
