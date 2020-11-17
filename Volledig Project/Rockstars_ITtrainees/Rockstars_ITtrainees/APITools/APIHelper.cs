@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
 
-namespace ITtrainees.MVC.APIProxies
+namespace ITtrainees.MVC.APITools
 {
     public static class APIHelper
     {
@@ -14,7 +14,7 @@ namespace ITtrainees.MVC.APIProxies
         public static void InitializeClient()
         {
             ApiClient = new HttpClient();
-            ApiClient.BaseAddress = new Uri("https://localhost:44310/api");
+            ApiClient.BaseAddress = new Uri("https://localhost:44310/api/");
             ApiClient.DefaultRequestHeaders.Accept.Clear();
             ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
