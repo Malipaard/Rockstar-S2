@@ -1,0 +1,40 @@
+﻿body {
+}
+
+h1{
+    font-size: 100px;
+    font-family:'Times New Roman', Times, serif;
+}
+/*Textcards*/
+.header {
+    text-align: left;
+}
+
+.column{
+    width: 33%;
+    height: 20px;
+    float: left;
+    margin-bottom: 250px;
+    padding: 0 8px;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container {
+    padding: 0 16px;
+}
+
+.full-width-div {
+    width: 100%;
+    left: 0;
+}
+
+.midHeight{
+    height: 500px;
+}
+
