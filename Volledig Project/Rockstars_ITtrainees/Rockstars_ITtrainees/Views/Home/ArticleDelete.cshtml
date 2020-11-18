@@ -1,10 +1,11 @@
-﻿@model ITtrainees.Models.Article
+﻿@model Article
 @{
     ViewData["Title"] = "ArticleDelete";
 }
 @using ITtrainees.MVC.APITools
+@using ITtrainees.Models
 @{ 
-
+    List<Article> articles = await ArticleOperations.GetAll();
 }
 <body>
     
@@ -20,7 +21,7 @@
             </thead>
             <tbody>
 
-                @foreach (var article in ArticleOperations.GetAll())
+                @foreach (var article in articles)
                 {
                     @using (Html.BeginForm("ArticleDelete", "Home", FormMethod.Post))
                     {
