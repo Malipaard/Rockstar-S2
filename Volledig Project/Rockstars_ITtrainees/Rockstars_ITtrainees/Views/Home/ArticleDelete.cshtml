@@ -4,26 +4,40 @@
 }
 
 <body>
+    
+    <div class="container-fluid">
+        <h2 class="text-light">Delete Articles</h2>
+        <table class="table text-light">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">ID</th>
+                </tr>
+            </thead>
+            <tbody>
 
-    <div class="container text-light border-top pt-3">
-        <div class="column align-items-center">
-            @using (Html.BeginForm("ArticleDelete", "Home", FormMethod.Post))
-            {
-                <table cellpadding="0" cellspacing="0">
-                    <tr>
-                        <th colspan="2" align="center">Delete an article</th>
-                    </tr>
-                    <tr>
-                        <td>ID van het artikel dat u wilt verwijderen: </td>
-                        <td>@Html.TextBoxFor(m => m.ArticleId)</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input type="submit" value="Submit" /></td>
-                    </tr>
-                </table>
-            }
-        </div>
+                @foreach (var article in ITtrainees.Logic.ArticleProcessor.GetAll())
+                {
+                    @using (Html.BeginForm("ArticleDelete", "Home", FormMethod.Post))
+                    {
+                        <tr>
+                            <th scope="row">@article.Title</th>
+                            <td>@article.Author</td>
+                            <td>@article.ArticleId</td>
+
+                            <td style="display:none">
+                                @Html.TextBoxFor(m => article.ArticleId)
+                            </td>
+                            <td>
+                                <input type="submit" value="Delete" />
+                            </td>
+
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>        
     </div>
 
 </body>

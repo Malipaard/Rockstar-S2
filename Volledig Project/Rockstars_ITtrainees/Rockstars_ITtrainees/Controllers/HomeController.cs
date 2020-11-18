@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Rockstars_ITtrainees.Models;
 using ITtrainees.Logic;
+using System.Net;
 
 namespace Rockstars_ITtrainees.Controllers
 {
@@ -43,7 +44,7 @@ namespace Rockstars_ITtrainees.Controllers
         public IActionResult ArticleDelete()
         {
             return View();
-        }
+        }      
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
