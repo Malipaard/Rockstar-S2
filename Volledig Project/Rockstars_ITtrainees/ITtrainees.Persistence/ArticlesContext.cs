@@ -20,7 +20,7 @@ namespace ITtrainees.DataAcces
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Persist Security Info=False;User ID=CasLeeflang;Password=Plantenbak;Initial Catalog=TechBurstArticles;Server=145.93.120.32");
+            optionsBuilder.UseSqlServer("Server = localhost; Database = master; Trusted_Connection = True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

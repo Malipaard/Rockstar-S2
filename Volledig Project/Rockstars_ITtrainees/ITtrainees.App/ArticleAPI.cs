@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ITtrainees.Factory;
+using ITtrainees.Interface.Interfaces;
 using ITtrainees.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,35 +14,38 @@ namespace ITtrainees.Logic
     [ApiController]
     public class ArticleAPI : ControllerBase
     {
-        static List<Article> ArticleStorage = new List<Article>() { new Article {
-            Title = "TestArtikel",
-            Author = "Ruud",
-            Summary = "GEFELICITEERD JE HEBT HET TESTARTIKEL GELADEN"
-        }, new Article {
-            Title = "Artikel",
-            Author = "Pieter",
-            Summary = "teeeeeeeeeeekkksssttt"
-        } };
+        //api/article
+        [HttpPost]
+        public void CreateArticle(Article article)
+        {
+            IArticleDAL dal = ArticleFactory.GetArticleDAL();
+            dal.Create(article);
+        }
+
+        //api/article/{id}
+        [HttpGet("{id:int:min(1)}")]
+        public Article GetArticle(int id)
+        {
+            IArticleDAL dal = ArticleFactory.GetArticleDAL();
+            var article = dal.GetArticle(id);
+            return article;
+        }
 
         //api/article
         [HttpGet]
         public IEnumerable<Article> GetAllArticles()
         {
-            return ArticleStorage;
+            IArticleDAL dal = ArticleFactory.GetArticleDAL();
+            List<Article> articles = dal.GetAll();
+            return articles;
         }
-
+        
         //api/article/{id}
-        [HttpGet("{id}")]
-        public ActionResult<Article> GetArticle(int id)
+        [HttpDelete("{id:int:min(1)}")]
+        public void Delete(int id)
         {
-            return ArticleStorage[id];
-        }
-
-        //api/article
-        [HttpPost]
-        public void PostArticle(Article article)
-        {
-            ArticleStorage.Add(article);
+            IArticleDAL dal = ArticleFactory.GetArticleDAL();
+            dal.DeleteArticle(id);
         }
     }
 }

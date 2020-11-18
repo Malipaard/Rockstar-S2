@@ -23,8 +23,8 @@ namespace Rockstars_ITtrainees.Controllers
         public async Task<IActionResult> IndexAsync()
         {
             APIHelper.InitializeClient();
-            Article article = await ArticleOperations.getArticle(0);
-            return View(article);
+            List<Article> articleList = await ArticleOperations.GetAll();
+            return View(articleList);
         }
 
         public IActionResult Privacy()

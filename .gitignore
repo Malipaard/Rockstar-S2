@@ -75,3 +75,5 @@ _[Ss]cripts
 *.ncrunchsolution
 *.dot[Cc]over
 /Volledig Project/Rockstars_ITtrainees/Rockstars_ITtrainees/Proxy/APIHelper.cs
+/Volledig Project/Rockstars_ITtrainees/ITtrainees.Persistence/Migrations/20201117154147_MigrationName.cs
+/Volledig Project/Rockstars_ITtrainees/ITtrainees.Persistence/Migrations/20201117154147_MigrationName.Designer.cs

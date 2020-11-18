@@ -39,6 +39,7 @@ namespace ITtrainees.DataAcces
 
         public Models.Article GetArticle(int id)
         {
+            Console.WriteLine("werkt tot DAL");
             using (var context = new ArticlesContext())
             {
                 var article = context.Articles.Single(a => a.ArticleId == id);
