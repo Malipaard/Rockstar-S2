@@ -35,11 +35,12 @@ namespace Rockstars_ITtrainees.Controllers
             return View();
         }
 
-        public IActionResult CTest()
+        public IActionResult ArticleUpload()
         {
             return View();
         }
-        public IActionResult ArticleUpload()
+
+        public IActionResult ArticleDelete()
         {
             return View();
         }
@@ -54,6 +55,14 @@ namespace Rockstars_ITtrainees.Controllers
         public IActionResult ArticleUpload(Article article)
         {
             ITtrainees.Logic.ArticleProcessor.Create(article);
+            ModelState.Clear();
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ArticleDelete(Article article)
+        {
+            ITtrainees.Logic.ArticleProcessor.Delete(article.ArticleId);
             ModelState.Clear();
             return View();
         }

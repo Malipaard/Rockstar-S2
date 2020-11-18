@@ -19,11 +19,6 @@ namespace ITtrainees.Logic
             }
         };   
 
-        public static void Save(Article article)
-        {            
-            article.ArticleId = ArticleStorage.Count;
-            ArticleStorage.Add(article);
-        }    
 
         public static Article GetArticle(int id)
         {
