@@ -16,15 +16,16 @@ namespace ITtrainees.Logic
     {
         //api/article
         [HttpPost]
-        public void CreateArticle(Article article)
+        public IActionResult Create(Article article)
         {
             IArticleDAL dal = ArticleFactory.GetArticleDAL();
             dal.Create(article);
+            return Accepted();
         }
 
         //api/article/{id}
         [HttpGet("{id:int:min(1)}")]
-        public Article GetArticle(int id)
+        public Article Get(int id)
         {
             IArticleDAL dal = ArticleFactory.GetArticleDAL();
             var article = dal.GetArticle(id);
@@ -33,19 +34,29 @@ namespace ITtrainees.Logic
 
         //api/article
         [HttpGet]
-        public IEnumerable<Article> GetAllArticles()
+        public IEnumerable<Article> GetAll()
         {
             IArticleDAL dal = ArticleFactory.GetArticleDAL();
             List<Article> articles = dal.GetAll();
             return articles;
         }
-        
+
+        //api/article
+        [HttpPut]
+        public IActionResult Update(Article article)
+        {
+            IArticleDAL dal = ArticleFactory.GetArticleDAL();
+            dal.Update(article);
+            return Accepted();
+        }
+
         //api/article/{id}
         [HttpDelete("{id:int:min(1)}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
             IArticleDAL dal = ArticleFactory.GetArticleDAL();
             dal.DeleteArticle(id);
+            return Accepted();
         }
     }
 }

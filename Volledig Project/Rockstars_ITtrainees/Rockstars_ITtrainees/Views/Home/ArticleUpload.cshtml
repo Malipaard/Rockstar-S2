@@ -33,9 +33,11 @@
                     <td>Tag: </td>
                     <td>
                         @Html.DropDownListFor(m => m.Tag, new List<SelectListItem>
-                   { new SelectListItem{Text="C#", Value="C#"},
-                    new SelectListItem{Text="JAVA", Value="JAVA"},
-                    new SelectListItem{Text="Python", Value="Python"} }, "Select Tag")
+                        { 
+                            new SelectListItem{Text="C#", Value="C#"},
+                            new SelectListItem{Text="JAVA", Value="JAVA"},
+                            new SelectListItem{Text="Python", Value="Python"} 
+                        }, "Select Tag")
                     </td>
                 </tr>
                 <tr>

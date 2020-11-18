@@ -56,7 +56,8 @@ namespace Rockstars_ITtrainees.Controllers
         [HttpPost]
         public IActionResult ArticleUpload(Article article)
         {
-            ITtrainees.Logic.ArticleProcessor.Create(article);
+            APIHelper.InitializeClient();
+            ArticleOperations.Create(article);
             ModelState.Clear();
             return View();
         }

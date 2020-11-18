@@ -17,7 +17,7 @@ namespace ITtrainees.Models
         //public string HeaderImage { get; private set; }
 
 
-        public Article(int id, string title, string author, string summary, string tag)
+        public Article(int id, string title, string author, string summary, string tag) 
         {
             this.ArticleId = id;
             this.Title = title;

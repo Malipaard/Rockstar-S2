@@ -7,14 +7,15 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using static ITtrainees.MVC.APITools.APIHelper;
 using System.Collections.Generic;
+using System.Text;
 
 namespace ITtrainees.MVC.APITools
 {
     public static class ArticleOperations
     {
-        public static async void CreateArticle(Article article)
+        public static async void Create(Article article)
         {
-            var stringContent = new StringContent(article.ToString());
+            var stringContent = new StringContent(JsonConvert.SerializeObject(article), Encoding.UTF8, "application/json");
             HttpResponseMessage response = await ApiClient.PostAsync($"article", stringContent);
         }
 
@@ -30,7 +31,7 @@ namespace ITtrainees.MVC.APITools
             return null;
         }
 
-        public static async Task<Article> GetArticle(int id)
+        public static async Task<Article> Get(int id)
         {
             HttpResponseMessage response = await ApiClient.GetAsync($"article/{ id }");
             if (response.IsSuccessStatusCode)
@@ -42,7 +43,13 @@ namespace ITtrainees.MVC.APITools
             return null;
         }
 
-        public static async void DeleteArticle(int id)
+        public static async void Update(Article article)
+        {
+            var stringContent = new StringContent(JsonConvert.SerializeObject(article), Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await ApiClient.PutAsync($"article", stringContent);
+        }
+
+        public static async void Delete(int id)
         {
             HttpResponseMessage response = await ApiClient.DeleteAsync($"article{ id }");
         }
