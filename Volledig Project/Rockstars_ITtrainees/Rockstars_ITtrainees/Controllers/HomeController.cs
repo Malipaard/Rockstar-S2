@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using ITtrainees.Models;
+using ITtrainees.MVC.APITools;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Rockstars_ITtrainees.Models;
@@ -21,9 +22,11 @@ namespace Rockstars_ITtrainees.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> IndexAsync()
         {
-            return View();
+            APIHelper.InitializeClient();
+            List<Article> articleList = await ArticleOperations.GetAll();
+            return View(articleList);
         }
 
         public IActionResult Privacy()
@@ -55,7 +58,8 @@ namespace Rockstars_ITtrainees.Controllers
         [HttpPost]
         public IActionResult ArticleUpload(Article article)
         {
-            ITtrainees.Logic.ArticleProcessor.Create(article);
+            APIHelper.InitializeClient();
+            ArticleOperations.Create(article);
             ModelState.Clear();
             return View();
         }

@@ -37,6 +37,11 @@ namespace ITtrainees.DataAcces
             }
         }
 
+        public void Update(Models.Article article)
+        {
+            //artikel updaten in DB
+        }
+
         public Models.Article GetArticle(int id)
         {
             using (var context = new ArticlesContext())
