@@ -71,5 +71,13 @@ namespace Rockstars_ITtrainees.Controllers
             ModelState.Clear();
             return View();
         }
+
+        [HttpPost]
+        public IActionResult ArticleDelete(Article article)
+        {
+            ITtrainees.Logic.ArticleProcessor.Delete(article.ArticleId);
+            ModelState.Clear();
+            return View();
+        }
     }
 }
