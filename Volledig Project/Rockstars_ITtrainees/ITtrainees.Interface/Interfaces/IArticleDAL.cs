@@ -11,6 +11,5 @@ namespace ITtrainees.Interface.Interfaces
         public Article GetArticle(int id);
         public void DeleteArticle(int id);
         public void Create(Article article);
-        public void Update(Article article);
     }
 }
