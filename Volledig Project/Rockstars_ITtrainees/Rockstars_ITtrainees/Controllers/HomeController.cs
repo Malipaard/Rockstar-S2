@@ -67,7 +67,7 @@ namespace Rockstars_ITtrainees.Controllers
         [HttpPost]
         public IActionResult ArticleDelete(Article article)
         {
-            ITtrainees.Logic.ArticleProcessor.Delete(article.ArticleId);
+            ArticleOperations.Delete(article.ArticleId);
             ModelState.Clear();
             return View();
         }
