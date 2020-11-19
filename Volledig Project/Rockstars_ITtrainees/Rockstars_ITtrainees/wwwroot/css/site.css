@@ -155,3 +155,7 @@ h1 {
 .card-author:last-child{
     font-size:15px;
 }
+
+.sub-title {
+    border-bottom: 3px solid #ffe000;
+}
