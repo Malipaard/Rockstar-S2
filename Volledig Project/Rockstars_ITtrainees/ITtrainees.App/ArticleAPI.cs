@@ -27,9 +27,15 @@ namespace ITtrainees.Logic
         [HttpGet("{id:int:min(1)}")]
         public Article Get(int id)
         {
+            try { 
             IArticleDAL dal = ArticleFactory.GetArticleDAL();
             var article = dal.GetArticle(id);
             return article;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         //api/article
