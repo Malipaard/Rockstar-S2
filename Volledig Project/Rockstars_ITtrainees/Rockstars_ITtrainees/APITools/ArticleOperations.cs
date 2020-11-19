@@ -51,7 +51,7 @@ namespace ITtrainees.MVC.APITools
 
         public static async void Delete(int id)
         {
-            HttpResponseMessage response = await ApiClient.DeleteAsync($"article{ id }");
+            HttpResponseMessage response = await ApiClient.DeleteAsync($"article/{ id }");
         }
     }
 }
