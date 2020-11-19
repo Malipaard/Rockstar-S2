@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Rockstars_ITtrainees.Models;
 using ITtrainees.Logic;
+using System.Net;
 
 namespace Rockstars_ITtrainees.Controllers
 {
@@ -38,14 +39,15 @@ namespace Rockstars_ITtrainees.Controllers
             return View();
         }
 
-        public IActionResult CTest()
-        {
-            return View();
-        }
         public IActionResult ArticleUpload()
         {
             return View();
         }
+
+        public IActionResult ArticleDelete()
+        {
+            return View();
+        }      
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -58,6 +60,14 @@ namespace Rockstars_ITtrainees.Controllers
         {
             APIHelper.InitializeClient();
             ArticleOperations.Create(article);
+            ModelState.Clear();
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ArticleDelete(Article article)
+        {
+            ArticleOperations.Delete(article.ArticleId);
             ModelState.Clear();
             return View();
         }
