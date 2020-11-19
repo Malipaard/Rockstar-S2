@@ -45,7 +45,17 @@ namespace ITtrainees.DataAcces
 
         public void Update(Models.Article article)
         {
-            //artikel updaten in DB
+            using (var context = new ArticlesContext())
+            {
+                var dbArticle = context.Articles.Single(a => a.ArticleId == article.ArticleId);
+
+                dbArticle.Author = article.Author;
+                dbArticle.Summary = article.Summary;
+                dbArticle.Tag = article.Tag;
+                dbArticle.Title = article.Title;
+
+                context.SaveChanges();
+            }
         }
 
         public Models.Article GetArticle(int id)
