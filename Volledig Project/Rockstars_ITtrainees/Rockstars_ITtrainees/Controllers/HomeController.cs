@@ -68,7 +68,6 @@ namespace Rockstars_ITtrainees.Controllers
         public IActionResult ArticleDelete(Article article)
         {
             ArticleOperations.Delete(article.ArticleId);
-            ModelState.Clear();
             return View();
         }
     }

@@ -21,10 +21,16 @@ namespace ITtrainees.DataAcces
         {
             using (var context = new ArticlesContext())
             {
+                try { 
                 var article = context.Articles.Single(a => a.ArticleId == id);
                 context.Articles.Attach(article);
                 context.Articles.Remove(article);
                 context.SaveChanges();
+                }
+                catch
+                {
+                    return;
+                }
             }    
         }
 
