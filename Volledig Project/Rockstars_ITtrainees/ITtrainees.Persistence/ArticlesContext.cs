@@ -20,7 +20,7 @@ namespace ITtrainees.DataAcces
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=DESKTOP-KQ65BAV; Integrated Security=SSPI; Initial Catalog=TechBurstArticles;");
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-FG0G0NE; Integrated Security=SSPI; Initial Catalog=TechBurstArticles;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
