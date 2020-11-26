@@ -4,10 +4,10 @@
     ViewData["Titel"] = "Login";
 }
 
-<h1>Do the login</h1>
+<h1 style="color: yellow"><b>Do the login</b></h1>
 
 
-<h4>Enter the user things</h4>
+<h4 style="color: yellow"><b>enter the user things</b></h4>
 
 <hr/>
 <div class="row">
@@ -15,17 +15,17 @@
         <form asp-action="Login" asp-route-returnUrl="@Context.Request.Query["ReturnUrl"]">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Username" class="custom-control-label"></label>
+                <label asp-for="Username" class="custom-control-label" style="color: yellow"></label>
                 <input asp-for="Username" class="form-control"/>
                 <span asp-validation-for="Username" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Password" class="custom-control-label"></label>
+                <label asp-for="Password" class="custom-control-label" style="color: yellow"></label>
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-primary"/>
+                <input type="submit" value="Login" class="btn btn-primary" style="color: yellow"/>
             </div>
         </form>
     </div>
