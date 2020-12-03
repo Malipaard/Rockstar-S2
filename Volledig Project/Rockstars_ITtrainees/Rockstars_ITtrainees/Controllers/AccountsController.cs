@@ -34,18 +34,18 @@ namespace ITtrainees.MVC.Controllers
             if (!ModelState.IsValid) return View(model);
             
             //get use by username and only continue if it exists 
-            var user = new User();//moet via de dal gaan om de username op te halen
+            var user = new User();//moet via de dal gaan om de user op te halen
             //check username 
             if (user == null)
             {
-                ModelState.AddModelError("", "The username or password is incorrect.");
+                ModelState.AddModelError("", "Username or password is incorrect.");
                 return View(model);
             }
             //check password
             var hasher = new PasswordHasher<User>();
             if (hasher.VerifyHashedPassword(user, user.Password, model.Password) == PasswordVerificationResult.Failed)
             {
-                ModelState.AddModelError("", "The username or password is incorrect.");
+                ModelState.AddModelError("", "Username or password is incorrect.");
                 return View(model);
             }
             
