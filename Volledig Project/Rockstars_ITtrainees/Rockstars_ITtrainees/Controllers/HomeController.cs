@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Rockstars_ITtrainees.Models;
 using ITtrainees.Logic;
 using System.Net;
+using ITtrainees.MVC.Models.Home;
 
 namespace Rockstars_ITtrainees.Controllers
 {
@@ -56,10 +57,10 @@ namespace Rockstars_ITtrainees.Controllers
         }
 
         [HttpPost]
-        public IActionResult ArticleUpload(Article article)
+        public IActionResult ArticleUpload(ArticleUploadViewModel model)
         {
             APIHelper.InitializeClient();
-            ArticleOperations.Create(article);
+            ArticleOperations.Create(model);
             ModelState.Clear();
             return View();
         }
