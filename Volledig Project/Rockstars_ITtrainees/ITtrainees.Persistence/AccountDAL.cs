@@ -7,7 +7,7 @@ using ITtrainees.Models;
 
 namespace ITtrainees.DataAcces
 {
-    class AccountDAL : IAccountDAL
+    public class AccountDAL : IAccountDAL
     {
         public void AddScore(Account account, int points)
         {
@@ -30,11 +30,11 @@ namespace ITtrainees.DataAcces
             }
         }
 
-        public Account GetAccount(int id)
+        public Account GetAccount(string userName)
         {
             using (var context = new ArticlesContext())
             {
-                var account = context.Accounts.Single(a => a.AccountID == id);
+                var account = context.Accounts.Single(a => a.Name == userName);
                 return account;
             }
         }

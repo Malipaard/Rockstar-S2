@@ -18,5 +18,17 @@ namespace ITtrainees.MVC.APITools
             var stringContent = new StringContent(JsonConvert.SerializeObject(account), Encoding.UTF8, "application/json");
             HttpResponseMessage response = await ApiClient.PostAsync($"account", stringContent);
         }
+
+        public static async Task<Account> Get(string userName)
+        {
+            HttpResponseMessage response = await ApiClient.GetAsync($"account/{ userName }");
+            if (response.IsSuccessStatusCode)
+            {
+                var accountJSON = await response.Content.ReadAsStringAsync();
+                var account = JsonConvert.DeserializeObject<Account>(accountJSON);
+                return account;
+            }
+            return null;
+        }
     }
 }
