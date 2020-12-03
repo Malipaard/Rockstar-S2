@@ -10,10 +10,6 @@ namespace ITtrainees.Models
         public string Name { get; set; }
         public int Points { get; set; }
         public bool IsAdmin { get; set; }
-
-
-
-
         public string Password { get; set; }
 
         public Account(int accountID, string name, int points, bool isAdmin, string pass)
