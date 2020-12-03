@@ -66,7 +66,7 @@ namespace ITtrainees.MVC.Controllers
                 new ClaimsPrincipal(claimsIdentity),
                 authProperties);
 
-            return RedirectToAction("Login", new { returnUrl = "/" });
+            return RedirectToAction("Login", new {returnUrl = "/"});
         }
 
 
