@@ -17,6 +17,7 @@ namespace ITtrainees.DataAcces
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Article> Articles { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<Question> Questions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
