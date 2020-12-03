@@ -8,6 +8,110 @@
 
 <body>
 
+    <style>
+        .height {
+            min-height: 500px;
+        }
+
+        .width {
+            min-width: 100%;
+        }
+
+        .noMargin {
+            margin: 0 !important;
+        }
+    </style>
+
+    <div class="container mt-5 height width justify-content-md-center">
+        <div class="row">
+
+            <div class="col-1">
+                <button class="prev btn text-muted bg-dark align-middle h-100"><</button>
+            </div>
+
+            <div class="col-10">
+                <div class="siema">
+                    @{foreach (var article in Model)
+                        {
+                            <a asp-area="" asp-controller="Home" asp-action="Index" class="btn-dark text-deco-none">
+                                <div class="card card-scale mb-4 h-80">
+                                    @{if (article.Tag != null)
+                                        { <h3 class="card-tag text-light p-1">@article.Tag</h3>}
+                                    }
+                                    <img class="card-img-top card-image" src="~/Assets/grey-square.jpg" alt="placeholder">
+                                    <div class="card-body d-inline-flex flex-column">
+                                        <h5 class="card-title">@article.Title</h5>
+                                        <p class="card-text">@article.Summary</p>
+                                        <p class="card-author">@article.Author</p>
+                                    </div>
+                                </div>
+                            </a>
+                        }
+                    }
+
+                </div>
+            </div>
+
+            <div class="col-1">
+                <button class="next btn text-muted bg-dark align-middle h-100">></button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Include Siema library -->
+    <script type="text/javascript" src="~/js/siema.min.js"></script>
+
+    <!-- Initiate Siema -->
+    <script type="text/javascript">
+
+                const mySiema = new Siema({
+            selector: '.siema',
+                duration: 200,
+                easing: 'ease-out',
+                perPage: 5,
+                startIndex: 0,
+                draggable: true,
+                multipleDrag: true,
+                threshold: 20,
+                loop: true,
+                rtl: false,
+                onInit: () => { },
+                onChange: () => { },
+        });
+
+        document.querySelector('.prev').addEventListener('click', () => mySiema.prev());
+            document.querySelector('.next').addEventListener('click', () => mySiema.next());
+
+    </script>
+
+
+
+    <div class="container-fluid">
+        <h2 class="text-light">Articles</h2>
+        <div class="row text-light">
+            @{foreach (var article in Model)
+                {
+                    <div class="col-12 col-md-3">
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="btn-dark text-deco-none">
+                            <div class="card card-scale mb-4 h-80">
+                                @{if (article.Tag != null)
+                                    { <h3 class="card-tag text-light p-1">@article.Tag</h3>}
+                                }
+                                <img class="card-img-top card-image" src="~/Assets/grey-square.jpg" alt="placeholder">
+                                <div class="card-body d-inline-flex flex-column">
+                                    <h5 class="card-title">@article.Title</h5>
+                                    <p class="card-text">@article.Summary</p>
+                                    <p class="card-author">@article.Author</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
     <div class="container-fluid">
         <h2 class="text-light">Recently Added Articles</h2>
         <!--Slideshow-->
@@ -53,107 +157,5 @@
 
         </div>
     </div>
-
-    <div class="container-fluid">
-        <h2 class="text-light">Articles</h2>
-        <div class="row text-light">
-            @{foreach (var article in Model)
-                {
-                    <div class="col-12 col-md-3">
-                        <a asp-area="" asp-controller="Home" asp-action="Index" class="btn-dark text-deco-none">
-                            <div class="card card-scale mb-4 h-80">
-                                @{if (article.Tag != null)
-                                    { <h3 class="card-tag text-light p-1">@article.Tag</h3>}
-                                }
-                                <img class="card-img-top card-image" src="~/Assets/grey-square.jpg" alt="placeholder">
-                                <div class="card-body d-inline-flex flex-column">
-                                    <h5 class="card-title">@article.Title</h5>
-                                    <p class="card-text">@article.Summary</p>
-                                    <p class="card-author">@article.Author</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                }
-            }
-        </div>
-    </div>
-
-    <style>
-
-        .cardStyling {
-            width: 18rem;
-        }
-
-        .height {
-            min-height: 500px;
-        }
-
-        .width {
-            min-width: 100%;
-        }
-
-        .noMargin {
-            margin: 0 !important;
-        }
-    </style>
-
-    <div class="container mt-5 height width justify-content-md-center">
-        <div class="row">
-
-            <div class="col-1">
-                <button class="prev btn text-muted bg-dark align-middle h-100"><</button>
-            </div>
-
-            <div class="col-10">
-                <div class="siema">
-                    @{foreach (var article in Model)
-                        {
-                            <div class="card cardStyling">
-                                <img class="card-img-top card-image" src="~/Assets/grey-square.jpg" alt="placeholder">
-                                <div class="card-body text-muted bg-dark">
-                                    <h5 class="card-title">@article.Title</h5>
-                                    <p class="card-text">@article.Summary</p>
-                                    <p class="card-author">@article.Author</p>
-                                </div>
-                            </div>
-                        }
-                    }
-
-                </div>
-            </div>
-
-            <div class="col-1">
-                <button class="next btn text-muted bg-dark align-middle h-100">></button>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Include Siema library -->
-    <script type="text/javascript" src="~/js/siema.min.js"></script>
-
-    <!-- Initiate Siema -->
-    <script type="text/javascript">
-
-        const mySiema = new Siema({
-            selector: '.siema',
-            duration: 200,
-            easing: 'ease-out',
-            perPage: 5,
-            startIndex: 0,
-            draggable: true,
-            multipleDrag: true,
-            threshold: 20,
-            loop: true,
-            rtl: false,
-            onInit: () => { },
-            onChange: () => { },
-        });
-
-        document.querySelector('.prev').addEventListener('click', () => mySiema.prev());
-        document.querySelector('.next').addEventListener('click', () => mySiema.next());
-
-    </script>
 
 </body>

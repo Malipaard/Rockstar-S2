@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using ITtrainees.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using ITtrainees.MVC.APITools;
 
 namespace ITtrainees.MVC.Controllers
 {
@@ -97,11 +98,10 @@ namespace ITtrainees.MVC.Controllers
 
             tempAccount.Password = hashedPW;
 
-            //add new user to database with model.username and hashedPW
+            APIHelper.InitializeClient();
+            AccountOperations.Create(tempAccount);
 
             return RedirectToAction("Login", new {returnUrl = "/"});
         }
-
-
     }
 }

@@ -19,10 +19,6 @@
     <ProjectReference Include="..\ITtrainees.Models\ITtrainees.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="APITools\" />
-  </ItemGroup>
-
 
 
 </Project>

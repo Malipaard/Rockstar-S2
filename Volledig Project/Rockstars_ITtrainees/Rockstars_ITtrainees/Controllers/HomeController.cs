@@ -74,5 +74,7 @@ namespace Rockstars_ITtrainees.Controllers
             ArticleOperations.Delete(article.ArticleId);
             return View();
         }
+
+       
     }
 }
