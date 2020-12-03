@@ -14,6 +14,18 @@ namespace ITtrainees.Models
         public string QuestionText { get; private set; }
         public string Answer1 { get; private set; }
         public string Answer2 { get; private set; }
-        public int CorrectAnswer { get; private set; }
+        public string CorrectAnswer { get; private set; }
+
+        bool IsAnswerCorrect(string givenAnswer)
+        {
+            if (givenAnswer == this.CorrectAnswer)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
