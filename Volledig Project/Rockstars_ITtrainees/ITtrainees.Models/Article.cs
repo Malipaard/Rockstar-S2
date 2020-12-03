@@ -13,8 +13,7 @@ namespace ITtrainees.Models
         public string Author { get; set; }
         public string Summary { get; set; }
         public string Tag { get; set; }
-        public string HeaderImage { get; set; }
-        public string EncodedArticle { get; set; }
+
 
         //public string Content { get; set; }
         //public string HeaderImage { get; private set; }

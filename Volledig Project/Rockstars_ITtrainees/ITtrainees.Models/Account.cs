@@ -21,12 +21,17 @@ namespace ITtrainees.Models
             this.Password = pass;
         }
 
-        public Account(string name, int points, bool isAdmin, string pass)
+        public Account()
         {
-            this.Name = name;
-            this.Points = points;
-            this.IsAdmin = isAdmin;
-            this.Password = pass;
+
         }
+
+        //public Account(string name, int points, bool isAdmin, string pass)
+        //{
+        //    this.Name = name;
+        //    this.Points = points;
+        //    this.IsAdmin = isAdmin;
+        //    this.Password = pass;
+        //}
     }
 }

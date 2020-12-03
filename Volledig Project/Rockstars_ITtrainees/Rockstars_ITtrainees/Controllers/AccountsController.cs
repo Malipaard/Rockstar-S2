@@ -91,7 +91,7 @@ namespace ITtrainees.MVC.Controllers
 
             var hasher = new PasswordHasher<Account>();
 
-            Account tempAccount = new Account(model.Username, model.Rockstars, model.IsAdmin, model.Password);
+            Account tempAccount = new Account(0,model.Username, model.Rockstars, model.IsAdmin, model.Password);
 
             string hashedPW = hasher.HashPassword(tempAccount, model.Password);
 
