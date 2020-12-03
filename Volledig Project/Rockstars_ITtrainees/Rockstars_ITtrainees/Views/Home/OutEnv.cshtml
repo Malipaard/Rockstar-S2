@@ -1,11 +1,12 @@
-﻿@{
+﻿@model List<ITtrainees.Models.Article>
+@{
     ViewData["Title"] = "Test Page";
 }
 <link rel="stylesheet" href="~/css/site.css" />
 <link rel="stylesheet" href="~/css/OutEnv.css" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-@using static ITtrainees.Logic.ArticleProcessor;
+@using static ITtrainees.Logic.ArticleAPI;
 @using ITtrainees.Models;
 
 <body>
@@ -18,7 +19,8 @@
         .height {
             min-height: 500px;
         }
-        .width{
+
+        .width {
             min-width: 100%;
         }
 
@@ -36,7 +38,7 @@
 
             <div class="col-10">
                 <div class="siema">
-                    @{foreach (var article in ITtrainees.Logic.ArticleProcessor.GetAll())
+                    @{foreach (var article in Model)
                         {
                             <div class="card cardStyling">
                                 <img class="card-img-top card-image" src="~/Assets/grey-square.jpg" alt="placeholder">
@@ -47,7 +49,7 @@
                                 </div>
                             </div>
                         }
-                    }                   
+                    }
 
                 </div>
             </div>
