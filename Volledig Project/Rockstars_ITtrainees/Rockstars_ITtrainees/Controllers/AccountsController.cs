@@ -34,7 +34,7 @@ namespace ITtrainees.MVC.Controllers
             if (!ModelState.IsValid) return View(model);
             
             //get use by username and only continue if it exists 
-            var user = new User();//moet via de dal gaan om de user op te halen
+            var user = new Account();//moet via de dal gaan om de user op te halen
             //check username 
             if (user == null)
             {
@@ -42,7 +42,7 @@ namespace ITtrainees.MVC.Controllers
                 return View(model);
             }
             //check password
-            var hasher = new PasswordHasher<User>();
+            var hasher = new PasswordHasher<Account>();
             if (hasher.VerifyHashedPassword(user, user.Password, model.Password) == PasswordVerificationResult.Failed)
             {
                 ModelState.AddModelError("", "Username or password is incorrect.");
@@ -51,7 +51,7 @@ namespace ITtrainees.MVC.Controllers
             
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name,user.Username)
+                new Claim(ClaimTypes.Name,user.Name)
             };
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -89,9 +89,13 @@ namespace ITtrainees.MVC.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            var hasher = new PasswordHasher<User>();
+            var hasher = new PasswordHasher<Account>();
 
-            string hashedPW = hasher.HashPassword(new User(), model.Password);
+            Account tempAccount = new Account(model.Username, model.Rockstars, model.IsAdmin, model.Password);
+
+            string hashedPW = hasher.HashPassword(tempAccount, model.Password);
+
+            tempAccount.Password = hashedPW;
 
             //add new user to database with model.username and hashedPW
 
