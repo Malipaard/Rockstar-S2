@@ -4,9 +4,12 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using ITtrainees.Models;
+using ITtrainees.MVC.APITools;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Rockstars_ITtrainees.Models;
+using ITtrainees.Logic;
+using System.Net;
 
 namespace Rockstars_ITtrainees.Controllers
 {
@@ -19,9 +22,11 @@ namespace Rockstars_ITtrainees.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> IndexAsync()
         {
-            return View();
+            APIHelper.InitializeClient();
+            List<Article> articleList = await ArticleOperations.GetAll();
+            return View(articleList);
         }
 
         public IActionResult Privacy()
@@ -29,20 +34,41 @@ namespace Rockstars_ITtrainees.Controllers
             return View();
         }
 
-        public IActionResult TestPage()
+        public IActionResult OutEnv()
         {
             return View();
         }
 
-        public IActionResult CTest()
+        public IActionResult ArticleUpload()
         {
             return View();
         }
+
+        public IActionResult ArticleDelete()
+        {
+            return View();
+        }      
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpPost]
+        public IActionResult ArticleUpload(Article article)
+        {
+            APIHelper.InitializeClient();
+            ArticleOperations.Create(article);
+            ModelState.Clear();
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ArticleDelete(Article article)
+        {
+            ArticleOperations.Delete(article.ArticleId);
+            return View();
         }
     }
 }

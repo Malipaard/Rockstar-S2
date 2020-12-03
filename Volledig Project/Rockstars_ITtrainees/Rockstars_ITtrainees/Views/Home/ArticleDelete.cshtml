@@ -1,0 +1,46 @@
+﻿@model Article
+@{
+    ViewData["Title"] = "ArticleDelete";
+}
+@using ITtrainees.MVC.APITools
+@using ITtrainees.Models
+@{ 
+    List<Article> articles = await ArticleOperations.GetAll();
+}
+<body>
+    
+    <div class="container-fluid">
+        <h2 class="text-light">Delete Articles</h2>
+        <table class="table text-light">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">ID</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var article in articles)
+                {
+                    @using (Html.BeginForm("ArticleDelete", "Home", FormMethod.Post))
+                    {
+                        <tr>
+                            <th scope="row">@article.Title</th>
+                            <td>@article.Author</td>
+                            <td>@article.ArticleId</td>
+
+                            <td style="display:none">
+                                @Html.TextBoxFor(m => article.ArticleId)
+                            </td>
+                            <td>
+                                <input class="yellow_bg" type="submit" value="Delete" />
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>        
+    </div>
+
+</body>
