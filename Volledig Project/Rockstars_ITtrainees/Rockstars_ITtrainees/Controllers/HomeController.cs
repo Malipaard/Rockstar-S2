@@ -39,6 +39,15 @@ namespace Rockstars_ITtrainees.Controllers
         {
             return View();
         }
+        public async Task<IActionResult> ArticleView(int id)
+        {
+            Article article = await ArticleOperations.Get(id);
+            if (article != null)
+            {
+                return View(article);
+            }
+            return RedirectToAction("Index");
+        }
 
         public IActionResult ArticleUpload()
         {

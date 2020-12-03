@@ -18,7 +18,6 @@ namespace ITtrainees.Logic
         [HttpPost]
         public IActionResult Create(Article article)
         {
-            Console.WriteLine(article.HeaderImage);
             IArticleDAL dal = ArticleFactory.GetArticleDAL();
             dal.Create(article);
             return Accepted();

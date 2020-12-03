@@ -30,6 +30,7 @@ namespace ITtrainees.MVC.APITools
                 file.CopyTo(ms);
                 var fileBytes = ms.ToArray();
                 string encodedFile = Convert.ToBase64String(fileBytes);
+                //Console.WriteLine(encodedFile);
                 return encodedFile;
             }
         }
@@ -49,9 +50,9 @@ namespace ITtrainees.MVC.APITools
             using (var ms = new MemoryStream())
             {
                 image.SaveAsJpeg(ms);
-                var avatarBytes = ms.ToArray();
-                string encodedAvatar = Convert.ToBase64String(avatarBytes);
-                return encodedAvatar;
+                var imageBytes = ms.ToArray();
+                string encodedImage = Convert.ToBase64String(imageBytes);
+                return encodedImage;
             }
         }
     }
