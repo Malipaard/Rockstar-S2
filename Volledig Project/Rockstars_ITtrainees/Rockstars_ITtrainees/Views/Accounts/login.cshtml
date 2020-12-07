@@ -4,15 +4,15 @@
     ViewData["Titel"] = "Login";
 }
 
-<div class="text-white">
+<div class="text-white ml-3">
     <h2><b>Do the login</b></h2>
 
 
     <h4><b>enter the user things</b></h4>
 
     <hr />
-    <div class="row">
-        <div class="col-md-5">
+    <div class="row ml-4">
+        <div class="col-md-4">
             <form asp-action="Login" asp-route-returnUrl="@Context.Request.Query["ReturnUrl"]">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
@@ -30,7 +30,8 @@
                 </div>
             </form>
         </div>
-        <div class="col-md-3">
+        <div class="break"></div>
+        <div class="">
             <label>No account? Register here</label>
             <input class="yellow_bg" type="button" value="Register" onclick="location.href='Register'" />
         </div>
