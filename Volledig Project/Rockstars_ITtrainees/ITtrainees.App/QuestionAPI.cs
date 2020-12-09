@@ -2,17 +2,32 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ITtrainees.Interface.Interfaces;
+using ITtrainees.Factory;
+using ITtrainees.Models;
 
 namespace ITtrainees.Logic
 {
     [Route("api/question")]
     [ApiController]
-    class QuestionAPI : ControllerBase
+    public class QuestionAPI : ControllerBase
     {
-        [HttpGet("{test1}/{test2}")]
-        private string test(int test1, string test2) 
+        [HttpGet("{id}/{answer}")]
+        public string Validate(int id, string answer) 
         {
-            return test1.ToString() + test2;
+            IQuestionDAL questionDal = QuestionFactory.GetQuestionDAL();
+            Question question = questionDal.GetQuestion(id);
+
+            // id = 2
+            // answer = 'correct'
+            if (answer == question.CorrectAnswer)
+            {
+                return "Lekker gewerkt";
+            }
+            else
+            {
+                return "fucking dom";
+            }
         }
     }
 }
