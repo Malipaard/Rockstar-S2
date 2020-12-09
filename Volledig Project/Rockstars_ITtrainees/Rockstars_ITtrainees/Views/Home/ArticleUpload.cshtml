@@ -1,4 +1,4 @@
-﻿@model ITtrainees.Models.Article
+﻿@model ITtrainees.MVC.Models.Home.ArticleUploadViewModel
 @{
     ViewData["Title"] = "ArticleUpload";
 }
@@ -8,43 +8,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <body>
-    <div class="container text-light pt-3">
+    <div class="container text-light pt-3 ml-3">
         <div class="column align-items-center">
-            @using (Html.BeginForm("ArticleUpload", "Home", FormMethod.Post))
+            @using (Html.BeginForm("ArticleUpload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
 
-                <table cellpadding="10" cellspacing="5">
-                    <tr>
-                        <th colspan="2" align="center">Upload an article</th>
-                    </tr>
-                    <tr>
-                        <td>Title: </td>
-                        <td>@Html.TextBoxFor(m => m.Title)</td>
-                    </tr>
-                    <tr>
-                        <td>Author: </td>
-                        <td>@Html.TextBoxFor(m => m.Author)</td>
-                    </tr>
-                    <tr>
-                        <td>Description: </td>
-                        <td>@Html.TextBoxFor(m => m.Summary)</td>
-                    </tr>
-                    <tr>
-                        <td>Tag: </td>
-                        <td>
-                            @Html.DropDownListFor(m => m.Tag, new List<SelectListItem>
-                       { new SelectListItem{Text="C#", Value="C#"},
-                        new SelectListItem{Text="JAVA", Value="JAVA"},
-                        new SelectListItem{Text="Python", Value="Python"} }, "None")
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input type="submit" value="Submit" /></td>
-                    </tr>
-                </table>
+            <table cellpadding="10" cellspacing="5">
+                <tr>
+                    <th colspan="2" align="center">Upload an article</th>
+                </tr>
+                <tr>
+                    <td>Title: </td>
+                    <td>@Html.TextBoxFor(m => m.Title)</td>
+                </tr>
+                <tr>
+                    <td>Author: </td>
+                    <td>@Html.TextBoxFor(m => m.Author)</td>
+                </tr>
+                <tr>
+                    <td>Description: </td>
+                    <td>@Html.TextBoxFor(m => m.Summary)</td>
+                </tr>
+                <tr>
+                    <td>Tag: </td>
+                    <td>
+                        @Html.DropDownListFor(m => m.Tag, new List<SelectListItem>
+                   { new SelectListItem{Text="C#", Value="C#"},
+                    new SelectListItem{Text="JAVA", Value="JAVA"},
+                    new SelectListItem{Text="Python", Value="Python"} }, "None")
+                    </td>
+                </tr>
+                <tr>
+                    <td>Header Image: </td>
+                    <td>@Html.TextBoxFor(m => m.HeaderImage, null, new { @type = "file", @class = "input-file" })</td>
+                </tr>
+                <tr>
+                    <td>Article: </td>
+                    <td>@Html.TextBoxFor(m => m.Content, null, new { @type = "file", @class = "input-file" })</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Submit" /></td>
+                </tr>
+            </table>
 
             }
         </div>
     </div>
+
+
 </body>
