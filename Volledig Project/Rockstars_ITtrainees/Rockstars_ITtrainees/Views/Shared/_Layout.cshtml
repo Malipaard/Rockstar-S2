@@ -13,60 +13,59 @@
 
 <body class="bg-custom">
 
-        <header class="sticky-top">
-            <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <header class="sticky-top">
+        <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
 
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><img src="~/Assets/RST-073-logo-Team-Rockstars-IT.png" height="70" /></a>
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><img src="~/Assets/RST-073-logo-Team-Rockstars-IT.png" height="70" /></a>
 
-                <a class="navbar-brand text-RSyellow">Tech Burst</a>
+            <a class="navbar-brand text-RSyellow">Tech Burst</a>
 
-                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <div class="collapse navbar-collapse" id="navbarMenu">
-                    <ul class="navbar-nav ml-4">
-                        <li class="nav-item mr-4 d-inline-flex">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
-                        </li>
-                        <li class="nav-item mr-4 d-inline-flex">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="ArticleUpload">Upload Article <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
-                        </li>
-                        <li class="nav-item mr-4 d-inline-flex">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="ArticleDelete">Delete Article <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
-                        </li>
-                        <li class="nav-item mr-4 d-inline-flex">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="OutEnv">Outsource environment <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
-                        </li>
-                        <li class="nav-item mr-4 d-inline-flex">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="FileUpload">Test Upload <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
-                        </li>
-                        <li class="nav-item mr-4 d-inline-flex">
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                                <a class="nav-link" asp-area="" asp-controller="Accounts" asp-action="Logout">Logout <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
-                            }
-                            else
-                            {
-                                <a class="nav-link" asp-area="" asp-controller="Accounts" asp-action="Login">Login <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
-                            }
+            <div class="collapse navbar-collapse" id="navbarMenu">
+                <ul class="navbar-nav ml-4">
+                    <li class="nav-item mr-4 d-inline-flex">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
+                    </li>
+                    <li class="nav-item mr-4 d-inline-flex">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="ArticleUpload">Upload Article <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
+                    </li>
+                    <li class="nav-item mr-4 d-inline-flex">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="ArticleDelete">Delete Article <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
+                    </li>
+                    @*<li class="nav-item mr-4 d-inline-flex">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="OutEnv">Outsource environment <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
+                    </li>*@
+                </ul>
+                <div class="login-container ml-auto d-inline-flex">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="nav-link text-light font-weight-bold" asp-area="" asp-controller="Accounts" asp-action="Logout">Logout <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
+                    }
+                    else
+                    {
+                        <a class="nav-link text-light font-weight-bold"  asp-area="" asp-controller="Accounts" asp-action="Login">Login <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
+                        <a class="nav-link text-light font-weight-bold" asp-area="" asp-controller="Accounts" asp-action="Register">Register <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
+                    }
 
-                        </li>
-
-                    </ul>
                 </div>
-            </nav>
-            <hr class="bg-light mt-0" />
-        </header>
-
-        <div class="container-fluid">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
-        </div>
+            </div>
 
 
-        <!--<footer class="border-top footer text-muted fixed-bottom">
+        </nav>
+        <hr class="bg-light mt-0" />
+    </header>
+
+    <div class="container-fluid">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <!--<footer class="border-top footer text-muted fixed-bottom">
             <div class="container">
                 &copy; 2020 - Rockstars IT - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
             </div>
@@ -74,9 +73,9 @@
     -->
 
 
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-        @RenderSection("Scripts", required: false)
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

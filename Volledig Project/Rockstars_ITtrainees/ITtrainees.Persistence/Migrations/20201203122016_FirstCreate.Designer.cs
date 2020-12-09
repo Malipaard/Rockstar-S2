@@ -3,14 +3,16 @@ using ITtrainees.DataAcces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ITtrainees.DataAcces.Migrations
 {
     [DbContext(typeof(ArticlesContext))]
-    partial class ArticlesContextModelSnapshot : ModelSnapshot
+    [Migration("20201203122016_FirstCreate")]
+    partial class FirstCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,12 +52,6 @@ namespace ITtrainees.DataAcces.Migrations
                         .UseIdentityColumn();
 
                     b.Property<string>("Author")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HeaderImage")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Summary")

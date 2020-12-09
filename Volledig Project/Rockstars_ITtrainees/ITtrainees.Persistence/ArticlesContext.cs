@@ -20,13 +20,13 @@ namespace ITtrainees.DataAcces
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server = localhost; Database = TechBurstArticles; Trusted_Connection = True;");
+            optionsBuilder.UseSqlServer("Server = localhost; Database = master; Trusted_Connection = True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Article>().HasData(
-                new Article(1, "First Article", "Sem", "Description of the article", "Tag"));
+                new Article(1, "First Article", "Sem", "Description of the article", "Tag", "Encoded Image", "Encoded PDF"));
         }
     }
 }

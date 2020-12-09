@@ -4,35 +4,37 @@
     ViewData["Titel"] = "Login";
 }
 
-<h1 style="color: yellow"><b>Do the login</b></h1>
+<div class="text-white ml-3">
+    <h2><b>Login to your Rockstars account</b></h2>
 
 
-<h4 style="color: yellow"><b>enter the user things</b></h4>
+    <h4><b>Fill in your details below</b></h4>
 
-<hr/>
-<div class="row">
-    <div class="col-md-5">
-        <form asp-action="Login" asp-route-returnUrl="@Context.Request.Query["ReturnUrl"]">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Username" class="custom-control-label" style="color: yellow"></label>
-                <input asp-for="Username" class="form-control"/>
-                <span asp-validation-for="Username" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="custom-control-label" style="color: yellow"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-primary" style="color: yellow"/>
-            </div>
-        </form>
-    </div>
-    <div class="col-md-3">
-        <label>No account? Register here</label>
-        <input type="button" value="Register" onclick="location.href='Register'" />
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Login" asp-route-returnUrl="@Context.Request.Query["ReturnUrl"]">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Username" ></label>
+                    <input asp-for="Username" class="form-control" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Login" class="btn yellow_bg"/>
+                </div>
+            </form>
+        </div>
+        <div class="break"></div>
+        <div class="">
+            <label>No account? Register here</label>
+            <input class="yellow_bg btn" type="button" value="Register" onclick="location.href='Register'" />
+        </div>
     </div>
 </div>
-
 

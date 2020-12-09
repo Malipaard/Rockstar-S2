@@ -1,0 +1,16 @@
+﻿@model ITtrainees.Models.Article
+@{
+    ViewData["Title"] = "ArticleUpload";
+}
+
+<link rel="stylesheet" href="~/css/site.css" />
+<link rel="stylesheet" href="~/css/NavBar.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<body>
+    <img class="card-img-top card-image" src="data:image/png;base64, @Model.HeaderImage" alt="placeholder">
+    <h5 class="card-title">@Model.Title</h5>
+    <p class="card-text">@Model.Summary</p>
+    <p class="card-author">@Model.Author</p>
+    <p class="card-author"><embed src="data:application/pdf;base64,@Model.Content"></p>
+</body>
