@@ -24,12 +24,12 @@ namespace ITtrainees.Logic
         }
 
         [HttpGet("{userName}")]
-        public Account Get(string userName)
+        public Account Get(int id)
         {
             try
             {
                 IAccountDAL dal = AccountFactory.GetAccountDAL();
-                var account = dal.GetAccount(userName);
+                var account = dal.GetAccount(id);
                 return account;
             }
             catch
