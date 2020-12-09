@@ -8,9 +8,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <body>
-    <img class="card-img-top card-image" src="data:image/png;base64, @Model.HeaderImage" alt="placeholder">
-    <h5 class="card-title">@Model.Title</h5>
-    <p class="card-text">@Model.Summary</p>
-    <p class="card-author">@Model.Author</p>
-    <p class="card-author"><embed src="data:application/pdf;base64,@Model.Content"></p>
+    <div class="text-light container-himg">
+        <img class="card-img-top card-image" src="data:image/png;base64, @Model.HeaderImage" alt="placeholder">
+        <h2 class="card-title centered-title">@Model.Title</h2>
+        <p class="card-author centered-author">@Model.Author</p>
+    </div>
+
+    <div class='issuu-embed-container'>
+        <iframe src="data:application/pdf;base64,@Model.Content" frameborder='0' allowfullscreen></iframe>
+    </div>
 </body>
