@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <body>
+
     <div class="container-fluid">
         <h2 class="text-light">Recently Added Articles</h2>
         <!--Slideshow-->
@@ -27,9 +28,9 @@
                     {
                         @if (firstItem) { activeItem = "active"; firstItem = false; } else { activeItem = null; }
                         <div class="carousel-item @activeItem">
-                            <a asp-area="" asp-controller="Home" asp-action="Index" class="btn-dark text-deco-none">
+                            <a asp-area="" asp-controller="Home" asp-action="ArticleView"  asp-route-id="@article.ArticleId" class="btn-dark text-deco-none">
                                 <div class="card mb-4">
-                                    <img class="card-img-top midHeight featured-image" src="~/Assets/black-square.png" alt="placeholder">
+                                    <img class="card-img-top midHeight featured-image" src="data:image/png;base64, @article.HeaderImage" alt="placeholder">
                                     <div class="card-body d-inline-flex flex-column">
                                         <h5 class="card-title">@article.Title</h5>
                                         <p class="card-text">@article.Summary</p>
@@ -59,12 +60,12 @@
             @{foreach (var article in Model)
                 {
                     <div class="col-12 col-md-3">
-                        <a asp-area="" asp-controller="Home" asp-action="Index" class="btn-dark text-deco-none">
+                        <a asp-area="" asp-controller="Home" asp-action="ArticleView"  asp-route-id="@article.ArticleId" class="btn-dark text-deco-none">
                             <div class="card card-scale mb-4 h-80">
                                 @{if (article.Tag != null)
                                     { <h3 class="card-tag text-light p-1">@article.Tag</h3>}
                                 }
-                                <img class="card-img-top card-image" src="~/Assets/grey-square.jpg" alt="placeholder">
+                                <img class="card-img-top card-image" src="data:image/png;base64, @article.HeaderImage" alt="placeholder">
                                 <div class="card-body d-inline-flex flex-column">
                                     <h5 class="card-title">@article.Title</h5>
                                     <p class="card-text">@article.Summary</p>
@@ -78,81 +79,4 @@
         </div>
     </div>
 
-
-    <style>
-        .height {
-            min-height: 500px;
-        }
-
-        .width {
-            min-width: 100%;
-        }
-
-        .noMargin {
-            margin: 0 !important;
-        }
-    </style>
-
-    <div class="container mt-5 height width justify-content-md-center">
-        <div class="row">
-
-            <div class="col-1">
-                <button class="prev btn text-muted bg-dark align-middle h-100"><</button>
-            </div>
-
-            <div class="col-10">
-                <div class="siema">
-                    @{foreach (var article in Model)
-                        {
-                            <a asp-area="" asp-controller="Home" asp-action="Index" class="btn-dark text-deco-none">
-                                <div class="card card-scale mb-4 h-80">
-                                    @{if (article.Tag != null)
-                                        { <h3 class="card-tag text-light p-1">@article.Tag</h3>}
-                                    }
-                                    <img class="card-img-top card-image" src="~/Assets/grey-square.jpg" alt="placeholder">
-                                    <div class="card-body d-inline-flex flex-column">
-                                        <h5 class="card-title">@article.Title</h5>
-                                        <p class="card-text">@article.Summary</p>
-                                        <p class="card-author">@article.Author</p>
-                                    </div>
-                                </div>
-                            </a>
-                        }
-                    }
-
-                </div>
-            </div>
-
-            <div class="col-1">
-                <button class="next btn text-muted bg-dark align-middle h-100">></button>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Include Siema library -->
-    <script type="text/javascript" src="~/js/siema.min.js"></script>
-
-    <!-- Initiate Siema -->
-    <script type="text/javascript">
-
-        const mySiema = new Siema({
-            selector: '.siema',
-            duration: 200,
-            easing: 'ease-out',
-            perPage: 5,
-            startIndex: 0,
-            draggable: true,
-            multipleDrag: true,
-            threshold: 20,
-            loop: true,
-            rtl: false,
-            onInit: () => { },
-            onChange: () => { },
-        });
-
-        document.querySelector('.prev').addEventListener('click', () => mySiema.prev());
-        document.querySelector('.next').addEventListener('click', () => mySiema.next());
-
-    </script>
 </body>

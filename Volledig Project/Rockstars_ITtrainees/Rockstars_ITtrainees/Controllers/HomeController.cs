@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Rockstars_ITtrainees.Models;
 using ITtrainees.Logic;
 using System.Net;
+using ITtrainees.MVC.Models.Home;
 
 namespace Rockstars_ITtrainees.Controllers
 {
@@ -38,6 +39,15 @@ namespace Rockstars_ITtrainees.Controllers
         {
             return View();
         }
+        public async Task<IActionResult> ArticleView(int id)
+        {
+            Article article = await ArticleOperations.Get(id);
+            if (article != null)
+            {
+                return View(article);
+            }
+            return RedirectToAction("Index");
+        }
 
         public IActionResult ArticleUpload()
         {
@@ -60,10 +70,10 @@ namespace Rockstars_ITtrainees.Controllers
         }
 
         [HttpPost]
-        public IActionResult ArticleUpload(Article article)
+        public IActionResult ArticleUpload(ArticleUploadViewModel model)
         {
             APIHelper.InitializeClient();
-            ArticleOperations.Create(article);
+            ArticleOperations.Create(model);
             ModelState.Clear();
             return View();
         }

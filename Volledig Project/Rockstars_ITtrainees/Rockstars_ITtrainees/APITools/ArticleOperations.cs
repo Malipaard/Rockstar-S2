@@ -8,15 +8,23 @@ using Newtonsoft.Json;
 using static ITtrainees.MVC.APITools.APIHelper;
 using System.Collections.Generic;
 using System.Text;
+using ITtrainees.MVC.Models.Home;
 
 namespace ITtrainees.MVC.APITools
 {
     public static class ArticleOperations
     {
-        public static async void Create(Article article)
+        
+
+        public static async void Create(ArticleUploadViewModel model)
         {
+            string encodedHeader = FileEncoder.EncodeImage(model.HeaderImage);
+            string encodedContent = FileEncoder.EncodePDF(model.Content);
+            Article article = new Article(0, model.Title, model.Author, model.Summary, model.Tag, encodedHeader, encodedContent);
+
             var stringContent = new StringContent(JsonConvert.SerializeObject(article), Encoding.UTF8, "application/json");
             HttpResponseMessage response = await ApiClient.PostAsync($"article", stringContent);
+            Console.WriteLine(response.StatusCode.ToString());
         }
 
         public static async Task<List<Article>> GetAll()
