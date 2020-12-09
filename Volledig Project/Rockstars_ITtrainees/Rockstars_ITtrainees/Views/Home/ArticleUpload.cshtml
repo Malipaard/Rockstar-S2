@@ -8,15 +8,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <body>
-    <div class="container text-light pt-3">
+    <div class="container text-light pt-3 ml-3">
         <div class="column align-items-center">
+            <h2>Upload an Article</h2>
             @using (Html.BeginForm("ArticleUpload", "Home", FormMethod.Post))
             {
 
                 <table cellpadding="10" cellspacing="5">
-                    <tr>
-                        <th colspan="2" align="center">Upload an article</th>
-                    </tr>
+                    
                     <tr>
                         <td>Title: </td>
                         <td>@Html.TextBoxFor(m => m.Title)</td>

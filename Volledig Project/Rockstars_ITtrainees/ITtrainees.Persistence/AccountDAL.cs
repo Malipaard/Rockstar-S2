@@ -25,6 +25,7 @@ namespace ITtrainees.DataAcces
         {
             using (var context = new ArticlesContext())
             {
+                account.Points = 0;
                 context.Accounts.Add(account);
                 context.SaveChanges();
             }

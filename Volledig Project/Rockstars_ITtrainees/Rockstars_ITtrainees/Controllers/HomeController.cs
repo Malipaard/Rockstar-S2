@@ -34,10 +34,10 @@ namespace Rockstars_ITtrainees.Controllers
             return View();
         }
 
-        public IActionResult OutEnv()
-        {
-            return View();
-        }
+        //public IActionResult OutEnv()
+        //{
+        //    return View();
+        //}
 
         public IActionResult ArticleUpload()
         {

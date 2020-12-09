@@ -4,8 +4,8 @@
     ViewData["Title"] = "Register";
 }
 
-<div class="text-light">
-    <h2><b>Register here to do stuff</b></h2>
+<div class="text-light ml-3">
+    <h2><b>Create a new Rockstars account</b></h2>
 
     <h4><b>Please enter your desired username and password</b></h4>
     <hr />
@@ -24,22 +24,22 @@
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="PasswordCheck" class="control-label">Enter password again</label>
+                    <label asp-for="PasswordCheck" class="control-label">Confirm Password</label>
                     <input asp-for="PasswordCheck" class="form-control" />
                     <span asp-validation-for="PasswordCheck" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="IsAdmin" class="control-label">Check if user is an admin</label>
+                    <label asp-for="IsAdmin" class="control-label">Is Admin</label>
                     <input asp-for="IsAdmin" class="form-check" />
                 </div>
-                <div class="form-group">
+                @*<div class="form-group">
                     <label asp-for="Rockstars" class="control-label">Specify starting rockstars for this user</label>
                     <input asp-for="Rockstars" class="form-control" />
-                </div>
+                </div>*@
 
 
                 <div class="form-group">
-                    <input type="submit" value="Register" class="btn btn-primary yellow_bg" />
+                    <input type="submit" value="Register" class="btn btn-primary yellow_bg text-dark" />
                 </div>
             </form>
         </div>
