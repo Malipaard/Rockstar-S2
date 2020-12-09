@@ -54,7 +54,7 @@ namespace ITtrainees.DataAcces.Migrations
                         .HasColumnType("nvarchar(max)");
 
 
-                    b.Property<string>("EncodedArticle")
+                    b.Property<string>("EncodedArticle");
 
                     b.Property<string>("Content")
 
