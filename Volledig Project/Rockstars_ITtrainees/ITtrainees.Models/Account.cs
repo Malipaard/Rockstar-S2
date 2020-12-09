@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace ITtrainees.Models
@@ -9,7 +10,7 @@ namespace ITtrainees.Models
         public int AccountID { get; set; }
         public string Name { get; set; }
         public int Points { get; set; }
-        public bool IsAdmin { get; set; }
+        public bool IsAdmin { get; set; }       
         public string Password { get; set; }
 
         public Account(int accountID, string name, int points, bool isAdmin, string pass)
