@@ -72,10 +72,10 @@ namespace Rockstars_ITtrainees.Controllers
         [HttpPost]
         public IActionResult ArticleUpload(ArticleUploadViewModel model)
         {
-            if (ModelState.IsValid != true)
-            {
-                return View(model);
-            }
+            //if (ModelState.IsValid != true)
+            //{
+            //    return View(model);
+            //}
             APIHelper.InitializeClient();
             ArticleOperations.Create(model);
             ModelState.Clear();
