@@ -3,14 +3,16 @@ using ITtrainees.DataAcces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ITtrainees.DataAcces.Migrations
 {
     [DbContext(typeof(ArticlesContext))]
-    partial class ArticlesContextModelSnapshot : ModelSnapshot
+    [Migration("20201203092026_articleUploading")]
+    partial class articleUploading
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,10 +33,6 @@ namespace ITtrainees.DataAcces.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("Points")
                         .HasColumnType("int");
 
@@ -53,11 +51,7 @@ namespace ITtrainees.DataAcces.Migrations
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
 
-
                     b.Property<string>("EncodedArticle")
-
-                    b.Property<string>("Content")
-
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HeaderImage")
@@ -87,34 +81,6 @@ namespace ITtrainees.DataAcces.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ITtrainees.Models.Question", b =>
-                {
-                    b.Property<int>("QuestionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Answer1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Answer2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ArticleId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CorrectAnswer")
-                        .HasColumnType("int");
-
-                    b.Property<string>("QuestionText")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("QuestionId");
-
-                    b.ToTable("Questions");
-                });
-
-
             modelBuilder.Entity("ITtrainees.Models.Review", b =>
                 {
                     b.Property<int>("ReviewId")
@@ -135,7 +101,6 @@ namespace ITtrainees.DataAcces.Migrations
 
                     b.ToTable("Reviews");
                 });
-
 #pragma warning restore 612, 618
         }
     }
