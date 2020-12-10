@@ -85,6 +85,7 @@ namespace Rockstars_ITtrainees.Controllers
         [HttpPost]
         public IActionResult ArticleDelete(Article article)
         {
+            APIHelper.InitializeClient();
             ArticleOperations.Delete(article.ArticleId);
             return View();
         }
