@@ -3,14 +3,32 @@
     ViewData["Title"] = "ArticleUpload";
 }
 
+<script src="~/js/quill.js"></script>
+<script src="~/js/quill.min.js"></script>
+
 <link rel="stylesheet" href="~/css/site.css" />
 <link rel="stylesheet" href="~/css/NavBar.css" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<body>
+<body class="text-light">
     <img class="card-img-top card-image" src="data:image/png;base64, @Model.HeaderImage" alt="placeholder">
     <h5 class="card-title">@Model.Title</h5>
     <p class="card-text">@Model.Summary</p>
     <p class="card-author">@Model.Author</p>
-    <p class="card-author"><embed src="data:application/pdf;base64,@Model.Content"></p>
+    <p class="card-author" id="contentContainer">De inhoud van het artikel kan niet geladen worden</p>
+
+
+    <p hidden id="rawContent">@Model.Content</p>
 </body>
+
+<script>
+    var contentString = document.getElementById('rawContent').innerHTML;
+    var contentJSON = JSON.parse(contentString);
+    document.getElementById('contentContainer').innerHTML = quillGetHTML(contentJSON);
+
+    function quillGetHTML(inputDelta) {
+        var tempCont = document.createElement("div");
+        (new Quill(tempCont)).setContents(inputDelta);
+        return tempCont.getElementsByClassName("ql-editor")[0].innerHTML;
+    }
+</script>

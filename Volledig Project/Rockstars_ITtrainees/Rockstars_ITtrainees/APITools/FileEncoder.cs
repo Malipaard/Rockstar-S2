@@ -38,7 +38,7 @@ namespace ITtrainees.MVC.APITools
         public static string EncodeImage(IFormFile img)
         {
             //image croppen en resizen
-            int headerWidth = 700;
+            int headerWidth = 1000;
 
             using Image image = Image.Load(img.OpenReadStream());
             int cropWidth = (image.Height < image.Width / 2) ? image.Height * 2 : image.Width;
