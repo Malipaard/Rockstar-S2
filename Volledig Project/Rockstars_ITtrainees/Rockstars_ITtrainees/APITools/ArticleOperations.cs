@@ -14,13 +14,10 @@ namespace ITtrainees.MVC.APITools
 {
     public static class ArticleOperations
     {
-        
-
         public static async void Create(ArticleUploadViewModel model)
         {
             string encodedHeader = FileEncoder.EncodeImage(model.HeaderImage);
-            string encodedContent = FileEncoder.EncodePDF(model.Content);
-            Article article = new Article(0, model.Title, model.Author, model.Summary, model.Tag, encodedHeader, encodedContent);
+            Article article = new Article(0, model.Title, model.Author, model.Summary, model.Tag, encodedHeader, model.Content); ;
 
             var stringContent = new StringContent(JsonConvert.SerializeObject(article), Encoding.UTF8, "application/json");
             HttpResponseMessage response = await ApiClient.PostAsync($"article", stringContent);

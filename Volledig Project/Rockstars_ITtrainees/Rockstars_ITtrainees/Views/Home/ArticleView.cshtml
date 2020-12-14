@@ -3,38 +3,32 @@
     ViewData["Title"] = "ArticleUpload";
 }
 
+<script src="~/js/quill.js"></script>
+<script src="~/js/quill.min.js"></script>
+
 <link rel="stylesheet" href="~/css/site.css" />
 <link rel="stylesheet" href="~/css/NavBar.css" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<body>
-    <div class="text-light container-himg">
-        <img class="card-img-top card-image" src="data:image/png;base64, @Model.HeaderImage" alt="placeholder">
-        <h2 class="card-title centered-title">@Model.Title</h2>
-        <p class="card-author centered-author">@Model.Author</p>
-        <div class="back-btn pt-3 tl-back">
-            <a class="btn text-dark yellow_bg" asp-area="" asp-controller="Home" asp-action="Index">Back</a>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class='issuu-embed-container col-9'>
-            <iframe src="data:application/pdf;base64,@Model.Content" frameborder='0' allowfullscreen></iframe>
-        </div>
-    </div>
-
-    @using (Html.BeginForm("UpdateArticle", "Home", FormMethod.Post))
-    {
-        <table class="table text-light">
-            <tr>
-                <td style="display:none">
-                    @Html.TextBoxFor(m => Model.ArticleId)
-                </td>
-                <td><input type="submit" value="Edit" /></td>
-            </tr>
-        </table>
-    }
+<body class="text-light">
+    <img class="card-img-top card-image" src="data:image/png;base64, @Model.HeaderImage" alt="placeholder">
+    <h5 class="card-title">@Model.Title</h5>
+    <p class="card-text">@Model.Summary</p>
+    <p class="card-author">@Model.Author</p>
+    <p class="card-author" id="contentContainer">De inhoud van het artikel kan niet geladen worden</p>
 
 
-
+    <p hidden id="rawContent">@Model.Content</p>
 </body>
+
+<script>
+    var contentString = document.getElementById('rawContent').innerHTML;
+    var contentJSON = JSON.parse(contentString);
+    document.getElementById('contentContainer').innerHTML = quillGetHTML(contentJSON);
+
+    function quillGetHTML(inputDelta) {
+        var tempCont = document.createElement("div");
+        (new Quill(tempCont)).setContents(inputDelta);
+        return tempCont.getElementsByClassName("ql-editor")[0].innerHTML;
+    }
+</script>
