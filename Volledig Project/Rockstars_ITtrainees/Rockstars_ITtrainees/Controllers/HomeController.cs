@@ -63,6 +63,14 @@ namespace Rockstars_ITtrainees.Controllers
             return View();
         }
 
+        [Route("/article")]
+        public IActionResult UpdateArticle(Article article)
+        {
+            Console.WriteLine(article.ArticleId);
+            ViewBag.Article = article;  
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -72,23 +80,36 @@ namespace Rockstars_ITtrainees.Controllers
         [HttpPost]
         public IActionResult ArticleUpload(ArticleUploadViewModel model)
         {
-            if (ModelState.IsValid != true)
-            {
-                return View(model);
-            }
+            //if (ModelState.IsValid != true)
+            //{
+            //    return View(model);
+            //}
             APIHelper.InitializeClient();
             ArticleOperations.Create(model);
             ModelState.Clear();
             return View();
         }
 
+        //[HttpPost]
+        //public IActionResult UpdateArticle(Article article)
+        //{
+        //    APIHelper.InitializeClient();
+        //    ArticleOperations.Update(article);
+        //    return View();
+        //}
+
         [HttpPost]
         public IActionResult ArticleDelete(Article article)
         {
+            APIHelper.InitializeClient();
             ArticleOperations.Delete(article.ArticleId);
             return View();
         }
 
-       
+
+
+
+
+
     }
 }

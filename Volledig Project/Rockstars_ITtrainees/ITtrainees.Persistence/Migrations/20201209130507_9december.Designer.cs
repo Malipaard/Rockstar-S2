@@ -3,14 +3,16 @@ using ITtrainees.DataAcces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ITtrainees.DataAcces.Migrations
 {
     [DbContext(typeof(ArticlesContext))]
-    partial class ArticlesContextModelSnapshot : ModelSnapshot
+    [Migration("20201209130507_9december")]
+    partial class _9december
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,8 +53,6 @@ namespace ITtrainees.DataAcces.Migrations
 
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EncodedArticle");
 
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");

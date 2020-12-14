@@ -3,14 +3,16 @@ using ITtrainees.DataAcces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ITtrainees.DataAcces.Migrations
 {
     [DbContext(typeof(ArticlesContext))]
-    partial class ArticlesContextModelSnapshot : ModelSnapshot
+    [Migration("20201203130136_correctAnswerString")]
+    partial class correctAnswerString
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,9 +33,6 @@ namespace ITtrainees.DataAcces.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("Points")
                         .HasColumnType("int");
 
@@ -52,9 +51,7 @@ namespace ITtrainees.DataAcces.Migrations
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("EncodedArticle");
-
-                    b.Property<string>("Content")
+                    b.Property<string>("EncodedArticle")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HeaderImage")
@@ -78,8 +75,6 @@ namespace ITtrainees.DataAcces.Migrations
                         {
                             ArticleId = 1,
                             Author = "Sem",
-                            Content = "Encoded PDF",
-                            HeaderImage = "Encoded Image",
                             Summary = "Description of the article",
                             Tag = "Tag",
                             Title = "First Article"
