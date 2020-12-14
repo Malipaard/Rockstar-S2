@@ -9,5 +9,6 @@ namespace ITtrainees.Interface.Interfaces
     {
         List<Question> GetAll();
         Question GetQuestion(int id);
+        List<Question> GetArticleQuestions(int articleId);
     }
 }

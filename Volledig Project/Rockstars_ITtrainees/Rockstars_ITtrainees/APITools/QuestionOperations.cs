@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using static ITtrainees.MVC.APITools.APIHelper;
+using ITtrainees.Models;
+using Newtonsoft.Json;
 
 namespace ITtrainees.MVC.APITools
 {
@@ -16,6 +18,18 @@ namespace ITtrainees.MVC.APITools
             {
                 string responseMessage = await response.Content.ReadAsStringAsync();
                 return responseMessage;
+            }
+            return null;
+        }
+
+        public static async Task<List<Question>> Get(int articleId)
+        {
+            HttpResponseMessage response = await ApiClient.GetAsync($"question/{ articleId }");
+            if (response.IsSuccessStatusCode)
+            {
+                var listJSON = await response.Content.ReadAsStringAsync();
+                var list = JsonConvert.DeserializeObject<List<Question>>(listJSON);
+                return list;
             }
             return null;
         }

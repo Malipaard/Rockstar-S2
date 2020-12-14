@@ -29,5 +29,21 @@ namespace ITtrainees.Logic
                 return "fucking dom";
             }
         }
+
+        //api/question/{id}
+        [HttpGet("{id:int:min(1)}")]
+        public List<Question> Get(int id)
+        {
+            try
+            {
+                IQuestionDAL dal = QuestionFactory.GetQuestionDAL();
+                var question = dal.GetArticleQuestions(id);
+                return question;
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

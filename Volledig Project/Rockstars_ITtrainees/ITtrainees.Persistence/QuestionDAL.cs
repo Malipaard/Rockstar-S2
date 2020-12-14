@@ -14,6 +14,15 @@ namespace ITtrainees.DataAcces
             throw new NotImplementedException();
         }
 
+        public List<Question> GetArticleQuestions(int articleId)
+        {
+            using (var context = new ArticlesContext())
+            {
+                var questions = context.Questions.Where(q => q.ArticleId == articleId).ToList();
+                return questions;
+            }
+        }
+
         public Question GetQuestion(int id)
         {
             using (var context = new ArticlesContext())

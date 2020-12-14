@@ -42,9 +42,21 @@ namespace Rockstars_ITtrainees.Controllers
         public async Task<IActionResult> ArticleView(int id)
         {
             Article article = await ArticleOperations.Get(id);
+            List<Question> questions = await QuestionOperations.Get(id);
+            ArticleViewViewModel articleViewViewModel = new ArticleViewViewModel
+            {
+                Title = article.Title,
+                Author = article.Author,
+                Summary = article.Summary,
+                Tag = article.Tag,
+                HeaderImage = article.HeaderImage,
+                Content = article.Content,
+                Questions = questions
+            };
+
             if (article != null)
             {
-                return View(article);
+                return View(articleViewViewModel);
             }
             return RedirectToAction("Index");
         }
@@ -90,6 +102,15 @@ namespace Rockstars_ITtrainees.Controllers
             return View();
         }
 
-       
+        public async Task<IActionResult> AnswerQuestion(ArticleViewViewModel model)
+        {
+            Console.WriteLine(model.ToString());
+            APIHelper.InitializeClient();
+            for (int i = 0; i < model.Questions.Count; i++)
+            {
+                await QuestionOperations.Validate(model.Questions[i].QuestionId, model.GivenAnswers[i]);
+            }
+            return View("~/Views/Home/Index.cshtml");
+        }
     }
 }
