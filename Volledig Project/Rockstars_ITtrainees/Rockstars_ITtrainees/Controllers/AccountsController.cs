@@ -11,6 +11,8 @@ using ITtrainees.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using ITtrainees.MVC.APITools;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
+using Microsoft.AspNetCore.Authorization.Policy;
 
 namespace ITtrainees.MVC.Controllers
 {
@@ -18,6 +20,13 @@ namespace ITtrainees.MVC.Controllers
     [Route("Accounts")]
     public class AccountsController : Controller
     {
+        private readonly IPolicyEvaluator policyEvaluator;
+
+        /*public AccountsController(IPolicyEvaluator policyEvaluator)
+        {
+            this.policyEvaluator = policyEvaluator;
+        }*/
+
 
         [AllowAnonymous]
         [Route("login")]
@@ -30,7 +39,7 @@ namespace ITtrainees.MVC.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [Route("login")]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid) return View(model);
 
@@ -58,6 +67,11 @@ namespace ITtrainees.MVC.Controllers
                 new Claim(ClaimTypes.Name,user.Name)
             };
 
+            if (user.IsAdmin)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, "Admin"));
+            }
+
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var authProperties = new AuthenticationProperties();
 
@@ -66,19 +80,20 @@ namespace ITtrainees.MVC.Controllers
                 new ClaimsPrincipal(claimsIdentity),
                 authProperties);
 
-            return RedirectToAction("Login", new {returnUrl = "/"});
+            return RedirectToAction("Index", "Home");
         }
 
-
+        
         [Route("logout")]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-            return RedirectToAction("Login");
+            return RedirectToAction("Index","Home");
         }
 
-        [AllowAnonymous]
+
+        //[Authorize(Roles = "Admin")]
         [Route("register")]
         public IActionResult Register()
         {
@@ -86,8 +101,8 @@ namespace ITtrainees.MVC.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        //[Authorize(Roles = "Admin")]
         [Route("register")]
         public ActionResult Register(RegisterViewModel model)
         {
@@ -95,7 +110,7 @@ namespace ITtrainees.MVC.Controllers
 
             var hasher = new PasswordHasher<Account>();
 
-            Account tempAccount = new Account(0,model.Username, model.Rockstars, model.IsAdmin, model.Password);
+            Account tempAccount = new Account(0,model.Username, 0, model.IsAdmin, model.Password);
 
             string hashedPW = hasher.HashPassword(tempAccount, model.Password);
 
@@ -103,7 +118,7 @@ namespace ITtrainees.MVC.Controllers
             APIHelper.InitializeClient();
             AccountOperations.Create(tempAccount);
 
-            return RedirectToAction("Login", new {returnUrl = "/"});
+            return RedirectToAction("Login");
         }
     }
 }

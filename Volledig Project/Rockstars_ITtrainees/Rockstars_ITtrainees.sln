@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITtrainees.DataAcces", "ITt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITtrainees.Models", "ITtrainees.Models\ITtrainees.Models.csproj", "{68717552-5D3B-4A18-9D24-506CB87C2051}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITtrainees.Interface", "ITtrainees.Interface\ITtrainees.Interface.csproj", "{C234F0BB-6954-404A-B861-DB42D2307E2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITtrainees.Interface", "ITtrainees.Interface\ITtrainees.Interface.csproj", "{C234F0BB-6954-404A-B861-DB42D2307E2F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITtrainees.Factory", "ITtrainees.Factory\ITtrainees.Factory.csproj", "{13B7233A-0972-494B-AF4C-8A5F04F6E29A}"
 EndProject

@@ -42,9 +42,12 @@
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="FileUpload">Test Upload <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
                         </li>
                         <li class="nav-item mr-4 d-inline-flex">
-                            @if (User.Identity.IsAuthenticated)
+                            <a class="nav-link" asp-area="" asp-controller="Accounts" asp-action="Register">Add Account<img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
+                        </li>
+                        <li class="nav-item mr-4 d-inline-flex">
+                            @if (User?.Identity?.IsAuthenticated ?? false)
                             {
-                                <a class="nav-link" asp-area="" asp-controller="Accounts" asp-action="Logout">Logout <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
+                                <a asp-controller="Accounts" asp-action="Logout" class="btn btn-danger">Logout</a>
                             }
                             else
                             {

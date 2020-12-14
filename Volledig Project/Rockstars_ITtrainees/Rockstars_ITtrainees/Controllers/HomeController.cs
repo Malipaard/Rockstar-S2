@@ -10,6 +10,8 @@ using Microsoft.Extensions.Logging;
 using Rockstars_ITtrainees.Models;
 using ITtrainees.Logic;
 using System.Net;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace Rockstars_ITtrainees.Controllers
 {
@@ -39,16 +41,14 @@ namespace Rockstars_ITtrainees.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult ArticleUpload()
         {
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult ArticleDelete()
-        {
-            return View();
-        }
-        public IActionResult login()
         {
             return View();
         }
@@ -59,6 +59,7 @@ namespace Rockstars_ITtrainees.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult ArticleUpload(Article article)
         {
@@ -68,6 +69,7 @@ namespace Rockstars_ITtrainees.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult ArticleDelete(Article article)
         {

@@ -17,8 +17,5 @@ namespace ITtrainees.MVC.Models
         [Required]
         public bool IsAdmin { get; set; } //kan beter een enmun voor latere uitbreiding
 
-        [Required]
-        public int Rockstars { get; set; } //aantal startpunten kiezen 
-
     }
 }
