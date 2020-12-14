@@ -67,7 +67,7 @@ namespace Rockstars_ITtrainees.Controllers
         public IActionResult UpdateArticle(Article article)
         {
             Console.WriteLine(article.ArticleId);
-            ViewBag.ArticleId = article;  
+            ViewBag.Article = article;  
             return View();
         }
 

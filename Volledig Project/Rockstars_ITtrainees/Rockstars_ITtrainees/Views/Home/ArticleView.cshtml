@@ -23,7 +23,18 @@
         </div>
     </div>
 
-    <a class="btn yellow_bg text-dark" asp-area="" asp-controller="Home" asp-action="UpdateArticle" asp-route-article="@Model">Edit </a>
+    @using (Html.BeginForm("UpdateArticle", "Home", FormMethod.Post))
+    {
+        <table class="table text-light">
+            <tr>
+                <td style="display:none">
+                    @Html.TextBoxFor(m => Model.ArticleId)
+                </td>
+                <td><input type="submit" value="Edit" /></td>
+            </tr>
+        </table>
+    }
 
-    
+
+
 </body>
