@@ -3,44 +3,22 @@ using ITtrainees.DataAcces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ITtrainees.DataAcces.Migrations
 {
     [DbContext(typeof(ArticlesContext))]
-    partial class ArticlesContextModelSnapshot : ModelSnapshot
+    [Migration("20201126104017_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0-rc.2.20475.6");
-
-            modelBuilder.Entity("ITtrainees.Models.Account", b =>
-                {
-                    b.Property<int>("AccountID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<bool>("IsAdmin")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Points")
-                        .HasColumnType("int");
-
-                    b.HasKey("AccountID");
-
-                    b.ToTable("Accounts");
-                });
 
             modelBuilder.Entity("ITtrainees.Models.Article", b =>
                 {
@@ -50,12 +28,6 @@ namespace ITtrainees.DataAcces.Migrations
                         .UseIdentityColumn();
 
                     b.Property<string>("Author")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HeaderImage")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Summary")
@@ -76,39 +48,10 @@ namespace ITtrainees.DataAcces.Migrations
                         {
                             ArticleId = 1,
                             Author = "Sem",
-                            Content = "Encoded PDF",
-                            HeaderImage = "Encoded Image",
                             Summary = "Description of the article",
                             Tag = "Tag",
                             Title = "First Article"
                         });
-                });
-
-            modelBuilder.Entity("ITtrainees.Models.Question", b =>
-                {
-                    b.Property<int>("QuestionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Answer1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Answer2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ArticleId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CorrectAnswer")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("QuestionText")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("QuestionId");
-
-                    b.ToTable("Questions");
                 });
 
             modelBuilder.Entity("ITtrainees.Models.Review", b =>
@@ -130,6 +73,24 @@ namespace ITtrainees.DataAcces.Migrations
                     b.HasKey("ReviewId");
 
                     b.ToTable("Reviews");
+                });
+
+            modelBuilder.Entity("ITtrainees.Models.User", b =>
+                {
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }

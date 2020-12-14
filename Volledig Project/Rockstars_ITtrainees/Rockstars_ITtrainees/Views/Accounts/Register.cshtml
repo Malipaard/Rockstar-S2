@@ -1,0 +1,47 @@
+﻿@model ITtrainees.MVC.Models.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="text-light ml-3">
+    <h2><b>Create a new Rockstars account</b></h2>
+
+    <h4><b>Please enter your desired username and password</b></h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-5">
+            <form asp-action="Register">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Username" class="control-label"></label>
+                    <input asp-for="Username" class="form-control" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" class="form-control" type="password"/>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PasswordCheck" class="control-label">Confirm Password</label>
+                    <input asp-for="PasswordCheck" class="form-control" type="password"/>
+                    <span asp-validation-for="PasswordCheck" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IsAdmin" class="control-label">Is Admin</label>
+                    <input asp-for="IsAdmin" class="form-check" />
+                </div>
+                @*<div class="form-group">
+                    <label asp-for="Rockstars" class="control-label">Specify starting rockstars for this user</label>
+                    <input asp-for="Rockstars" class="form-control" />
+                </div>*@
+
+
+                <div class="form-group">
+                    <input type="submit" value="Register" class="btn btn-primary yellow_bg text-dark" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

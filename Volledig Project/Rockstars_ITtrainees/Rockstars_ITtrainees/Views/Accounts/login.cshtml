@@ -1,0 +1,40 @@
+﻿@model ITtrainees.MVC.Models.LoginViewModel
+
+@{
+    ViewData["Titel"] = "Login";
+}
+
+<div class="text-white ml-3">
+    <h2><b>Login to your Rockstars account</b></h2>
+
+
+    <h4><b>Fill in your details below</b></h4>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Login" asp-route-returnUrl="@Context.Request.Query["ReturnUrl"]">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Username" ></label>
+                    <input asp-for="Username" class="form-control" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" class="form-control" type="password"/>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Login" class="btn yellow_bg"/>
+                </div>
+            </form>
+        </div>
+        <div class="break"></div>
+        <div class="">
+            <label>No account? Register here</label>
+            <input class="yellow_bg btn" type="button" value="Register" onclick="location.href='Register'" />
+        </div>
+    </div>
+</div>
+

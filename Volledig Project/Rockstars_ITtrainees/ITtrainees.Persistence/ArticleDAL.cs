@@ -21,10 +21,16 @@ namespace ITtrainees.DataAcces
         {
             using (var context = new ArticlesContext())
             {
+                try { 
                 var article = context.Articles.Single(a => a.ArticleId == id);
                 context.Articles.Attach(article);
                 context.Articles.Remove(article);
                 context.SaveChanges();
+                }
+                catch
+                {
+                    return;
+                }
             }    
         }
 
@@ -33,6 +39,21 @@ namespace ITtrainees.DataAcces
             using (var context = new ArticlesContext())
             {
                 context.Articles.Add(article);
+                context.SaveChanges();
+            }
+        }
+
+        public void Update(Models.Article article)
+        {
+            using (var context = new ArticlesContext())
+            {
+                var dbArticle = context.Articles.Single(a => a.ArticleId == article.ArticleId);
+
+                dbArticle.Author = article.Author;
+                dbArticle.Summary = article.Summary;
+                dbArticle.Tag = article.Tag;
+                dbArticle.Title = article.Title;
+
                 context.SaveChanges();
             }
         }
