@@ -1,5 +1,12 @@
 ﻿@model List<ITtrainees.Models.Article>
 @{
+//List<ITtrainees.Models.Article> Articles = new List<ITtrainees.Models.Article>();
+//foreach (var article in Model)
+//{
+//    Articles.Add(article);
+//    Console.WriteLine(Articles);
+//}
+
 }
 
 <link rel="stylesheet" href="~/css/site.css" />
@@ -57,6 +64,7 @@
     <div class="container-fluid">
         <h2 class="text-light">Articles</h2>
         <div class="row text-light">
+
             @{foreach (var article in Model)
                 {
                     <div class="col-12 col-md-3">

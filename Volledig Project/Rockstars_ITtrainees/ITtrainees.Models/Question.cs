@@ -16,7 +16,7 @@ namespace ITtrainees.Models
         public string Answer2 { get; private set; }
         public string CorrectAnswer { get; private set; }
 
-        bool IsAnswerCorrect(string givenAnswer)
+        public bool IsAnswerCorrect(string givenAnswer)
         {
             if (givenAnswer == this.CorrectAnswer)
             {
