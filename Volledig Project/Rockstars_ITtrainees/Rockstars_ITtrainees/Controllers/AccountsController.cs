@@ -54,6 +54,11 @@ namespace ITtrainees.MVC.Controllers
                 new Claim(ClaimTypes.Name,user.Name)
             };
 
+            if (user.IsAdmin)
+            {
+                claims.Add(new Claim(ClaimTypes.Role,"Admin"));
+            }
+
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var authProperties = new AuthenticationProperties();
 
