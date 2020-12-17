@@ -65,9 +65,9 @@ namespace Rockstars_ITtrainees.Controllers
         }
 
         [Route("/article")]
-        public async Task<IActionResult> UpdateArticleAsync(Article article)
+        public async Task<IActionResult> UpdateArticleAsync(int id)
         {            
-            Article UpdateArticle = await ArticleOperations.Get(article.ArticleId);
+            Article UpdateArticle = await ArticleOperations.Get(id);
             ArticleUpdateModel updateArticle = new ArticleUpdateModel(UpdateArticle);
             return View(updateArticle);
         }
@@ -113,6 +113,12 @@ namespace Rockstars_ITtrainees.Controllers
             ArticleOperations.Update(article);
 
             return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> DeletePageAsync(int id)
+        {
+            Article article = await ArticleOperations.Get(id);
+            return View(article);
         }
     }
 }

@@ -20,11 +20,8 @@
         <div class="column align-items-center">
             @using (Html.BeginForm("ArticleUpload", "Home", FormMethod.Post, new { enctype = "multipart/form-data", onsubmit = "setContent()" }))
             {
-
+                <h2>Upload an article</h2>
                 <table cellpadding="10" cellspacing="5">
-                    <tr>
-                        <th colspan="2" align="center">Upload an article</th>
-                    </tr>
                     <tr>
                         <td>Title: </td>
                         <td>@Html.TextBoxFor(m => m.Title)</td>
@@ -54,7 +51,7 @@
                         <td>Article Content: </td>
                         <td>
                             <div class="text-light" id="editor"></div>
-                            @Html.TextBoxFor(m => m.Content, new { style = "display: none;", id="content", value=""})
+                            @Html.TextBoxFor(m => m.Content, new { style = "display: none;", id = "content", value = "" })
                         </td>
                     </tr>
                     <tr>

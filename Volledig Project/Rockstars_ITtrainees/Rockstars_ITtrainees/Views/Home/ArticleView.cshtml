@@ -34,19 +34,19 @@
         <div class="text-light">
             <img class=" card-img-top card-image" src="data:image/png;base64, @Model.HeaderImage" alt="placeholder" , style="max-height:400px;">
 
-            <h1 class="card-title centered-title">@Model.Title</h1>
+            <h1 class="card-title">@Model.Title</h1>
             <p class="card-author">Author: @Model.Author</p>
         </div>
     </div>
-    <div class="text-light container-fluid ">
-        <div class="row justify-content-center">
-            <p class="card-author" id="contentContainer">De inhoud van het artikel kan niet geladen worden</p>
+    <div class="text-light container mt-5">
+        <div class="row ml-0">
+            <p class="card-author " id="contentContainer">De inhoud van het artikel kan niet geladen worden</p>
             <p class="" hidden id="rawContent">@Model.Content</p>
         </div>
     </div>
 
 
-    @using (Html.BeginForm("UpdateArticle", "Home", FormMethod.Post))
+    <!--@using (Html.BeginForm("UpdateArticle", "Home", FormMethod.Post))
     {
         <table>
             <tr>
@@ -59,6 +59,24 @@
 
         </table>
     }
+
+    <form asp-area="" asp-controller="Home" asp-action="DeletePage" asp-route-id="@Model.ArticleId">-->
+    @*Send temp userId with the action*@
+
+    <!--<input type="submit" value="Delete" class="yellow_bg btn text-dark" />
+    </form>-->
+
+    <div class="bg-info rounded" style="width:250px;">
+        <div class="m-2">
+            <h2 class="text-light">Admin Controll</h2>
+            <form asp-area="" asp-controller="Home" asp-action="DeletePage" asp-route-id="@Model.ArticleId">
+                <input type="hidden" asp-for="ArticleId" />
+                <input type="submit" value="Delete" class="btn btn-danger" /> |
+                <a asp-action="UpdateArticle" asp-route-id="@Model.ArticleId">Edit</a>
+            </form>
+        </div>
+    </div>
+
 
 
 </body>
