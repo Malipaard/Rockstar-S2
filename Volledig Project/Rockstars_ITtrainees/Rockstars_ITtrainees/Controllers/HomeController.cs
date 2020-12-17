@@ -66,11 +66,13 @@ namespace Rockstars_ITtrainees.Controllers
 
         public IActionResult ArticleUpload()
         {
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Login","Accounts");
             return View();
         }
        
         public IActionResult login()
         {
+            if (!User.IsInRole("Admin")) return RedirectToAction("Login","Accounts");
             return View();
         }
 
@@ -91,6 +93,7 @@ namespace Rockstars_ITtrainees.Controllers
         [HttpPost]
         public async Task<IActionResult> ArticleUpload(ArticleUploadViewModel model, string correctAnswer1, string correctAnswer2)
         {
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Login", "Accounts");
             //if (ModelState.IsValid != true)
             //{
             //    return View(model);
@@ -139,6 +142,7 @@ namespace Rockstars_ITtrainees.Controllers
         [HttpPost]
         public IActionResult ArticleDelete(Article article)
         {
+            if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Accounts");
             APIHelper.InitializeClient();
             ArticleOperations.Delete(article.ArticleId);
             ModelState.Clear();
