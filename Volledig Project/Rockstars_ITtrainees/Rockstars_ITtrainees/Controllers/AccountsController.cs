@@ -67,7 +67,7 @@ namespace ITtrainees.MVC.Controllers
                 new ClaimsPrincipal(claimsIdentity),
                 authProperties);
 
-            return RedirectToAction("Login", new {returnUrl = "/"});
+            return RedirectToAction("Index","Home");
         }
 
         [AllowAnonymous]
@@ -75,13 +75,19 @@ namespace ITtrainees.MVC.Controllers
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-            return RedirectToAction("Login");
+            return RedirectToAction("Index","Home");
         }
 
-        
+        public IActionResult Account()
+        {
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Login");
+            return View();
+        }
+
+
         public IActionResult Register()
         {
-            //if (!User.IsInRole("Admin")) return RedirectToAction("Login");
+            if (!User.IsInRole("Admin")) return RedirectToAction("Login");
             return View();
         }
 
@@ -89,7 +95,7 @@ namespace ITtrainees.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterViewModel model)
         {
-           // if (!User.IsInRole("Admin")) return RedirectToAction("Login");
+           if (!User.IsInRole("Admin")) return RedirectToAction("Login");
 
             if (!ModelState.IsValid) return View(model);
             if (model.Password == model.PasswordCheck)
@@ -104,7 +110,7 @@ namespace ITtrainees.MVC.Controllers
             APIHelper.InitializeClient();
             AccountOperations.Create(tempAccount);
 
-            return RedirectToAction("Login");
+            return RedirectToAction("Index","Home");
 
             }
             ModelState.AddModelError(nameof(model.Username), "Passwords do not match");
