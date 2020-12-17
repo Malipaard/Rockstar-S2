@@ -50,7 +50,7 @@
                 <div class="login-container ml-auto d-inline-flex">
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <a class="nav-link text-light font-weight-bold" asp-area="" asp-controller="Accounts" asp-action="Account">Account<img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
+                        <a class="nav-link text-light font-weight-bold" asp-area="" asp-controller="Accounts" asp-action="Account">@User.Identity.Name<img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
                         <a class="nav-link text-light font-weight-bold" asp-area="" asp-controller="Accounts" asp-action="Logout">Logout <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
                     }
                     else
