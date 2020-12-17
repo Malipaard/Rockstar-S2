@@ -64,5 +64,38 @@ namespace ITtrainees.Logic
             dal.DeleteArticle(id);
             return Accepted();
         }
+
+
+        //api/article/{id}
+        [HttpGet("card/{id:int:min(1)}")]
+        public ArticleCard GetCard(int id)
+        {
+            try
+            {
+                IArticleDAL dal = ArticleFactory.GetArticleDAL();
+                var card = dal.GetCard(id);
+                return card;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        //api/article/{id}
+        [HttpGet("card")]
+        public List<ArticleCard> GetAllCards()
+        {
+            try
+            {
+                IArticleDAL dal = ArticleFactory.GetArticleDAL();
+                var cards = dal.GetAllCards();
+                return cards;
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

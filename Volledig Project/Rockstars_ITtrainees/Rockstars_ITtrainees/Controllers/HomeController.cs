@@ -26,8 +26,9 @@ namespace Rockstars_ITtrainees.Controllers
         public async Task<IActionResult> IndexAsync()
         {
             APIHelper.InitializeClient();
-            List<Article> articleList = await ArticleOperations.GetAll();
-            return View(articleList);
+            List<ArticleCard> cardList = await ArticleOperations.GetAllCards();
+            cardList.Reverse();
+            return View(cardList);
         }
 
         public IActionResult Privacy()
@@ -104,8 +105,8 @@ namespace Rockstars_ITtrainees.Controllers
         {
             APIHelper.InitializeClient();
             ArticleOperations.Delete(article.ArticleId);
-
-            return RedirectToAction("Index");
+            ModelState.Clear();
+            return View();
         }
 
         public IActionResult Update(ArticleUpdateModel article)
