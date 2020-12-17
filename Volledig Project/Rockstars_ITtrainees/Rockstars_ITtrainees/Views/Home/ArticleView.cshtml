@@ -10,25 +10,7 @@
 <link rel="stylesheet" href="~/css/NavBar.css" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-@{string encodedImg = "data:image/png;base64, " + Model.HeaderImage.ToString(); }
-
-<style>
-    .parallax {
-        /* The image used */
-        background-image: url("@encodedImg") ;
-        /* Set a specific height */
-        min-height: 500px;
-        /* Create the parallax scrolling effect */
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-</style>
-
 <body>
-
-
     <div class="container">
         <div class="text-light">
             <img class=" card-img-top card-image" src="data:image/png;base64, @Model.HeaderImage" alt="placeholder" , style="max-height:400px;">
@@ -44,8 +26,8 @@
             <p class="" hidden id="rawContent">@Model.Content</p>
         </div>
     </div>
-    <div class="" style="width:250px;">
-        <div class="m-2">
+    <div class="border" style="width:250px;">
+        <div class="m-2 text-light">
             <h2 class="text-light">Admin Controll</h2>
             <form asp-area="" asp-controller="Home" asp-action="DeletePage" asp-route-id="@Model.ArticleId">
                 <input type="hidden" asp-for="ArticleId" />

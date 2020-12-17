@@ -89,7 +89,7 @@ namespace Rockstars_ITtrainees.Controllers
             APIHelper.InitializeClient();
             ArticleOperations.Create(model);
             ModelState.Clear();
-            return View();
+            return RedirectToAction("Index");
         }
 
         //[HttpPost]
