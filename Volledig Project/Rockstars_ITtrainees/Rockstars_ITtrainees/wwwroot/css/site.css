@@ -77,8 +77,8 @@ body {
 }
 
 h1 {
-    font-size: 100px;
-    font-family: 'Times New Roman', Times, serif;
+    font-size: 50px;
+    font-family: 'Verdana Pro'
 }
 /*Textcards*/
 .header {
@@ -192,7 +192,7 @@ h1 {
 
 .centered-title {
     position: absolute;
-    top: 70%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9;
@@ -211,4 +211,6 @@ h1 {
     top: 5px;
     left: 16px;
     z-index: 9;
+}
+
 }

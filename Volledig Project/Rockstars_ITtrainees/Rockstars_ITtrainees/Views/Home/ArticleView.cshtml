@@ -10,30 +10,57 @@
 <link rel="stylesheet" href="~/css/NavBar.css" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+@{string encodedImg = "data:image/png;base64, " + Model.HeaderImage.ToString(); }
+
+<style>
+    .parallax {
+        /* The image used */
+        background-image: url("@encodedImg") ;
+        /* Set a specific height */
+        min-height: 500px;
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+
+</style>
+
 <body>
-    <div class="text-light">
-        <img class="card-img-top card-image" src="data:image/png;base64, @Model.HeaderImage" alt="placeholder">
-        <h5 class="card-title">@Model.Title</h5>
-        <p class="card-text">@Model.Summary</p>
-        <p class="card-author">@Model.Author</p>
-        <p class="card-author" id="contentContainer">De inhoud van het artikel kan niet geladen worden</p>
 
+    <div class="container">
+        <div class="text-light">
+            <img class=" card-img-top card-image" src="data:image/png;base64, @Model.HeaderImage" alt="placeholder" , style="max-height:400px;">
 
-        <p hidden id="rawContent">@Model.Content</p>
+            <h1 class="card-title centered-title">@Model.Title</h1>
+            <p class="card-author">Author: @Model.Author</p>
+        </div>
     </div>
+    <div class="text-light container-fluid ">
+        <div class="row justify-content-center">
+            <p class="card-author" id="contentContainer">De inhoud van het artikel kan niet geladen worden</p>
+            <p class="" hidden id="rawContent">@Model.Content</p>
+        </div>
+    </div>
+
+
     @using (Html.BeginForm("UpdateArticle", "Home", FormMethod.Post))
     {
         <table>
             <tr>
-            <td style="display:none">
-                @Html.TextBoxFor(m => Model.ArticleId)
-            </td>
-            <td>
-                <input class="yellow_bg btn text-dark" type="submit" value="Edit" />
-            </td>
+                <td style="display:none">
+                    @Html.TextBoxFor(m => Model.ArticleId)
+                </td>
+                <td>
+                    <input class="yellow_bg btn text-dark" type="submit" value="Edit" />
+                </td>
 
         </table>
     }
+
+
 </body>
 
 <script>

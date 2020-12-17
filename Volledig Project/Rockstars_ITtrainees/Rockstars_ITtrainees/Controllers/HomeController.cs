@@ -105,7 +105,7 @@ namespace Rockstars_ITtrainees.Controllers
             APIHelper.InitializeClient();
             ArticleOperations.Delete(article.ArticleId);
 
-            return View();
+            return RedirectToAction("Index");
         }
 
         public IActionResult Update(ArticleUpdateModel article)
