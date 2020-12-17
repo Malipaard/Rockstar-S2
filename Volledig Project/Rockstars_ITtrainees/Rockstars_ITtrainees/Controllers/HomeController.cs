@@ -128,7 +128,7 @@ namespace Rockstars_ITtrainees.Controllers
             QuestionOperations.Create(question1);
             QuestionOperations.Create(question2);
             ModelState.Clear();
-            return View();
+            return RedirectToAction("Index");
         }
 
         //[HttpPost]
