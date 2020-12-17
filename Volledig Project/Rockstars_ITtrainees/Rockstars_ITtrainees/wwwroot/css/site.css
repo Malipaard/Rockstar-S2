@@ -226,3 +226,7 @@ h1 {
 .card-text {
     white-space: initial;
 }
+
+.title {
+    word-wrap: break-word;
+}
