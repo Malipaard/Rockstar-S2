@@ -78,10 +78,13 @@ namespace ITtrainees.MVC.Controllers
             return RedirectToAction("Index","Home");
         }
 
-        public IActionResult Account()
+        [HttpGet]
+        public async Task<IActionResult> Account()
         {
             if (!User.Identity.IsAuthenticated) return RedirectToAction("Login");
-            return View();
+            APIHelper.InitializeClient();
+            Account user = await AccountOperations.Get(User.Identity.Name);
+            return View(user);
         }
 
 
