@@ -24,11 +24,10 @@
         background-repeat: no-repeat;
         background-size: cover;
     }
-
-
 </style>
 
 <body>
+
 
     <div class="container">
         <div class="text-light">
@@ -38,35 +37,14 @@
             <p class="card-author">Author: @Model.Author</p>
         </div>
     </div>
+
     <div class="text-light container mt-5">
         <div class="row ml-0">
             <p class="card-author " id="contentContainer">De inhoud van het artikel kan niet geladen worden</p>
             <p class="" hidden id="rawContent">@Model.Content</p>
         </div>
     </div>
-
-
-    <!--@using (Html.BeginForm("UpdateArticle", "Home", FormMethod.Post))
-    {
-        <table>
-            <tr>
-                <td style="display:none">
-                    @Html.TextBoxFor(m => Model.ArticleId)
-                </td>
-                <td>
-                    <input class="yellow_bg btn text-dark" type="submit" value="Edit" />
-                </td>
-
-        </table>
-    }
-
-    <form asp-area="" asp-controller="Home" asp-action="DeletePage" asp-route-id="@Model.ArticleId">-->
-    @*Send temp userId with the action*@
-
-    <!--<input type="submit" value="Delete" class="yellow_bg btn text-dark" />
-    </form>-->
-
-    <div class="bg-info rounded" style="width:250px;">
+    <div class="" style="width:250px;">
         <div class="m-2">
             <h2 class="text-light">Admin Controll</h2>
             <form asp-area="" asp-controller="Home" asp-action="DeletePage" asp-route-id="@Model.ArticleId">
