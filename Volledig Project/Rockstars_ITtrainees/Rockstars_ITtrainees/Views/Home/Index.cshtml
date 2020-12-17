@@ -1,11 +1,12 @@
 ﻿@model ITtrainees.MVC.Models.Home.IndexViewModel
 @{
-//List<ITtrainees.Models.Article> Articles = new List<ITtrainees.Models.Article>();
-//foreach (var article in Model)
-//{
-//    Articles.Add(article);
-//    Console.WriteLine(Articles);
-//}
+    //List<ITtrainees.Models.Article> Articles = new List<ITtrainees.Models.Article>();
+    //foreach (var article in Model)
+    //{
+    //    Articles.Add(article);
+    //    Console.WriteLine(Articles);
+    //}
+}
 
 <link rel="stylesheet" href="~/css/site.css" />
 <link rel="stylesheet" href="~/css/NavBar.css" />
@@ -29,8 +30,8 @@
             <div class="carousel-inner text-light">
                 @{ bool firstItem = true;
                     string activeItem = null;
-                    int carouselItems = (Model.Count() > 2) ? 3 : Model.Count();
-                    List<ITtrainees.Models.ArticleCard> carouselArticles = Model.GetRange(0, carouselItems);
+                    int carouselItems = (Model.RecentArticles.Count() > 2) ? 3 : Model.RecentArticles.Count();
+                    List<ITtrainees.Models.ArticleCard> carouselArticles = Model.RecentArticles.GetRange(0, carouselItems);
                     foreach (var article in carouselArticles)
                     {
                         @if (firstItem) { activeItem = "active"; firstItem = false; } else { activeItem = null; }

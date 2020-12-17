@@ -26,16 +26,19 @@
             <p class="" hidden id="rawContent">@Model.Content</p>
         </div>
     </div>
-    <div class="border" style="width:250px;">
-        <div class="m-2 text-light">
-            <h2 class="text-light">Admin Control</h2>
-            <form asp-area="" asp-controller="Home" asp-action="DeletePage" asp-route-id="@Model.ArticleId">
-                <input type="hidden" asp-for="ArticleId" />
-                <input type="submit" value="Delete" class="btn btn-danger" /> |
-                <a asp-action="UpdateArticle" asp-route-id="@Model.ArticleId">Edit</a>
-            </form>
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="border" style="width:250px;">
+            <div class="m-2 text-light">
+                <h2 class="text-light">Admin Control</h2>
+                <form asp-area="" asp-controller="Home" asp-action="DeletePage" asp-route-id="@Model.ArticleId">
+                    <input type="hidden" asp-for="ArticleId" />
+                    <input type="submit" value="Delete" class="btn btn-danger" /> |
+                    <a asp-action="UpdateArticle" asp-route-id="@Model.ArticleId">Edit</a>
+                </form>
+            </div>
         </div>
-    </div>
+    }
 
     @using (Html.BeginForm("AnswerQuestion", "Question", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {

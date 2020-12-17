@@ -8,7 +8,7 @@ namespace ITtrainees.MVC.Models.Home
 {
     public class IndexViewModel
     {
-        public List<Article> RecentArticles { get; set; }
-        public List<Article> FilteredArticles { get; set; }
+        public List<ArticleCard> RecentArticles { get; set; }
+        public List<ArticleCard> FilteredArticles { get; set; }
     }
 }
