@@ -17,7 +17,7 @@ namespace ITtrainees.MVC.APITools
         public static async void Create(ArticleUploadViewModel model)
         {
             string encodedHeader = FileEncoder.EncodeImage(model.HeaderImage);
-            Article article = new Article(0, model.Title, model.Author, model.Summary, model.Tag, encodedHeader, model.Content); ;
+            Article article = new Article(0, model.Title, model.Author, model.Summary, model.Tag, encodedHeader, model.Content);
 
             var stringContent = new StringContent(JsonConvert.SerializeObject(article), Encoding.UTF8, "application/json");
             HttpResponseMessage response = await ApiClient.PostAsync($"article", stringContent);
@@ -48,8 +48,22 @@ namespace ITtrainees.MVC.APITools
             return null;
         }
 
-        public static async void Update(Article article)
+        public static async void Update(ArticleUpdateModel model)
         {
+            string encodedHeader;
+
+            if (model.HeaderImage != null)
+            {
+                encodedHeader = FileEncoder.EncodeImage(model.HeaderImage);
+            }
+            else
+            {
+                encodedHeader = model.HeaderImageString;
+            }
+            
+            Article article = new Article(model.ArticleId, model.Title, model.Author, model.Summary, model.Tag, encodedHeader, model.Content);
+
+            
             var stringContent = new StringContent(JsonConvert.SerializeObject(article), Encoding.UTF8, "application/json");
             HttpResponseMessage response = await ApiClient.PutAsync($"article", stringContent);
         }

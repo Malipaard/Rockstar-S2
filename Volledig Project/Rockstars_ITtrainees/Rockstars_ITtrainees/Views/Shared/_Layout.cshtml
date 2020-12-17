@@ -36,11 +36,11 @@
                         <a class="nav-link" asp-area="" asp-controller="Home" asp-action="ArticleDelete">Delete Article <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
                     </li>
                     <li class="nav-item mr-4 d-inline-flex">
-                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="UpdateArticle">Update Article <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="EditView">Edit <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
                     </li>
                     @*<li class="nav-item mr-4 d-inline-flex">
-            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="OutEnv">Outsource environment <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
-        </li>*@
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="OutEnv">Outsource environment <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
+                        </li>*@
                 </ul>
                 <div class="login-container ml-auto d-inline-flex">
                     @if (User.Identity.IsAuthenticated)
@@ -49,7 +49,7 @@
                     }
                     else
                     {
-                        <a class="nav-link text-light font-weight-bold"  asp-area="" asp-controller="Accounts" asp-action="Login">Login <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
+                        <a class="nav-link text-light font-weight-bold" asp-area="" asp-controller="Accounts" asp-action="Login">Login <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
                         <a class="nav-link text-light font-weight-bold" asp-area="" asp-controller="Accounts" asp-action="Register">Register <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
                     }
 
@@ -77,6 +77,7 @@
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/SearchArticle.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)

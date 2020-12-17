@@ -40,6 +40,7 @@ namespace Rockstars_ITtrainees.Controllers
         {
             return View();
         }
+
         public async Task<IActionResult> ArticleView(int id)
         {
             Article article = await ArticleOperations.Get(id);
@@ -65,11 +66,11 @@ namespace Rockstars_ITtrainees.Controllers
         }
 
         [Route("/article")]
-        public IActionResult UpdateArticle(Article article)
-        {
-            Console.WriteLine(article.ArticleId);
-            ViewBag.Article = article;  
-            return View();
+        public async Task<IActionResult> UpdateArticleAsync(Article article)
+        {            
+            Article UpdateArticle = await ArticleOperations.Get(article.ArticleId);
+            ArticleUpdateModel updateArticle = new ArticleUpdateModel(UpdateArticle);
+            return View(updateArticle);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -108,10 +109,11 @@ namespace Rockstars_ITtrainees.Controllers
             return View();
         }
 
+        public IActionResult Update(ArticleUpdateModel article)
+        {
+            ArticleOperations.Update(article);
 
-
-
-
-
+            return RedirectToAction("Index");
+        }
     }
 }

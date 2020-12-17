@@ -18,7 +18,21 @@
     <p class="card-author text-light" id="contentContainer">De inhoud van het artikel kan niet geladen worden</p>
 
 
-    <p hidden id="rawContent">@Model.Content</p>
+        <p hidden id="rawContent">@Model.Content</p>
+    </div>
+    @using (Html.BeginForm("UpdateArticle", "Home", FormMethod.Post))
+    {
+        <table>
+            <tr>
+            <td style="display:none">
+                @Html.TextBoxFor(m => Model.ArticleId)
+            </td>
+            <td>
+                <input class="yellow_bg btn text-dark" type="submit" value="Edit" />
+            </td>
+
+        </table>
+    }
 </body>
 
 <script>

@@ -1,19 +1,23 @@
 ﻿@model List<ITtrainees.Models.ArticleCard>
 @{
-//List<ITtrainees.Models.Article> Articles = new List<ITtrainees.Models.Article>();
-//foreach (var article in Model)
-//{
-//    Articles.Add(article);
-//    Console.WriteLine(Articles);
-//}
+    //List<ITtrainees.Models.Article> Articles = new List<ITtrainees.Models.Article>();
+    //foreach (var article in Model)
+    //{
+    //    Articles.Add(article);
+    //    Console.WriteLine(Articles);
+    //}
 
 }
 
 <link rel="stylesheet" href="~/css/site.css" />
 <link rel="stylesheet" href="~/css/NavBar.css" />
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <body>
+    <div class="container">
+        <input type="text" id="Searchbar" placeholder="Search Article" onkeyup="search()">
+    </div>
 
     <div class="container-fluid">
         <h2 class="text-light">Recently Added Articles</h2>
@@ -37,7 +41,7 @@
                     {
                         @if (firstItem) { activeItem = "active"; firstItem = false; } else { activeItem = null; }
                         <div class="carousel-item @activeItem">
-                            <a asp-area="" asp-controller="Home" asp-action="ArticleView"  asp-route-id="@article.ArticleId" class="btn-dark text-deco-none">
+                            <a asp-area="" asp-controller="Home" asp-action="ArticleView" asp-route-id="@article.ArticleId" class="btn-dark text-deco-none">
                                 <div class="card mb-4">
                                     <img class="card-img-top midHeight featured-image" src="data:image/png;base64, @article.HeaderImage" alt="placeholder">
                                     <div class="card-body d-inline-flex flex-column">
@@ -71,8 +75,8 @@
                 foreach (var article in Model.Skip(carouselItems))
                 {
                     <div class="col-12 col-md-3">
-                        <a asp-area="" asp-controller="Home" asp-action="ArticleView"  asp-route-id="@article.ArticleId" class="btn-dark text-deco-none">
-                            <div class="card card-scale mb-4 h-80">
+                        <a asp-area="" asp-controller="Home" asp-action="ArticleView" asp-route-id="@article.ArticleId" class="btn-dark text-deco-none">
+                            <div class="card card-scale mb-4 h-80" id="ArticleItem">
                                 @{if (article.Tag != null)
                                     { <h3 class="card-tag text-light p-1">@article.Tag</h3>}
                                 }
@@ -141,10 +145,8 @@
 
         </div>
     </div>-->
-
     <!-- Include Siema library -->
     <!--<script type="text/javascript" src="~/js/siema.min.js"></script>-->
-
     <!-- Initiate Siema -->
     <!--<script type="text/javascript">
 
@@ -168,3 +170,5 @@
 
     </script>-->
 </body>
+
+<script src="~/js/SearchArticle.js"></script>

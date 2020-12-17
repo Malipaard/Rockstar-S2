@@ -1,83 +1,143 @@
-﻿@model Article
+﻿@model ArticleUpdateModel
 @{
     ViewData["Title"] = "UpdateArticle";
 }
 @using ITtrainees.MVC.APITools
 @using ITtrainees.Models
+@using ITtrainees.MVC.Models.Home
 @{
-    Article UpdateArticle = ViewBag.Article;
+
 }
+
+
+<link rel="stylesheet" href="~/css/site.css" />
+<link href="~/css/quill.snow.css" rel="stylesheet">
+<script src="~/js/quill.js"></script>
+<script src="~/js/quill.min.js"></script>
+
+
+<link rel="stylesheet" href="~/css/site.css" />
+<link rel="stylesheet" href="~/css/NavBar.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
 <body>
-    <h2 class="text-light">@UpdateArticle.ArticleId</h2>
+    <div class="container text-light pt-3 ml-3">
+        <div class="column align-items-center">
 
-    @*<div class="container-fluid">
-        <h2 class="text-light">Delete Articles</h2>
-        <table class="table text-light">
-            <thead>
-                <tr>
-                    <th scope="col">Title</th>
-                    <th scope="col">Author</th>
-                    <th scope="col">ID</th>
-                </tr>
-            </thead>
-            <tbody>
+            <form asp-controller="Home" asp-action="Update" onsubmit="setContent()" enctype="multipart/form-data">
 
-                <h2>@articles.Title</h2>
-            </tbody>
-        </table>
-    </div>*@
+                <div class="form-group" style="display:none">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <label asp-for="ArticleId" class="control-label"></label>
+                    <input asp-for="ArticleId" class="form-control" />
+                    <span asp-validation-for="ArticleId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <label asp-for="Author" class="control-label"></label>
+                    <input asp-for="Author" class="form-control" />
+                    <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <label asp-for="Summary" class="control-label"></label>
+                    <input asp-for="Summary" class="form-control" />
+                    <span asp-validation-for="Summary" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <label asp-for="Tag" class="control-label"></label>
+                    <input asp-for="Tag" class="form-control" />
+                    <span asp-validation-for="Tag" class="text-danger"></span>
+                </div>
 
-    @*<div class="container text-light pt-3 ml-3">
-            <div class="column align-items-center">
-                @using (Html.BeginForm("UpdateArticle", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                {
+                <div class="form-group">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <label asp-for="HeaderImage" class="control-label"></label>
+                    <input asp-for="HeaderImage" class="form-control" type="file" />
+                    <span asp-validation-for="HeaderImage" class="text-danger"></span>
+                </div>
 
-                <table cellpadding="10" cellspacing="5" class="bg-dark">
-                    <tr>
-                        <th colspan="2" align="center">Upload an article</th>
-                    </tr>
-                    <tr>
-                        <td>Title: </td>
-                        <td>@Html.TextBoxFor(m => m.Title, Model.Title)</td>
-                    </tr>
-                    <tr>
-                        <td>Author: </td>
-                        <td>@Html.TextBoxFor(m => m.Author)</td>
-                    </tr>
-                    <tr>
-                        <td>Description: </td>
-                        <td>@Html.TextBoxFor(m => m.Summary)</td>
-                    </tr>
-                    <tr>
-                        <td>Tag: </td>
-                        <td>
-                            @Html.DropDownListFor(m => m.Tag, new List<SelectListItem>
-                       { new SelectListItem{Text="C#", Value="C#"},
-                        new SelectListItem{Text="JAVA", Value="JAVA"},
-                        new SelectListItem{Text="Python", Value="Python"} }, "None")
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Header Image: </td>
-                        <td>@Html.TextBoxFor(m => m.HeaderImage, null, new { @type = "file", @class = "input-file" })</td>
-                    </tr>
-                    <tr>
-                        <td>Article Content (.pdf): </td>
-                        <td>@Html.TextBoxFor(m => m.Content, null, new { @type = "file", @class = "input-file" })</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            @Html.TextBoxFor(m => m.ArticleId)
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input type="submit" value="Submit" /></td>
-                    </tr>
-                </table>
+                <img src="data:image/png;base64, @Model.HeaderImageString" alt="placeholder">
 
-                }
-            </div>
-        </div>*@
 
+                <div class="form-group" style="display:none">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <label asp-for="HeaderImageString" class="control-label"></label>
+                    <input asp-for="HeaderImageString" class="form-control"/>
+                    <span asp-validation-for="HeaderImageString" class="text-danger"></span>
+                </div>
+
+
+                <div id="editor">
+                </div>
+
+                <div class="form-group" style="display:none">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <label asp-for="Content" class="control-label"></label>
+                    <input asp-for="Content" class="form-control" id="content" />
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Update" class="btn btn-primary yellow_bg text-dark" />
+                </div>
+
+            </form>
+
+           
+        </div>
+    </div>
 </body>
+
+<script>
+    var toolbarOptions = [
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+        [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+        ['code-block'],
+
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
+        [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
+
+        ['link', 'image', 'video'],          // add's image support
+        [{ 'align': [] }],
+
+        ['clean']                                         // remove formatting button
+    ];
+    var options = {
+        modules: {
+            toolbar: toolbarOptions
+        },
+        placeholder: 'Schrijf je artikel',
+        theme: 'snow'
+    };
+    var quill = new Quill('#editor', options);
+
+    function setContent() {
+
+        var delta = quill.getContents();
+        var content = document.getElementById("content");
+        content.value = JSON.stringify(delta);
+    }
+</script>
+<script>
+    var contentString = document.getElementById('content').value;
+    var contentJSON = JSON.parse(contentString);
+    quill.root.innerHTML = quillGetHTML(contentJSON);
+
+    function quillGetHTML(inputDelta) {
+        var tempCont = document.createElement("div");
+        (new Quill(tempCont)).setContents(inputDelta);
+        return tempCont.getElementsByClassName("ql-editor")[0].innerHTML;
+    }
+</script>
+
