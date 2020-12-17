@@ -9,6 +9,15 @@ namespace ITtrainees.DataAcces
 {
     public class QuestionDAL : IQuestionDAL
     {
+        public void Create(Question question)
+        {
+            using (var context = new ArticlesContext())
+            {
+                context.Questions.Add(question);
+                context.SaveChanges();
+            }
+        }
+
         public List<Question> GetAll()
         {
             throw new NotImplementedException();

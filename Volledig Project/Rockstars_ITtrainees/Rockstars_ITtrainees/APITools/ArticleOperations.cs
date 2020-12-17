@@ -16,7 +16,7 @@ namespace ITtrainees.MVC.APITools
     {
         
 
-        public static async void Create(ArticleUploadViewModel model)
+        public static async Task Create(ArticleUploadViewModel model)
         {
             string encodedHeader = FileEncoder.EncodeImage(model.HeaderImage);
             string encodedContent = FileEncoder.EncodePDF(model.Content);
@@ -60,6 +60,19 @@ namespace ITtrainees.MVC.APITools
         public static async void Delete(int id)
         {
             HttpResponseMessage response = await ApiClient.DeleteAsync($"article/{ id }");
+        }
+
+        public static async Task<int> GetArticleId(string author)
+        {
+            HttpResponseMessage response = await ApiClient.GetAsync($"article/{ author }");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var articleJSON = await response.Content.ReadAsStringAsync();
+                var id = JsonConvert.DeserializeObject<int>(articleJSON);
+                return id;
+            }
+            return -1;
         }
     }
 }

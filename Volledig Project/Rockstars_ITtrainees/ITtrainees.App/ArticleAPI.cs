@@ -64,5 +64,14 @@ namespace ITtrainees.Logic
             dal.DeleteArticle(id);
             return Accepted();
         }
+        
+        
+        [HttpGet("{author}")]
+        public int GetArticleID(string author)
+        {
+            IArticleDAL dal = ArticleFactory.GetArticleDAL();
+            var id = dal.GetArticleId(author);
+            return id;
+        }
     }
 }

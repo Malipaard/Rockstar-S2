@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using static ITtrainees.MVC.APITools.APIHelper;
 using ITtrainees.Models;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace ITtrainees.MVC.APITools
 {
@@ -32,6 +33,12 @@ namespace ITtrainees.MVC.APITools
                 return list;
             }
             return null;
+        }
+        
+        public static async void Create(Question question)
+        {
+            var jsonQuestion = new StringContent(JsonConvert.SerializeObject(question), Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await ApiClient.PostAsync($"question", jsonQuestion);
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using ITtrainees.Models;
 
 namespace ITtrainees.MVC.Models.Home
 {
@@ -23,5 +24,7 @@ namespace ITtrainees.MVC.Models.Home
         [Required]
         [FileExtensions(Extensions = "pdf")]
         public IFormFile Content { get; set; }
+        [Required]
+        public List<Question> Questions { get; set; }
     }
 }

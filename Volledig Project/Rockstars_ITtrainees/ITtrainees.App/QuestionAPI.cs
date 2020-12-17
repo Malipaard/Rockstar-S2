@@ -45,5 +45,13 @@ namespace ITtrainees.Logic
                 return null;
             }
         }
+
+        [HttpPost]
+        public IActionResult Create(Question question)
+        {
+            IQuestionDAL dal = QuestionFactory.GetQuestionDAL();
+            dal.Create(question);
+            return Accepted();
+        }
     }
 }
