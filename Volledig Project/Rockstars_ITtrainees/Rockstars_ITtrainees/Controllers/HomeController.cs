@@ -68,11 +68,7 @@ namespace Rockstars_ITtrainees.Controllers
         {
             return View();
         }
-
-        public IActionResult ArticleDelete()
-        {
-            return View();
-        }
+       
         public IActionResult login()
         {
             return View();
@@ -146,7 +142,7 @@ namespace Rockstars_ITtrainees.Controllers
             APIHelper.InitializeClient();
             ArticleOperations.Delete(article.ArticleId);
             ModelState.Clear();
-            return View();
+            return RedirectToAction("Index");
         }
 
         public IActionResult Update(ArticleUpdateModel article)
