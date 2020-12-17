@@ -1,4 +1,4 @@
-﻿@model List<ITtrainees.Models.Article>
+﻿@model ITtrainees.MVC.Models.Home.IndexViewModel
 @{
 //List<ITtrainees.Models.Article> Articles = new List<ITtrainees.Models.Article>();
 //foreach (var article in Model)
@@ -31,7 +31,7 @@
             <div class="carousel-inner text-light">
                 @{ bool firstItem = true;
                     string activeItem = null;
-                    foreach (var article in Model.Skip(Math.Max(0, Model.Count - 3)))
+                    foreach (var article in Model.RecentArticles.Skip(Math.Max(0, Model.RecentArticles.Count - 3)))
                     {
                         @if (firstItem) { activeItem = "active"; firstItem = false; } else { activeItem = null; }
                         <div class="carousel-item @activeItem">
@@ -61,11 +61,18 @@
         </div>
     </div>
 
+    <div id="buttons">
+            <a asp-controller="" asp-action="" asp-route-tag="" class=" btn btn-light" role="button">Show All</a>
+            <a asp-controller="" asp-action="" asp-route-tag="C#" class=" btn btn-light" role="button">C#</a>
+            <a asp-controller="" asp-action="" asp-route-tag="JAVA" class=" btn btn-light" role="button">JAVA</a>
+            <a asp-controller="" asp-action="" asp-route-tag="Python" class=" btn btn-light" role="button">Python</a>
+    </div>
+
     <div class="container-fluid">
         <h2 class="text-light">Articles</h2>
         <div class="row text-light">
 
-            @{foreach (var article in Model)
+            @{foreach (var article in Model.FilteredArticles)
                 {
                     <div class="col-12 col-md-3">
                         <a asp-area="" asp-controller="Home" asp-action="ArticleView"  asp-route-id="@article.ArticleId" class="btn-dark text-deco-none">
@@ -111,7 +118,7 @@
 
             <div class="col-10">
                 <div class="siema">
-                    @{foreach (var article in Model)
+                    @{foreach (var article in Model.FilteredArticles)
                         {
                             <a asp-area="" asp-controller="Home" asp-action="Index" class="btn-dark text-deco-none">
                                 <div class="card card-scale mb-4 h-80">
@@ -165,3 +172,4 @@
 
     </script>-->
 </body>
+
