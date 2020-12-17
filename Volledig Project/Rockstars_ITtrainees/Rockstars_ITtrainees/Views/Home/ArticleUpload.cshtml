@@ -58,6 +58,86 @@
                         <td><input type="submit" value="Submit" /></td>
                     </tr>
                 </table>
+
+            <table cellpadding="10" cellspacing="5" class="bg-dark">
+                <tr>
+                    <th colspan="2" align="center">Upload an article</th>
+                </tr>
+                <tr>
+                    <td>Title: </td>
+                    <td>@Html.TextBoxFor(m => m.Title)</td>
+                </tr>
+                <tr>
+                    <td>Author: </td>
+                    <td>@Html.TextBoxFor(m => m.Author)</td>
+                </tr>
+                <tr>
+                    <td>Description: </td>
+                    <td>@Html.TextBoxFor(m => m.Summary)</td>
+                </tr>
+                <tr>
+                    <td>Tag: </td>
+                    <td>
+                        @Html.DropDownListFor(m => m.Tag, new List<SelectListItem>
+                   { new SelectListItem{Text="C#", Value="C#"},
+                    new SelectListItem{Text="JAVA", Value="JAVA"},
+                    new SelectListItem{Text="Python", Value="Python"} }, "None")
+                    </td>
+                </tr>
+                <tr>
+                    <td>Header Image: </td>
+                    <td>@Html.TextBoxFor(m => m.HeaderImage, null, new { @type = "file", @class = "input-file" })</td>
+                </tr>
+                <tr>
+                    <td>Article Content (.pdf): </td>
+                    <td>@Html.TextBoxFor(m => m.Content, null, new { @type = "file", @class = "input-file" })</td>
+                </tr>
+                <tr>
+                    <td>Question 1: </td>
+                    <td>@Html.TextBoxFor(m => m.Questions[0].QuestionText)</td>
+                </tr>
+                <tr>
+                    <td>Answer 1: </td>
+                    <td>@Html.TextBoxFor(m => m.Questions[0].Answer1)</td>
+                </tr>
+                <tr>
+                    <td>Answer 2: </td>
+                    <td>@Html.TextBoxFor(m => m.Questions[0].Answer2)</td>
+                </tr>
+                <tr>
+                    <td>@Html.RadioButton("CorrectAnswer1", "Answer1")</td>
+                    <td>Answer 1</td>
+                </tr>
+                <tr>
+                    <td>@Html.RadioButton("CorrectAnswer1", "Answer2")</td>
+                    <td>Answer 2</td>
+                </tr>
+                <tr>
+                    <td>Question 2: </td>
+                    <td>@Html.TextBoxFor(m => m.Questions[1].QuestionText)</td>
+                </tr>
+                <tr>
+                    <td>Answer 1: </td>
+                    <td>@Html.TextBoxFor(m => m.Questions[1].Answer1)</td>
+                </tr>
+                <tr>
+                    <td>Answer 2: </td>
+                    <td>@Html.TextBoxFor(m => m.Questions[1].Answer2)</td>
+                </tr>
+                <tr>
+                    <td>@Html.RadioButton("correctAnswer2", "Answer1")</td>
+                    <td>Answer 1</td>
+                </tr>
+                <tr>
+                    <td>@Html.RadioButton("correctAnswer2", "Answer2")</td>
+                    <td>Answer 2</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Submit" /></td>
+                </tr>
+            </table>
+
             }
         </div>
     </div>

@@ -97,5 +97,14 @@ namespace ITtrainees.Logic
                 return null;
             }
         }
+        
+        
+        [HttpGet("{author}")]
+        public int GetArticleID(string author)
+        {
+            IArticleDAL dal = ArticleFactory.GetArticleDAL();
+            var id = dal.GetArticleId(author);
+            return id;
+        }
     }
 }

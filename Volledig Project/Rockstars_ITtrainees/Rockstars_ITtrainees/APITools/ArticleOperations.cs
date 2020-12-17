@@ -96,5 +96,18 @@ namespace ITtrainees.MVC.APITools
             }
             return null;
         }
+
+        public static async Task<int> GetArticleId(string author)
+        {
+            HttpResponseMessage response = await ApiClient.GetAsync($"article/{ author }");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var articleJSON = await response.Content.ReadAsStringAsync();
+                var id = JsonConvert.DeserializeObject<int>(articleJSON);
+                return id;
+            }
+            return -1;
+        }
     }
 }
