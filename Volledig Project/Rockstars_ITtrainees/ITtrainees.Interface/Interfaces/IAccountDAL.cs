@@ -7,7 +7,7 @@ namespace ITtrainees.Interface.Interfaces
 {
     public interface IAccountDAL
     {
-        public Account GetAccount(int id);
+        public Account GetAccount(string userName);
         public void CreateAccount(Account account);
         public void AddScore(Account account, int points);
     }

@@ -14,7 +14,9 @@ namespace ITtrainees.MVC.APITools
 {
     public static class ArticleOperations
     {
-        public static async void Create(ArticleUploadViewModel model)
+        
+
+        public static async Task Create(ArticleUploadViewModel model)
         {
             string encodedHeader = FileEncoder.EncodeImage(model.HeaderImage);
             Article article = new Article(0, model.Title, model.Author, model.Summary, model.Tag, encodedHeader, model.Content);
@@ -95,6 +97,19 @@ namespace ITtrainees.MVC.APITools
                 return card;
             }
             return null;
+        }
+
+        public static async Task<int> GetArticleId(string author)
+        {
+            HttpResponseMessage response = await ApiClient.GetAsync($"article/{ author }");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var articleJSON = await response.Content.ReadAsStringAsync();
+                var id = JsonConvert.DeserializeObject<int>(articleJSON);
+                return id;
+            }
+            return -1;
         }
     }
 }

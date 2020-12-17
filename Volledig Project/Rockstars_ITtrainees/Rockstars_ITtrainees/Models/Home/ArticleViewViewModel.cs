@@ -1,27 +1,22 @@
-﻿using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using ITtrainees.Models;
 
 namespace ITtrainees.MVC.Models.Home
 {
-    public class ArticleUploadViewModel
+    public class ArticleViewViewModel
     {
-        [Required]
+        public int ArticleId { get; set; }
         public string Title { get; set; }
-        [Required]
         public string Author { get; set; }
-        [Required]
         public string Summary { get; set; }
-        [Required]
         public string Tag { get; set; }
-        [Required]
-        public IFormFile HeaderImage { get; set; }
-        [Required]
+        public string HeaderImage { get; set; }
         public string Content { get; set; }
+        public List<Question> Questions { get; set; }
+        public List<string> GivenAnswers { get; set; }
+
     }
 }

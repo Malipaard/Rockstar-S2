@@ -95,5 +95,14 @@ namespace ITtrainees.DataAcces
                 return card;
             }
         }
+
+        public int GetArticleId (string author)
+        {
+            using (var context = new ArticlesContext())
+            {
+                var id = context.Articles.OrderByDescending(p => p.ArticleId).Where(p => p.Author == author).Select(p => p.ArticleId).FirstOrDefault();
+                return id;
+            }
+        }
     }
 }
