@@ -98,7 +98,6 @@ namespace ITtrainees.Logic
             }
         }
         
-        
         [HttpGet("{author}")]
         public int GetArticleID(string author)
         {

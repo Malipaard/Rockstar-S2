@@ -47,6 +47,7 @@ namespace Rockstars_ITtrainees.Controllers
             List<Question> questions = await QuestionOperations.Get(id);
             ArticleViewViewModel articleViewViewModel = new ArticleViewViewModel
             {
+                ArticleId = article.ArticleId,
                 Title = article.Title,
                 Author = article.Author,
                 Summary = article.Summary,
@@ -79,7 +80,7 @@ namespace Rockstars_ITtrainees.Controllers
 
         [Route("/article")]
         public async Task<IActionResult> UpdateArticleAsync(int id)
-        {            
+        {
             Article UpdateArticle = await ArticleOperations.Get(id);
             ArticleUpdateModel updateArticle = new ArticleUpdateModel(UpdateArticle);
             return View(updateArticle);

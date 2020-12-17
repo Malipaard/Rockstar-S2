@@ -42,7 +42,7 @@ namespace ITtrainees.MVC.APITools
             if (response.IsSuccessStatusCode)
             {
                 var articleJSON = await response.Content.ReadAsStringAsync();
-                var article = JsonConvert.DeserializeObject<Article>(articleJSON);
+                Article article = JsonConvert.DeserializeObject<Article>(articleJSON);
                 return article;
             }
             return null;
