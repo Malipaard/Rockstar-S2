@@ -66,5 +66,32 @@ namespace ITtrainees.DataAcces
                 return article;
             }
         }
+
+
+        public List<Models.ArticleCard> GetAllCards()
+        {
+            using (var context = new ArticlesContext())
+            {
+                var articles = context.Articles.ToList();
+
+                //articles omzetten naar cards
+                List<Models.ArticleCard> cards = new List<Models.ArticleCard>();
+                foreach (Models.Article article in articles)
+                {
+                    Models.ArticleCard card = new Models.ArticleCard(article);
+                    cards.Add(card);
+                }
+                return cards;
+            }
+        }
+
+        public Models.ArticleCard GetCard(int id)
+        {
+            using (var context = new ArticlesContext())
+            {
+                var card = new Models.ArticleCard(context.Articles.Single(a => a.ArticleId == id));
+                return card;
+            }
+        }
     }
 }

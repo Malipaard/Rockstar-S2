@@ -99,6 +99,8 @@ h1 {
     display: flex;
     justify-content: space-between;
     transition: transform 0.3s;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .card-scale:hover {
@@ -126,8 +128,13 @@ h1 {
     width:100%;
 }
 
+.card-title {
+    text-overflow: ellipsis;
+}
+
 .featured-image {
     width: 100%;
+    object-fit: cover;
 }
 
 .yellow_bg {
@@ -156,6 +163,7 @@ h1 {
 
 .card-author:last-child {
     font-size: 15px;
+    text-overflow: ellipsis;
 }
 
 .break {

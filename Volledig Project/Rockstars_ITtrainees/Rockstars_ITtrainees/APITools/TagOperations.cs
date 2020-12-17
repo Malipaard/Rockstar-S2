@@ -1,18 +1,18 @@
-﻿using ITtrainees.Models;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
+using ITtrainees.Models;
+using ITtrainees.MVC.Models.Home;
 using Newtonsoft.Json;
 using static ITtrainees.MVC.APITools.APIHelper;
-using System.Collections.Generic;
+using ITtrainees.MVC.APITools;
 using System.Text;
-using ITtrainees.MVC.Models.Home;
 
 namespace ITtrainees.MVC.APITools
 {
-    public static class ArticleOperations
+    public class TagOperations
     {
         public static async void Create(ArticleUploadViewModel model)
         {
@@ -57,30 +57,6 @@ namespace ITtrainees.MVC.APITools
         public static async void Delete(int id)
         {
             HttpResponseMessage response = await ApiClient.DeleteAsync($"article/{ id }");
-        }
-
-        public static async Task<List<ArticleCard>> GetAllCards()
-        {
-            HttpResponseMessage response = await ApiClient.GetAsync($"article/card");
-            if (response.IsSuccessStatusCode)
-            {
-                var listJSON = await response.Content.ReadAsStringAsync();
-                var list = JsonConvert.DeserializeObject<List<ArticleCard>>(listJSON);
-                return list;
-            }
-            return null;
-        }
-
-        public static async Task<ArticleCard> GetCard(int id)
-        {
-            HttpResponseMessage response = await ApiClient.GetAsync($"article/card/{ id }");
-            if (response.IsSuccessStatusCode)
-            {
-                var cardJSON = await response.Content.ReadAsStringAsync();
-                var card = JsonConvert.DeserializeObject<ArticleCard>(cardJSON);
-                return card;
-            }
-            return null;
         }
     }
 }

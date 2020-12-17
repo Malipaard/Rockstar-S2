@@ -1,4 +1,4 @@
-﻿@model List<ITtrainees.Models.Article>
+﻿@model List<ITtrainees.Models.ArticleCard>
 @{
 //List<ITtrainees.Models.Article> Articles = new List<ITtrainees.Models.Article>();
 //foreach (var article in Model)
@@ -31,7 +31,9 @@
             <div class="carousel-inner text-light">
                 @{ bool firstItem = true;
                     string activeItem = null;
-                    foreach (var article in Model.Skip(Math.Max(0, Model.Count - 3)))
+                    int carouselItems = (Model.Count() > 2) ? 3 : Model.Count();
+                    List<ITtrainees.Models.ArticleCard> carouselArticles = Model.GetRange(0, carouselItems);
+                    foreach (var article in carouselArticles)
                     {
                         @if (firstItem) { activeItem = "active"; firstItem = false; } else { activeItem = null; }
                         <div class="carousel-item @activeItem">
@@ -65,7 +67,8 @@
         <h2 class="text-light">Articles</h2>
         <div class="row text-light">
 
-            @{foreach (var article in Model)
+            @{  
+                foreach (var article in Model.Skip(carouselItems))
                 {
                     <div class="col-12 col-md-3">
                         <a asp-area="" asp-controller="Home" asp-action="ArticleView"  asp-route-id="@article.ArticleId" class="btn-dark text-deco-none">
