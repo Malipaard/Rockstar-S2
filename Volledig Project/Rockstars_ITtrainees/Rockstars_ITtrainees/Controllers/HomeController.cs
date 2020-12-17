@@ -74,10 +74,11 @@ namespace Rockstars_ITtrainees.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult ArticleUpload()
+        public IActionResult ArticleUpload(ArticleUploadViewModel model)
         {
             if (!User.Identity.IsAuthenticated) return RedirectToAction("Login","Accounts");
-            return View();
+            model.Author = User.Identity.Name;
+            return View(model);
         }
        
         public IActionResult login()

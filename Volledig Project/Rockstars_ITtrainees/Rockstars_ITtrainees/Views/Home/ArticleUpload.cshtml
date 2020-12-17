@@ -25,10 +25,7 @@
                         <td>Title: </td>
                         <td>@Html.TextBoxFor(m => m.Title)</td>
                     </tr>
-                    <tr>
-                        <td>Author: </td>
-                        <td>@Html.TextBoxFor(m => m.Author)</td>
-                    </tr>
+                    @Html.TextBoxFor(m => m.Author, new { style = "display: none;" })
                     <tr>
                         <td>Description: </td>
                         <td>@Html.TextBoxFor(m => m.Summary)</td>
