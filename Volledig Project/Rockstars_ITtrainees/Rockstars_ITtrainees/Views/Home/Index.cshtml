@@ -1,4 +1,11 @@
-﻿@model List<ITtrainees.Models.ArticleCard>
+﻿@model ITtrainees.MVC.Models.Home.IndexViewModel
+@{
+//List<ITtrainees.Models.Article> Articles = new List<ITtrainees.Models.Article>();
+//foreach (var article in Model)
+//{
+//    Articles.Add(article);
+//    Console.WriteLine(Articles);
+//}
 
 <link rel="stylesheet" href="~/css/site.css" />
 <link rel="stylesheet" href="~/css/NavBar.css" />
@@ -54,12 +61,18 @@
         </div>
     </div>
 
+    <div id="buttons">
+            <a asp-controller="" asp-action="" asp-route-tag="" class=" btn btn-light" role="button">Show All</a>
+            <a asp-controller="" asp-action="" asp-route-tag="C#" class=" btn btn-light" role="button">C#</a>
+            <a asp-controller="" asp-action="" asp-route-tag="JAVA" class=" btn btn-light" role="button">JAVA</a>
+            <a asp-controller="" asp-action="" asp-route-tag="Python" class=" btn btn-light" role="button">Python</a>
+    </div>
+
     <div class="container-fluid">
         <h2 class="text-light">Articles</h2>
         <div class="row text-light">
 
-            @{  
-                foreach (var article in Model.Skip(carouselItems))
+            @{foreach (var article in Model.FilteredArticles)
                 {
                     <div class="col-12 col-md-3">
                         <a asp-area="" asp-controller="Home" asp-action="ArticleView" asp-route-id="@article.ArticleId" class="btn-dark text-deco-none">
@@ -81,3 +94,4 @@
         </div>
     </div>
 </body>
+

@@ -23,12 +23,22 @@ namespace Rockstars_ITtrainees.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> IndexAsync()
+        public async Task<IActionResult> IndexAsync(string tag)
         {
+            IndexViewModel viewModel = new IndexViewModel();
             APIHelper.InitializeClient();
             List<ArticleCard> cardList = await ArticleOperations.GetAllCards();
             cardList.Reverse();
-            return View(cardList);
+            viewModel.RecentArticles = cardList;
+            viewModel.FilteredArticles = cardList;
+
+            if (!String.IsNullOrEmpty(tag))
+            {
+                viewModel.FilteredArticles = articleList.Where(article => article.Tag.Equals(tag)).ToList();
+            }
+
+
+            return View(viewModel);
         }
 
         public IActionResult Privacy()
