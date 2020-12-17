@@ -53,6 +53,8 @@ namespace ITtrainees.DataAcces
                 dbArticle.Summary = article.Summary;
                 dbArticle.Tag = article.Tag;
                 dbArticle.Title = article.Title;
+                dbArticle.HeaderImage = article.HeaderImage;
+                dbArticle.Content = article.Content;
 
                 context.SaveChanges();
             }

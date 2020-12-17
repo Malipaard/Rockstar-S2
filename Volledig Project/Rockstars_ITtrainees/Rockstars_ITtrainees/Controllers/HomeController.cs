@@ -110,7 +110,6 @@ namespace Rockstars_ITtrainees.Controllers
 
         public IActionResult Update(ArticleUpdateModel article)
         {
-            Console.WriteLine(article.Content);
             ArticleOperations.Update(article);
 
             return RedirectToAction("Index");
