@@ -42,9 +42,21 @@ namespace Rockstars_ITtrainees.Controllers
         public async Task<IActionResult> ArticleView(int id)
         {
             Article article = await ArticleOperations.Get(id);
+            List<Question> questions = await QuestionOperations.Get(id);
+            ArticleViewViewModel articleViewViewModel = new ArticleViewViewModel
+            {
+                Title = article.Title,
+                Author = article.Author,
+                Summary = article.Summary,
+                Tag = article.Tag,
+                HeaderImage = article.HeaderImage,
+                Content = article.Content,
+                Questions = questions
+            };
+
             if (article != null)
             {
-                return View(article);
+                return View(articleViewViewModel);
             }
             return RedirectToAction("Index");
         }
@@ -68,16 +80,43 @@ namespace Rockstars_ITtrainees.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
+        
         [HttpPost]
-        public IActionResult ArticleUpload(ArticleUploadViewModel model)
+        public async Task<IActionResult> ArticleUpload(ArticleUploadViewModel model, string correctAnswer1, string correctAnswer2)
         {
             //if (ModelState.IsValid != true)
             //{
             //    return View(model);
             //}
             APIHelper.InitializeClient();
-            ArticleOperations.Create(model);
+            Question question1 = model.Questions[0];
+            Question question2 = model.Questions[1];
+            
+            if (correctAnswer1 == "Answer1")
+            {
+                question1.CorrectAnswer = question1.Answer1;
+            }
+            else if (correctAnswer1 == "Answer2")
+            {
+                question1.CorrectAnswer = question1.Answer2;
+            }
+
+            if (correctAnswer2 == "Answer1")
+            {
+                question2.CorrectAnswer = question2.Answer1;
+            }
+            else if (correctAnswer2 == "Answer2")
+            {
+                question2.CorrectAnswer = question2.Answer2;
+            }
+
+            await ArticleOperations.Create(model);
+            
+            question1.ArticleId = await ArticleOperations.GetArticleId(model.Author);
+            question2.ArticleId = await ArticleOperations.GetArticleId(model.Author);
+            
+            QuestionOperations.Create(question1);
+            QuestionOperations.Create(question2);
             ModelState.Clear();
             return View();
         }
@@ -89,7 +128,5 @@ namespace Rockstars_ITtrainees.Controllers
             ArticleOperations.Delete(article.ArticleId);
             return View();
         }
-
-       
     }
 }

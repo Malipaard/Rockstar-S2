@@ -7,14 +7,14 @@ namespace ITtrainees.Models
 {
     public class Question
     {
-        public int QuestionId { get; private set; }
+        public int QuestionId { get; set; }
 
         [ForeignKey("ArticleId")]
-        public int ArticleId { get; private set; }
-        public string QuestionText { get; private set; }
-        public string Answer1 { get; private set; }
-        public string Answer2 { get; private set; }
-        public string CorrectAnswer { get; private set; }
+        public int ArticleId { get; set; }
+        public string QuestionText { get; set; }
+        public string Answer1 { get; set; }
+        public string Answer2 { get; set; }
+        public string CorrectAnswer { get; set; }
 
         public bool IsAnswerCorrect(string givenAnswer)
         {

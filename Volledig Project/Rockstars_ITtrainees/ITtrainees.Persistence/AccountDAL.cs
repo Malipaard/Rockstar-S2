@@ -31,11 +31,11 @@ namespace ITtrainees.DataAcces
             }
         }
 
-        public Account GetAccount(int id)
+        public Account GetAccount(string username)
         {
             using (var context = new ArticlesContext())
             {
-                var account = context.Accounts.Single(a => a.AccountID == id);
+                var account = context.Accounts.Single(a => a.Name == username);
                 return account;
             }
         }
