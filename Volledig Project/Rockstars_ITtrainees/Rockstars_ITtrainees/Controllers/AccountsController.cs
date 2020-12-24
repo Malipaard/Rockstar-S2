@@ -51,7 +51,8 @@ namespace ITtrainees.MVC.Controllers
             
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name,user.Name)
+                new Claim(ClaimTypes.Name,user.Name),
+                new Claim(ClaimTypes.UserData,user.Points.ToString())
             };
 
             if (user.IsAdmin)
