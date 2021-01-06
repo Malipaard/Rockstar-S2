@@ -17,20 +17,31 @@ namespace ITtrainees.Logic
         {
             IQuestionDAL questionDal = QuestionFactory.GetQuestionDAL();
             Question question = questionDal.GetQuestion(id);
-
-            // id = 2
-            // answer = 'correct'
-            if (answer == question.CorrectAnswer)
+            
+            if (!questionDal.QuestionIsAlreadyAnswered(userName, id))
             {
-                IAccountDAL accountDAL = AccountFactory.GetAccountDAL();
-                Account account = accountDAL.GetAccount(userName);
-                accountDAL.AddScore(account, 10);
-                return "Question answered correctly";
+                if (answer == question.CorrectAnswer)
+                {
+                    IAccountDAL accountDAL = AccountFactory.GetAccountDAL();
+                    Account account = accountDAL.GetAccount(userName);
+                    accountDAL.AddScore(account, 10);
+                    questionDal.QuestionAnswered(userName, id);
+                    return "Question answered correctly";
+                }
+                else
+                {
+                    questionDal.QuestionAnswered(userName, id);
+                    return "Question answered incorrectly";
+                }
             }
             else
             {
-                return "Question answered incorrectly";
+                return "Question already answered";
             }
+
+            // id = 2
+            // answer = 'correct'
+            
         }
 
         //api/question/{id}

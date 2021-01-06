@@ -11,5 +11,7 @@ namespace ITtrainees.Interface.Interfaces
         Question GetQuestion(int id);
         List<Question> GetArticleQuestions(int articleId);
         void Create(Question question);
+        void QuestionAnswered(string username, int questionID);
+        bool QuestionIsAlreadyAnswered(string username, int questionID);
     }
 }
