@@ -20,7 +20,7 @@ namespace ITtrainees.DataAcces
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server = DESKTOP-KQ65BAV; Database = TechBurstArticles; Trusted_Connection = True;");
+            optionsBuilder.UseSqlServer("Server = localhost; Database = master; Trusted_Connection = True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
