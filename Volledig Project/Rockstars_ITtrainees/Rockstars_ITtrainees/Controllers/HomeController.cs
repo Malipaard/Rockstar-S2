@@ -38,7 +38,6 @@ namespace Rockstars_ITtrainees.Controllers
                 viewModel.FilteredArticles = cardList.Where(article => article.Tag.Equals(tag)).ToList();
             }
 
-
             return View(viewModel);
         }
 
@@ -210,7 +209,7 @@ namespace Rockstars_ITtrainees.Controllers
                 CorrectAnswer = questions.q2CorrectAnswer
             };
             QuestionOperations.Update(question2);
-            return RedirectToAction("Index");
+            return RedirectToAction("UpdateArticle", new { id = questions.ArticleId });
         }
     }
 }

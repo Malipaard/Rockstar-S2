@@ -26,6 +26,13 @@
     <div class="container text-light pt-3 ml-3">
 
         <div class="column align-items-center center-page">
+            <p class="text-light font-weight-bold">Edit the questions: </p>
+            <form asp-area="" asp-controller="Home" asp-action="QuestionsUpdate" asp-route-id="@Model.ArticleId">
+                <input type="hidden" asp-for="ArticleId" />
+                <input type="submit" value="Update Questions" class="btn btn-light" />
+
+            </form>
+            <br />
 
             <form style="width:130%;" asp-controller="Home" asp-action="Update" onsubmit="setContent()" enctype="multipart/form-data">
 
@@ -89,20 +96,21 @@
                     <span asp-validation-for="Content" class="text-danger"></span>
                 </div>
 
-                <a class="nav-link text-light font-weight-bold" asp-area="" asp-controller="Home" asp-action="QuestionsUpdate" asp-route-articleId="@Model.ArticleId">Question Update</a>
+
 
                 <div class="form-group mt-3">
                     <input type="submit" value="Update" class="btn btn-primary yellow_bg text-dark" /> |
                     <a asp-action="ArticleView" asp-route-id="@Model.ArticleId">Back to Article</a>
                 </div>
-            </form>           
+            </form>
         </div>
     </div>
+
 </body>
 
 <script>
     var toolbarOptions = [
-        [ { 'header': 2 }],               // custom button values
+        [{ 'header': 2 }],               // custom button values
         ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
         ['code-block'],
 
