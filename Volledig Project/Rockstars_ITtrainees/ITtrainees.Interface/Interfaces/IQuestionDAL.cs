@@ -11,5 +11,6 @@ namespace ITtrainees.Interface.Interfaces
         Question GetQuestion(int id);
         List<Question> GetArticleQuestions(int articleId);
         void Create(Question question);
+        void Update(Question question);
     }
 }

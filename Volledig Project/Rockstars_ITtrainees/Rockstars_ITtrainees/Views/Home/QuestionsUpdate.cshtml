@@ -1,0 +1,95 @@
+﻿@model ITtrainees.MVC.Models.Home.QuestionsUpdateModel
+@using ITtrainees.MVC.APITools
+@{
+
+}
+<link rel="stylesheet" href="~/css/site.css" />
+<link rel="stylesheet" href="~/css/NavBar.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<body>
+
+
+    <div class="container text-light pt-3 ml-3">
+
+        <div class="column align-items-center center-page">
+
+            <form style="width:130%;" asp-controller="Home" asp-action="UpdateQuestion">
+                @Model.QuestionText2
+                <div class="form-group" style="display:none">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <label asp-for="QuestionId1" class="control-label"></label>
+                    <input asp-for="QuestionId1" class="form-control" />
+                    <span asp-validation-for="QuestionId1" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="display:none">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <label asp-for="QuestionId2" class="control-label"></label>
+                    <input asp-for="QuestionId2" class="form-control" />
+                    <span asp-validation-for="QuestionId2" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="display:none">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <label asp-for="ArticleId" class="control-label"></label>
+                    <input asp-for="ArticleId" class="form-control" />
+                    <span asp-validation-for="ArticleId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <label asp-for="QuestionText1" class="control-label">Question 1:</label>
+                    <input asp-for="QuestionText1" class="form-control" />
+                    <span asp-validation-for="QuestionText1" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <label asp-for="q1Answer1" class="control-label">Answer 1:</label>
+                    <input asp-for="q1Answer1" class="form-control" />
+                    <span asp-validation-for="q1Answer1" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <label asp-for="q1Answer2" class="control-label">Answer 2:</label>
+                    <input asp-for="q1Answer2" class="form-control" />
+                    <span asp-validation-for="q1Answer2" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <label asp-for="q1CorrectAnswer" class="control-label">Corrent answer to question 1:</label>
+                    <input asp-for="q1CorrectAnswer" class="form-control" />
+                    <span asp-validation-for="q1CorrectAnswer" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <label asp-for="QuestionText2" class="control-label">Question 2:</label>
+                    <input asp-for="QuestionText2" class="form-control" />
+                    <span asp-validation-for="QuestionText2" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <label asp-for="q2Answer1" class="control-label">Answer 1:</label>
+                    <input asp-for="q2Answer1" class="form-control" />
+                    <span asp-validation-for="q2Answer1" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <label asp-for="q2Answer2" class="control-label">Answer 2:</label>
+                    <input asp-for="q2Answer2" class="form-control" />
+                    <span asp-validation-for="q2Answer2" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <label asp-for="q2CorrectAnswer" class="control-label">Correct answer to question 2:</label>
+                    <input asp-for="q2CorrectAnswer" class="form-control" />
+                    <span asp-validation-for="q2CorrectAnswer" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group mt-3">
+                    <input type="submit" value="Update" class="btn btn-primary yellow_bg text-dark" /> |
+                    <a>Back to Article</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</body>
