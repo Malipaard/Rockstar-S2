@@ -36,16 +36,13 @@
                     @if (User.IsInRole("Admin"))
                     {
                         <li class="nav-item mr-4 d-inline-flex">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="ArticleDelete">Delete Article <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
-                        </li>
-                        <li class="nav-item mr-4 d-inline-flex">
                             <a class="nav-link text-light font-weight-bold" asp-area="" asp-controller="Accounts" asp-action="Register">Add Account <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
                         </li>
                     }
 
                     @*<li class="nav-item mr-4 d-inline-flex">
-            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="OutEnv">Outsource environment <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
-        </li>*@
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="OutEnv">Outsource environment <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
+                    </li>*@
                 </ul>
                 <div class="login-container ml-auto d-inline-flex">
                     @if (User.Identity.IsAuthenticated)
@@ -67,7 +64,7 @@
     </header>
 
     <div class="container-fluid">
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-3 bg-custom">
             @RenderBody()
         </main>
     </div>
@@ -82,6 +79,7 @@
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/SearchArticle.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)

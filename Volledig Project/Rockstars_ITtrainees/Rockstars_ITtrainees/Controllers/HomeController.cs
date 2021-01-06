@@ -23,11 +23,22 @@ namespace Rockstars_ITtrainees.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> IndexAsync()
+        public async Task<IActionResult> IndexAsync(string tag)
         {
+            IndexViewModel viewModel = new IndexViewModel();
             APIHelper.InitializeClient();
-            List<Article> articleList = await ArticleOperations.GetAll();
-            return View(articleList);
+            List<ArticleCard> cardList = await ArticleOperations.GetAllCards();
+            cardList.Reverse();
+            viewModel.RecentArticles = cardList;
+            viewModel.FilteredArticles = cardList;
+
+            if (!String.IsNullOrEmpty(tag))
+            {
+                viewModel.FilteredArticles = cardList.Where(article => article.Tag.Equals(tag)).ToList();
+            }
+
+
+            return View(viewModel);
         }
 
         public IActionResult Privacy()
@@ -46,6 +57,7 @@ namespace Rockstars_ITtrainees.Controllers
             List<Question> questions = await QuestionOperations.Get(id);
             ArticleViewViewModel articleViewViewModel = new ArticleViewViewModel
             {
+                ArticleId = article.ArticleId,
                 Title = article.Title,
                 Author = article.Author,
                 Summary = article.Summary,
@@ -62,16 +74,25 @@ namespace Rockstars_ITtrainees.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult ArticleUpload()
+        public IActionResult ArticleUpload(ArticleUploadViewModel model)
         {
             if (!User.Identity.IsAuthenticated) return RedirectToAction("Login","Accounts");
-            return View();
+            model.Author = User.Identity.Name;
+            return View(model);
         }
-
-        public IActionResult ArticleDelete()
+       
+        public IActionResult login()
         {
             if (!User.IsInRole("Admin")) return RedirectToAction("Login","Accounts");
             return View();
+        }
+
+        [Route("/article")]
+        public async Task<IActionResult> UpdateArticleAsync(int id)
+        {
+            Article UpdateArticle = await ArticleOperations.Get(id);
+            ArticleUpdateModel updateArticle = new ArticleUpdateModel(UpdateArticle);
+            return View(updateArticle);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -118,8 +139,16 @@ namespace Rockstars_ITtrainees.Controllers
             QuestionOperations.Create(question1);
             QuestionOperations.Create(question2);
             ModelState.Clear();
-            return View();
+            return RedirectToAction("Index");
         }
+
+        //[HttpPost]
+        //public IActionResult UpdateArticle(Article article)
+        //{
+        //    APIHelper.InitializeClient();
+        //    ArticleOperations.Update(article);
+        //    return View();
+        //}
 
         [HttpPost]
         public IActionResult ArticleDelete(Article article)
@@ -127,7 +156,21 @@ namespace Rockstars_ITtrainees.Controllers
             if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Accounts");
             APIHelper.InitializeClient();
             ArticleOperations.Delete(article.ArticleId);
-            return View();
+            ModelState.Clear();
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Update(ArticleUpdateModel article)
+        {
+            ArticleOperations.Update(article);
+
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> DeletePageAsync(int id)
+        {
+            Article article = await ArticleOperations.Get(id);
+            return View(article);
         }
     }
 }

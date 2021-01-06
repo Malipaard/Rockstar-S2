@@ -14,10 +14,10 @@ namespace ITtrainees.MVC.Controllers
         {
             Console.WriteLine(model.ToString());
             APIHelper.InitializeClient();
-            var cookie = HttpContext.Request.Cookies["ITtrainees.MVC.AuthCookieAspNetCore"];
+            string userName = User.Identity.Name;
             for (int i = 0; i < model.Questions.Count; i++)
             {
-                await QuestionOperations.Validate(model.Questions[i].QuestionId, model.GivenAnswers[i]);
+                await QuestionOperations.Validate(model.Questions[i].QuestionId, model.GivenAnswers[i], userName);
             }
             return RedirectToAction("Index", "Home");
         }

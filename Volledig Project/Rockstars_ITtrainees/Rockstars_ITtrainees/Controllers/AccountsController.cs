@@ -99,7 +99,7 @@ namespace ITtrainees.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterViewModel model)
         {
-           if (!User.IsInRole("Admin")) return RedirectToAction("Login");
+            if (!User.IsInRole("Admin")) return RedirectToAction("Login");
 
             if (!ModelState.IsValid) return View(model);
             if (model.Password == model.PasswordCheck)

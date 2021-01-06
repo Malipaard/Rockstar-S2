@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -19,11 +20,9 @@ namespace ITtrainees.MVC.Models.Home
         [Required]
         public string Tag { get; set; }
         [Required]
-        [FileExtensions(Extensions = "jpg,png,gif,jpeg,bmp,svg")]
         public IFormFile HeaderImage { get; set; }
         [Required]
-        [FileExtensions(Extensions = "pdf")]
-        public IFormFile Content { get; set; }
+        public string Content { get; set; }
         [Required]
         public List<Question> Questions { get; set; }
     }
