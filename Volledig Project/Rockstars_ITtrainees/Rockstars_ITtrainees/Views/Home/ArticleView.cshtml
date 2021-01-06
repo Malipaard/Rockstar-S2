@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <body>
-    <div class="container">
+    <div class="container" style="border-bottom:solid;">
         <div class="text-light">
             <img class=" card-img-top card-image" src="data:image/png;base64, @Model.HeaderImage" alt="placeholder" , style="max-height:400px;">
 
@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" style="border-top:solid; border-color:white;">
         @using (Html.BeginForm("AnswerQuestion", "Question", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             if (Model.Questions != null)
