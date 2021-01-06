@@ -12,8 +12,8 @@ namespace ITtrainees.Logic
     [ApiController]
     public class QuestionAPI : ControllerBase
     {
-        [HttpGet("{id}/{answer}")]
-        public string Validate(int id, string answer) 
+        [HttpGet("{id}/{answer}/{userName}")]
+        public string Validate(int id, string answer, string userName) 
         {
             IQuestionDAL questionDal = QuestionFactory.GetQuestionDAL();
             Question question = questionDal.GetQuestion(id);
@@ -22,11 +22,14 @@ namespace ITtrainees.Logic
             // answer = 'correct'
             if (answer == question.CorrectAnswer)
             {
-                return "Lekker gewerkt";
+                IAccountDAL accountDAL = AccountFactory.GetAccountDAL();
+                Account account = accountDAL.GetAccount(userName);
+                accountDAL.AddScore(account, 10);
+                return "Question answered correctly";
             }
             else
             {
-                return "fucking dom";
+                return "Question answered incorrectly";
             }
         }
 
