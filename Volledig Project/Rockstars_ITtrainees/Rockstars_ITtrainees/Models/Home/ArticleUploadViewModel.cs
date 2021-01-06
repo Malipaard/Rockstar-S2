@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using ITtrainees.Models;
 
 namespace ITtrainees.MVC.Models.Home
 {
@@ -20,6 +22,8 @@ namespace ITtrainees.MVC.Models.Home
         [Required]
         public IFormFile HeaderImage { get; set; }
         [Required]
-        public IFormFile Content { get; set; }
+        public string Content { get; set; }
+        [Required]
+        public List<Question> Questions { get; set; }
     }
 }

@@ -68,6 +68,8 @@ namespace Rockstars_ITtrainees
 
             app.UseAuthorization();
 
+            app.UseAuthentication();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

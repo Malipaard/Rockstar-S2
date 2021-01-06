@@ -16,7 +16,7 @@ namespace ITtrainees.DataAcces.Migrations
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0-rc.2.20475.6");
+                .HasAnnotation("ProductVersion", "5.0.1");
 
             modelBuilder.Entity("ITtrainees.Models.Account", b =>
                 {
@@ -76,10 +76,52 @@ namespace ITtrainees.DataAcces.Migrations
                         {
                             ArticleId = 1,
                             Author = "Sem",
+                            Content = "Encoded PDF",
+                            HeaderImage = "Encoded Image",
                             Summary = "Description of the article",
                             Tag = "Tag",
                             Title = "First Article"
                         });
+                });
+
+            modelBuilder.Entity("ITtrainees.Models.ArticleTagJunction", b =>
+                {
+                    b.Property<int>("ArticleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ArticleId", "TagId");
+
+                    b.ToTable("ArticleTagJunctions");
+                });
+
+            modelBuilder.Entity("ITtrainees.Models.Question", b =>
+                {
+                    b.Property<int>("QuestionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Answer1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Answer2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ArticleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CorrectAnswer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QuestionText")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("QuestionId");
+
+                    b.ToTable("Questions");
                 });
 
             modelBuilder.Entity("ITtrainees.Models.Review", b =>
@@ -101,6 +143,21 @@ namespace ITtrainees.DataAcces.Migrations
                     b.HasKey("ReviewId");
 
                     b.ToTable("Reviews");
+                });
+
+            modelBuilder.Entity("ITtrainees.Models.Tag", b =>
+                {
+                    b.Property<int>("TagId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("TagName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TagId");
+
+                    b.ToTable("Tags");
                 });
 #pragma warning restore 612, 618
         }

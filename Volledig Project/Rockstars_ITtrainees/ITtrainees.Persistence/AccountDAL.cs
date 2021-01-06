@@ -25,16 +25,17 @@ namespace ITtrainees.DataAcces
         {
             using (var context = new ArticlesContext())
             {
+                account.Points = 0;
                 context.Accounts.Add(account);
                 context.SaveChanges();
             }
         }
 
-        public Account GetAccount(string userName)
+        public Account GetAccount(string username)
         {
             using (var context = new ArticlesContext())
             {
-                var account = context.Accounts.Single(a => a.Name == userName);
+                var account = context.Accounts.Single(a => a.Name == username);
                 return account;
             }
         }

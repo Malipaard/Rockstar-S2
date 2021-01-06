@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Web;
 
 namespace ITtrainees.Models
 {
-    class FileUpload 
+    public class Tag
     {
+        public int TagId { get; set; }
+        public string TagName { get; set; }
     }
 }

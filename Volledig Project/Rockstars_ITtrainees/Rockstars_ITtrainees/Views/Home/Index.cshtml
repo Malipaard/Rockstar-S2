@@ -1,15 +1,21 @@
-﻿@model List<ITtrainees.Models.Article>
+﻿@model ITtrainees.MVC.Models.Home.IndexViewModel
 @{
+    //List<ITtrainees.Models.Article> Articles = new List<ITtrainees.Models.Article>();
+    //foreach (var article in Model)
+    //{
+    //    Articles.Add(article);
+    //    Console.WriteLine(Articles);
+    //}
 }
 
 <link rel="stylesheet" href="~/css/site.css" />
 <link rel="stylesheet" href="~/css/NavBar.css" />
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <body>
-
     <div class="container-fluid">
-        <h2 class="text-light">Recently Added Articles</h2>
+        <h2 class="text-light">Recently Added</h2>
         <!--Slideshow-->
         <div id="demo" class="carousel slide" data-ride="carousel">
 
@@ -24,15 +30,17 @@
             <div class="carousel-inner text-light">
                 @{ bool firstItem = true;
                     string activeItem = null;
-                    foreach (var article in Model.Skip(Math.Max(0, Model.Count - 3)))
+                    int carouselItems = (Model.RecentArticles.Count() > 2) ? 3 : Model.RecentArticles.Count();
+                    List<ITtrainees.Models.ArticleCard> carouselArticles = Model.RecentArticles.GetRange(0, carouselItems);
+                    foreach (var article in carouselArticles)
                     {
                         @if (firstItem) { activeItem = "active"; firstItem = false; } else { activeItem = null; }
                         <div class="carousel-item @activeItem">
-                            <a asp-area="" asp-controller="Home" asp-action="ArticleView"  asp-route-id="@article.ArticleId" class="btn-dark text-deco-none">
+                            <a asp-area="" asp-controller="Home" asp-action="ArticleView" asp-route-id="@article.ArticleId" class="btn-dark text-deco-none">
                                 <div class="card mb-4">
                                     <img class="card-img-top midHeight featured-image" src="data:image/png;base64, @article.HeaderImage" alt="placeholder">
                                     <div class="card-body d-inline-flex flex-column">
-                                        <h5 class="card-title">@article.Title</h5>
+                                        <h5 class="card-title" style="white-space: initial;">@article.Title</h5>
                                         <p class="card-text">@article.Summary</p>
                                         <p class="card-author">@article.Author</p>
                                     </div>
@@ -54,14 +62,22 @@
         </div>
     </div>
 
+    <div id="buttons">
+            <a asp-controller="" asp-action="" asp-route-tag="" class=" btn btn-light" role="button">Show All</a>
+            <a asp-controller="" asp-action="" asp-route-tag="C#" class=" btn btn-light" role="button">C#</a>
+            <a asp-controller="" asp-action="" asp-route-tag="JAVA" class=" btn btn-light" role="button">JAVA</a>
+            <a asp-controller="" asp-action="" asp-route-tag="Python" class=" btn btn-light" role="button">Python</a>
+    </div>
+
     <div class="container-fluid">
         <h2 class="text-light">Articles</h2>
         <div class="row text-light">
-            @{foreach (var article in Model)
+
+            @{foreach (var article in Model.FilteredArticles)
                 {
                     <div class="col-12 col-md-3">
-                        <a asp-area="" asp-controller="Home" asp-action="ArticleView"  asp-route-id="@article.ArticleId" class="btn-dark text-deco-none">
-                            <div class="card card-scale mb-4 h-80">
+                        <a asp-area="" asp-controller="Home" asp-action="ArticleView" asp-route-id="@article.ArticleId" class="btn-dark text-deco-none">
+                            <div class="card card-scale mb-4 h-80" id="ArticleItem">
                                 @{if (article.Tag != null)
                                     { <h3 class="card-tag text-light p-1">@article.Tag</h3>}
                                 }
@@ -78,5 +94,5 @@
             }
         </div>
     </div>
-
 </body>
+

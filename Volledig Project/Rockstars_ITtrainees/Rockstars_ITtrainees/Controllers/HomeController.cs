@@ -23,11 +23,22 @@ namespace Rockstars_ITtrainees.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> IndexAsync()
+        public async Task<IActionResult> IndexAsync(string tag)
         {
+            IndexViewModel viewModel = new IndexViewModel();
             APIHelper.InitializeClient();
-            List<Article> articleList = await ArticleOperations.GetAll();
-            return View(articleList);
+            List<ArticleCard> cardList = await ArticleOperations.GetAllCards();
+            cardList.Reverse();
+            viewModel.RecentArticles = cardList;
+            viewModel.FilteredArticles = cardList;
+
+            if (!String.IsNullOrEmpty(tag))
+            {
+                viewModel.FilteredArticles = cardList.Where(article => article.Tag.Equals(tag)).ToList();
+            }
+
+
+            return View(viewModel);
         }
 
         public IActionResult Privacy()
@@ -39,28 +50,49 @@ namespace Rockstars_ITtrainees.Controllers
         {
             return View();
         }
+
         public async Task<IActionResult> ArticleView(int id)
         {
             Article article = await ArticleOperations.Get(id);
+            List<Question> questions = await QuestionOperations.Get(id);
+            ArticleViewViewModel articleViewViewModel = new ArticleViewViewModel
+            {
+                ArticleId = article.ArticleId,
+                Title = article.Title,
+                Author = article.Author,
+                Summary = article.Summary,
+                Tag = article.Tag,
+                HeaderImage = article.HeaderImage,
+                Content = article.Content,
+                Questions = questions
+            };
+
             if (article != null)
             {
-                return View(article);
+                return View(articleViewViewModel);
             }
             return RedirectToAction("Index");
         }
 
-        public IActionResult ArticleUpload()
+        public IActionResult ArticleUpload(ArticleUploadViewModel model)
         {
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Login","Accounts");
+            model.Author = User.Identity.Name;
+            return View(model);
+        }
+       
+        public IActionResult login()
+        {
+            if (!User.IsInRole("Admin")) return RedirectToAction("Login","Accounts");
             return View();
         }
 
-        public IActionResult ArticleDelete()
+        [Route("/article")]
+        public async Task<IActionResult> UpdateArticleAsync(int id)
         {
-            return View();
-        }
-        public IActionResult login()
-        {
-            return View();
+            Article UpdateArticle = await ArticleOperations.Get(id);
+            ArticleUpdateModel updateArticle = new ArticleUpdateModel(UpdateArticle);
+            return View(updateArticle);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -68,23 +100,77 @@ namespace Rockstars_ITtrainees.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
+        
         [HttpPost]
-        public IActionResult ArticleUpload(ArticleUploadViewModel model)
+        public async Task<IActionResult> ArticleUpload(ArticleUploadViewModel model, string correctAnswer1, string correctAnswer2)
         {
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Login", "Accounts");
+            //if (ModelState.IsValid != true)
+            //{
+            //    return View(model);
+            //}
             APIHelper.InitializeClient();
-            ArticleOperations.Create(model);
+            Question question1 = model.Questions[0];
+            Question question2 = model.Questions[1];
+            
+            if (correctAnswer1 == "Answer1")
+            {
+                question1.CorrectAnswer = question1.Answer1;
+            }
+            else if (correctAnswer1 == "Answer2")
+            {
+                question1.CorrectAnswer = question1.Answer2;
+            }
+
+            if (correctAnswer2 == "Answer1")
+            {
+                question2.CorrectAnswer = question2.Answer1;
+            }
+            else if (correctAnswer2 == "Answer2")
+            {
+                question2.CorrectAnswer = question2.Answer2;
+            }
+
+            await ArticleOperations.Create(model);
+            
+            question1.ArticleId = await ArticleOperations.GetArticleId(model.Author);
+            question2.ArticleId = await ArticleOperations.GetArticleId(model.Author);
+            
+            QuestionOperations.Create(question1);
+            QuestionOperations.Create(question2);
             ModelState.Clear();
-            return View();
+            return RedirectToAction("Index");
         }
+
+        //[HttpPost]
+        //public IActionResult UpdateArticle(Article article)
+        //{
+        //    APIHelper.InitializeClient();
+        //    ArticleOperations.Update(article);
+        //    return View();
+        //}
 
         [HttpPost]
         public IActionResult ArticleDelete(Article article)
         {
+            if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Accounts");
+            APIHelper.InitializeClient();
             ArticleOperations.Delete(article.ArticleId);
-            return View();
+            ModelState.Clear();
+            return RedirectToAction("Index");
         }
 
-       
+        public IActionResult Update(ArticleUpdateModel article)
+        {
+            ArticleOperations.Update(article);
+
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> DeletePageAsync(int id)
+        {
+            Article article = await ArticleOperations.Get(id);
+            return View(article);
+        }
     }
 }

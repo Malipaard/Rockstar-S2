@@ -3,48 +3,92 @@
     ViewData["Title"] = "ArticleUpload";
 }
 
+<!--Quill editor css & js-->
+<link rel="stylesheet" href="~/css/site.css" />
+<link href="~/css/quill.snow.css" rel="stylesheet">
+<script src="~/js/quill.js"></script>
+<script src="~/js/quill.min.js"></script>
+
 <link rel="stylesheet" href="~/css/site.css" />
 <link rel="stylesheet" href="~/css/NavBar.css" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<body>
-    <div class="container text-light pt-3">
-        <div class="column align-items-center">
-            @using (Html.BeginForm("ArticleUpload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
 
-            <table cellpadding="10" cellspacing="5">
+<body>
+    <div class="container text-light pt-3 ml-3">
+        <div class="column align-items-center">
+            @using (Html.BeginForm("ArticleUpload", "Home", FormMethod.Post, new { enctype = "multipart/form-data", onsubmit = "setContent()" }))
+            {
+                <h2>Upload your article</h2>
+                <table cellpadding="10" cellspacing="5">
+                    <tr>
+                        <td>Title: </td>
+                        <td>@Html.TextBoxFor(m => m.Title)</td>
+                    </tr>
+                    @Html.TextBoxFor(m => m.Author, new { style = "display: none;" })
+                    <tr>
+                        <td>Description: </td>
+                        <td>@Html.TextBoxFor(m => m.Summary)</td>
+                    </tr>
+                    <tr>
+                        <td>Tag: </td>
+                        <td>
+                            @Html.DropDownListFor(m => m.Tag, new List<SelectListItem>
+                       { new SelectListItem{Text="C#", Value="C#"},
+                        new SelectListItem{Text="JAVA", Value="JAVA"},
+                        new SelectListItem{Text="Python", Value="Python"} }, "None")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Header Image: </td>
+                        <td>@Html.TextBoxFor(m => m.HeaderImage, null, new { @type = "file", @class = "input-file" })</td>
+                    </tr>
+                    <tr>
+                        <td>Article Content: </td>
+                        <td>
+                            <div class="text-light" id="editor"></div>
+                            @Html.TextBoxFor(m => m.Content, new { style = "display: none;", id = "content", value = "" })
+                        </td>
+                    </tr>
                 <tr>
-                    <th colspan="2" align="center">Upload an article</th>
+                    <td>Question 1: </td>
+                    <td>@Html.TextBoxFor(m => m.Questions[0].QuestionText)</td>
                 </tr>
                 <tr>
-                    <td>Title: </td>
-                    <td>@Html.TextBoxFor(m => m.Title)</td>
+                    <td>Answer 1: </td>
+                    <td>@Html.TextBoxFor(m => m.Questions[0].Answer1)</td>
                 </tr>
                 <tr>
-                    <td>Author: </td>
-                    <td>@Html.TextBoxFor(m => m.Author)</td>
+                    <td>Answer 2: </td>
+                    <td>@Html.TextBoxFor(m => m.Questions[0].Answer2)</td>
                 </tr>
                 <tr>
-                    <td>Description: </td>
-                    <td>@Html.TextBoxFor(m => m.Summary)</td>
+                    <td>@Html.RadioButton("CorrectAnswer1", "Answer1")</td>
+                    <td>Answer 1</td>
                 </tr>
                 <tr>
-                    <td>Tag: </td>
-                    <td>
-                        @Html.DropDownListFor(m => m.Tag, new List<SelectListItem>
-                   { new SelectListItem{Text="C#", Value="C#"},
-                    new SelectListItem{Text="JAVA", Value="JAVA"},
-                    new SelectListItem{Text="Python", Value="Python"} }, "None")
-                    </td>
+                    <td>@Html.RadioButton("CorrectAnswer1", "Answer2")</td>
+                    <td>Answer 2</td>
                 </tr>
                 <tr>
-                    <td>Header Image: </td>
-                    <td>@Html.TextBoxFor(m => m.HeaderImage, null, new { @type = "file", @class = "input-file" })</td>
+                    <td>Question 2: </td>
+                    <td>@Html.TextBoxFor(m => m.Questions[1].QuestionText)</td>
                 </tr>
                 <tr>
-                    <td>Header Image: </td>
-                    <td>@Html.TextBoxFor(m => m.Content, null, new { @type = "file", @class = "input-file" })</td>
+                    <td>Answer 1: </td>
+                    <td>@Html.TextBoxFor(m => m.Questions[1].Answer1)</td>
+                </tr>
+                <tr>
+                    <td>Answer 2: </td>
+                    <td>@Html.TextBoxFor(m => m.Questions[1].Answer2)</td>
+                </tr>
+                <tr>
+                    <td>@Html.RadioButton("correctAnswer2", "Answer1")</td>
+                    <td>Answer 1</td>
+                </tr>
+                <tr>
+                    <td>@Html.RadioButton("correctAnswer2", "Answer2")</td>
+                    <td>Answer 2</td>
                 </tr>
                 <tr>
                     <td></td>
@@ -55,6 +99,35 @@
             }
         </div>
     </div>
-
-
 </body>
+
+<script>
+    var toolbarOptions = [
+        [{ 'header': 2 }],               // custom button values
+        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+        ['code-block'],
+
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
+        [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
+
+        ['link', 'image', 'video'],          // add's image support
+        [{ 'align': [] }],
+
+        ['clean']                                         // remove formatting button
+    ];
+    var options = {
+        modules: {
+            toolbar: toolbarOptions
+        },
+        placeholder: 'Write your content here...',
+        theme: 'snow'
+    };
+    var quill = new Quill('#editor', options);
+
+    function setContent() {
+        var delta = quill.getContents();
+        var content = document.getElementById("content");
+        content.value = JSON.stringify(delta);
+    }
+</script>
