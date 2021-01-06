@@ -230,3 +230,15 @@ h1 {
 .title {
     word-wrap: break-word;
 }
+
+.center-page {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.sticky-bottom {
+    position: sticky;
+    bottom: 0;
+}
