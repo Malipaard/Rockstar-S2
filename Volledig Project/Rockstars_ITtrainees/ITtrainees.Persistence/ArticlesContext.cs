@@ -24,7 +24,7 @@ namespace ITtrainees.DataAcces
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server = localhost; Database = master; Trusted_Connection = True;");
+            optionsBuilder.UseSqlServer("Server = localhost; Database = TechBurst; Trusted_Connection = True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
