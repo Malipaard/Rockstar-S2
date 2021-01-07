@@ -143,7 +143,10 @@ h1 {
 }
 
 .bg-custom {
-    background-image: url(~/wwwroot/Assets/Background.png)  !important;
+    background-image: linear-gradient(90deg, #232323, #282828, #353535) !important;
+}
+.bg-img{
+    background-image: url(~/Assets/Background.png);
 }
 
 .nav-link  {
