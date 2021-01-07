@@ -49,8 +49,8 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <div class="row mt-2">
-                            <p class="nav-link static points text-light font-weight-bold">Points: POINTS</p>
-                            <a class="nav-link static text-light font-weight-bold mr-4" asp-area="" asp-controller="Accounts" asp-action="Account">Welcome: USER!</a>
+                            <a class="nav-link static text-light font-weight-bold" asp-area="" asp-controller="Home" asp-action="Leaderboard">Points: POINTS!</a>
+                            <a class="nav-link static text-light font-weight-bold mr-4" asp-area="" asp-controller="Accounts" asp-action="Account">Welcome: @User.Identity.Name!</a>
                             
                             <a class="nav-link text-light font-weight-bold mr-2" asp-area="" asp-controller="Accounts" asp-action="Logout">Logout <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
                         </div>

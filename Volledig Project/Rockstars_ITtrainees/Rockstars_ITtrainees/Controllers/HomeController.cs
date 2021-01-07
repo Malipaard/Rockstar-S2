@@ -36,6 +36,7 @@ namespace Rockstars_ITtrainees.Controllers
             if (!String.IsNullOrEmpty(tag))
             {
                 viewModel.FilteredArticles = cardList.Where(article => article.Tag.Equals(tag)).ToList();
+                
             }
 
             return View(viewModel);
@@ -45,8 +46,7 @@ namespace Rockstars_ITtrainees.Controllers
         {
             return View();
         }
-
-        public IActionResult OutEnv()
+        public IActionResult Leaderboard()
         {
             return View();
         }
