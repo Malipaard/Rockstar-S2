@@ -189,6 +189,24 @@ namespace Rockstars_ITtrainees.Controllers
 
         public IActionResult UpdateQuestion(QuestionsUpdateModel questions)
         {
+            if (questions.q1CorrectAnswer == "Answer1")
+            {
+                questions.q1CorrectAnswer = questions.q1Answer1;
+            }
+            else if (questions.q1CorrectAnswer == "Answer2")
+            {
+                questions.q1CorrectAnswer = questions.q1Answer2;
+            }
+
+            if (questions.q2CorrectAnswer == "Answer1")
+            {
+                questions.q2CorrectAnswer = questions.q1Answer1;
+            }
+            else if (questions.q2CorrectAnswer == "Answer2")
+            {
+                questions.q2CorrectAnswer = questions.q1Answer2;
+            }
+
             Question question1 = new Question
             {
                 QuestionId = questions.QuestionId1,

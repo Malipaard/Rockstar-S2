@@ -164,7 +164,7 @@ h1 {
 }
 
 .card-author:last-child {
-    font-size: 15px;
+    font-size: 13px;
     text-overflow: ellipsis;
 }
 

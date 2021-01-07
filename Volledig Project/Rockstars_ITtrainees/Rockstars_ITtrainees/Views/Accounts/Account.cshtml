@@ -3,37 +3,27 @@
 @{
     ViewData["Title"] = "Account";
 }
+<body>
+    <div class="container text-light">
+        <div class="text-light column align-items-center center-page">
+            <h1>Account</h1>
+            <hr />
 
-<h1 class="text-white ml-3">Account</h1>
-
-<div class="text-white ml-3">
-    <h4>Account</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.AccountID)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.AccountID)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Points)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Points)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.IsAdmin)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.IsAdmin)
-        </dd>
-    </dl>
-</div>
+            <div class="row" style="border-top:solid; border-color:#ffe000;">
+                <div class="col-md-5 mt-3">
+                    <div class="row">
+                        <p class="font-weight-bold mr-2">User ID: </p><p>@Model.AccountID</p>
+                    </div>
+                    <div class="row">
+                        <p class="font-weight-bold mr-2">UserName: </p><p>@Model.Name</p>
+                    </div><div class="row">
+                        <p class="font-weight-bold mr-2">Number of points earned: </p><p>@Model.Points</p>
+                    </div><div class="row">
+                        <p class="font-weight-bold mr-2">Admin: </p><p>@Model.IsAdmin</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 
