@@ -20,10 +20,11 @@ namespace ITtrainees.DataAcces
         public DbSet<Question> Questions { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<ArticleTagJunction> ArticleTagJunctions { get; set; }
+        public DbSet<AnsweredQuestion> AnsweredQuestions { get; private set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server = localhost; Database = TechBurst; Trusted_Connection = True;");
+            optionsBuilder.UseSqlServer("Server = localhost; Database = master; Trusted_Connection = True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

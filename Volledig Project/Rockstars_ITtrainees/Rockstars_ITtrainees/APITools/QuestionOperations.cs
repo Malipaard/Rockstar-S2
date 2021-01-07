@@ -12,9 +12,9 @@ namespace ITtrainees.MVC.APITools
 {
     public static class QuestionOperations
     {
-        public static async Task<string> Validate(int id, string answer)
+        public static async Task<string> Validate(int id, string answer, string userName)
         {
-            HttpResponseMessage response = await ApiClient.GetAsync($"question/{ id }/{ answer }");
+            HttpResponseMessage response = await ApiClient.GetAsync($"question/{ id }/{ answer }/{ userName }");
             if (response.IsSuccessStatusCode)
             {
                 string responseMessage = await response.Content.ReadAsStringAsync();

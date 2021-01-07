@@ -12,5 +12,9 @@ namespace ITtrainees.Interface.Interfaces
         List<Question> GetArticleQuestions(int articleId);
         void Create(Question question);
         void Update(Question question);
+
+        void QuestionAnswered(string username, int questionID);
+        bool QuestionIsAlreadyAnswered(string username, int questionID);
+
     }
 }
