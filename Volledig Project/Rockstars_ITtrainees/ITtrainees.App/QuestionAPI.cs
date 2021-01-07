@@ -67,5 +67,13 @@ namespace ITtrainees.Logic
             dal.Create(question);
             return Accepted();
         }
+
+        [HttpPut]
+        public IActionResult Update(Question question)
+        {
+            IQuestionDAL dal = QuestionFactory.GetQuestionDAL();
+            dal.Update(question);
+            return Accepted();
+        }
     }
 }

@@ -40,5 +40,11 @@ namespace ITtrainees.MVC.APITools
             var jsonQuestion = new StringContent(JsonConvert.SerializeObject(question), Encoding.UTF8, "application/json");
             HttpResponseMessage response = await ApiClient.PostAsync($"question", jsonQuestion);
         }
+
+        public static async void Update(Question question)
+        {
+            var stringContent = new StringContent(JsonConvert.SerializeObject(question), Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await ApiClient.PutAsync($"question", stringContent);
+        }
     }
 }
