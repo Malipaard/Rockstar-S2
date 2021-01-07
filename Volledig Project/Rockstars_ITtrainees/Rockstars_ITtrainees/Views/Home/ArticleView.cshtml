@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <div class="container" style="border-top:solid; border-color:white;">
+    <div class="container text-center" style="border-top:solid; border-color:#ffe000;">
         @using (Html.BeginForm("AnswerQuestion", "Question", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             if (Model.Questions != null)
@@ -52,8 +52,10 @@
                     <div style="display: none;">@Html.EditorFor(m => m.Questions[i])</div>
                 }
 
-                <div style="text-align: center">
-                    <input type="submit" value="Check Answer" />
+                <div class="container">
+                    <div class="mr-auto">
+                        <input  type="submit" value="Check Answer" />
+                    </div>
                 </div>
             }
         }

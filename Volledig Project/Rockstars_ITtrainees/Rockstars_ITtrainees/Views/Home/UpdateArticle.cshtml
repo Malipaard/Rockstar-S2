@@ -26,7 +26,7 @@
     <div class="container text-light pt-3 " style="border-top:solid; border-color:#ffe000;">
 
         <div class="column align-items-center center-page">
-            <p class="text-light font-weight-bold">Edit the questions: </p>
+            <p class="text-light font-weight-bold mt-2">Edit the questions: </p>
             <form asp-area="" asp-controller="Home" asp-action="QuestionsUpdate" asp-route-id="@Model.ArticleId">
                 <input type="hidden" asp-for="ArticleId" />
                 <input type="submit" value="Update Questions" class="btn btn-light" />
@@ -34,7 +34,7 @@
             </form>
             <br />
 
-            <form style="width:130%;" asp-controller="Home" asp-action="Update" onsubmit="setContent()" enctype="multipart/form-data">
+            <form style="width:100%;" asp-controller="Home" asp-action="Update" onsubmit="setContent()" enctype="multipart/form-data">
 
                 <div class="form-group" style="display:none">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -60,7 +60,7 @@
                     <input asp-for="HeaderImageString" class="form-control" />
                     <span asp-validation-for="HeaderImageString" class="text-danger"></span>
                 </div>
-                <div class="form-group">
+                <div class="form-group mt-2">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <label asp-for="Author" class="control-label font-weight-bold"></label>
                     <input asp-for="Author" class="form-control" readonly="readonly" />

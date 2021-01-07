@@ -15,7 +15,6 @@
         <div class="column align-items-center center-page">
 
             <form style="width:100%;" asp-controller="Home" asp-action="UpdateQuestion">
-                @Model.QuestionText2
                 <div class="form-group" style="display:none">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <label asp-for="QuestionId1" class="control-label"></label>
@@ -53,14 +52,19 @@
                     <span asp-validation-for="q1Answer2" class="text-danger"></span>
                 </div>
 
-
-                <div class="form-group">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <label asp-for="q1CorrectAnswer" class="control-label">Corrent answer to question 1:</label>
-                    <input asp-for="q1CorrectAnswer" class="form-control" />
-                    <span asp-validation-for="q1CorrectAnswer" class="text-danger"></span>
+                <div>
+                    <p class="font-weight-bold">Select correct answer: </p>
+                    <tr>
+                        <td>@Html.RadioButton("q1CorrectAnswer", "Answer1")</td>
+                        <td>Option 1 </td>
+                    </tr>
+                    <tr>
+                        <td>@Html.RadioButton("q1CorrectAnswer", "Answer2")</td>
+                        <td>Option 2 </td>
+                    </tr>
                 </div>
-                <div class="form-group">
+
+                <div class="form-group mt-2">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <label asp-for="QuestionText2" class="control-label">Question 2:</label>
                     <input asp-for="QuestionText2" class="form-control" />
@@ -78,13 +82,17 @@
                     <input asp-for="q2Answer2" class="form-control" />
                     <span asp-validation-for="q2Answer2" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <label asp-for="q2CorrectAnswer" class="control-label">Correct answer to question 2:</label>
-                    <input asp-for="q2CorrectAnswer" class="form-control" />
-                    <span asp-validation-for="q2CorrectAnswer" class="text-danger"></span>
+                <div>
+                    <p class="font-weight-bold">Select correct answer: </p>
+                    <tr>
+                        <td>@Html.RadioButton("q2CorrectAnswer", "Answer1")</td>
+                        <td>Option 1 </td>
+                    </tr>
+                    <tr>
+                        <td>@Html.RadioButton("q2CorrectAnswer", "Answer2")</td>
+                        <td>Option 2 </td>
+                    </tr>
                 </div>
-
 
                 <div class="form-group mt-3">
                     <input type="submit" value="Update" class="btn btn-primary yellow_bg text-dark" /> |
