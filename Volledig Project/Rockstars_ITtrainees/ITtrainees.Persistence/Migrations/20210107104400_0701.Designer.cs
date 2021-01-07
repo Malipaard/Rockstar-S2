@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ITtrainees.DataAcces.Migrations
 {
     [DbContext(typeof(ArticlesContext))]
-    [Migration("20201203130136_correctAnswerString")]
-    partial class correctAnswerString
+    [Migration("20210107104400_0701")]
+    partial class _0701
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,7 +18,7 @@ namespace ITtrainees.DataAcces.Migrations
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0-rc.2.20475.6");
+                .HasAnnotation("ProductVersion", "5.0.1");
 
             modelBuilder.Entity("ITtrainees.Models.Account", b =>
                 {
@@ -33,12 +33,30 @@ namespace ITtrainees.DataAcces.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Points")
                         .HasColumnType("int");
 
                     b.HasKey("AccountID");
 
                     b.ToTable("Accounts");
+                });
+
+            modelBuilder.Entity("ITtrainees.Models.AnsweredQuestion", b =>
+                {
+                    b.Property<int>("QuestionID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("QuestionID");
+
+                    b.ToTable("AnsweredQuestions");
                 });
 
             modelBuilder.Entity("ITtrainees.Models.Article", b =>
@@ -51,7 +69,7 @@ namespace ITtrainees.DataAcces.Migrations
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("EncodedArticle")
+                    b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HeaderImage")
@@ -75,10 +93,25 @@ namespace ITtrainees.DataAcces.Migrations
                         {
                             ArticleId = 1,
                             Author = "Sem",
+                            Content = "Encoded PDF",
+                            HeaderImage = "Encoded Image",
                             Summary = "Description of the article",
                             Tag = "Tag",
                             Title = "First Article"
                         });
+                });
+
+            modelBuilder.Entity("ITtrainees.Models.ArticleTagJunction", b =>
+                {
+                    b.Property<int>("ArticleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ArticleId", "TagId");
+
+                    b.ToTable("ArticleTagJunctions");
                 });
 
             modelBuilder.Entity("ITtrainees.Models.Question", b =>
@@ -127,6 +160,21 @@ namespace ITtrainees.DataAcces.Migrations
                     b.HasKey("ReviewId");
 
                     b.ToTable("Reviews");
+                });
+
+            modelBuilder.Entity("ITtrainees.Models.Tag", b =>
+                {
+                    b.Property<int>("TagId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("TagName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TagId");
+
+                    b.ToTable("Tags");
                 });
 #pragma warning restore 612, 618
         }
