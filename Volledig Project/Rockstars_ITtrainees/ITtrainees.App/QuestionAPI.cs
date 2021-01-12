@@ -26,12 +26,12 @@ namespace ITtrainees.Logic
                     Account account = accountDAL.GetAccount(userName);
                     accountDAL.AddScore(account, 10);
                     questionDal.QuestionAnswered(userName, id);
-                    return "Question answered correctly";
+                    return "Correct!";
                 }
                 else
                 {
                     questionDal.QuestionAnswered(userName, id);
-                    return "Question answered incorrectly";
+                    return "Incorrect";
                 }
             }
             else

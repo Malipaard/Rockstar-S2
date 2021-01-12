@@ -26,40 +26,50 @@
             <p class="" hidden id="rawContent">@Model.Content</p>
         </div>
     </div>
-
-    <div class="container text-center" style="border-top:solid; border-color:#ffe000;">
-        @using (Html.BeginForm("AnswerQuestion", "Question", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            if (Model.Questions != null)
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="container text-center" style="border-top:solid; border-color:#ffe000;">
+            @using (Html.BeginForm("AnswerQuestion", "Question", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
-                for (int i = 0; i < Model.Questions.Count; i++)
+                if (Model.Questions != null)
                 {
-                    <div class="text-light">
-                        <div class="row">
-                            <h3>@Model.Questions[i].QuestionText</h3>
+                    for (int i = 0; i < Model.Questions.Count; i++)
+                    {
+                        <div class="text-light">
+                            <div class="row">
+                                <h3>@Model.Questions[i].QuestionText</h3>
+                            </div>
+                            <div class="row">
+                                <div class="m-2">@Html.RadioButtonFor(m => m.GivenAnswers[i], Model.Questions[i].Answer1)</div> <p class="m-1">@Model.Questions[i].Answer1</p>
+                                <div class="m-2 ml-4">@Html.RadioButtonFor(m => m.GivenAnswers[i], Model.Questions[i].Answer2)</div> <p class="m-1">@Model.Questions[i].Answer2</p>
+                                <br />
+                                <br />
+                            </div>
+                            <div class="row">
+                                @if (TempData["Response"] != null)
+                                {
+                                    IList<string> responses = (IList<string>)TempData["Response"];
+                                    <p>@responses[i].ToString().Trim('"')</p>
+                                }
+                            </div>
                         </div>
-                        <div class="row">
-                            <div class="m-2">@Html.RadioButtonFor(m => m.GivenAnswers[i], Model.Questions[i].Answer1)</div> <p class="m-1">@Model.Questions[i].Answer1</p>
-                            <div class="m-2 ml-4">@Html.RadioButtonFor(m => m.GivenAnswers[i], Model.Questions[i].Answer2)</div> <p class="m-1">@Model.Questions[i].Answer2</p>
-                            <br />
-                            <br />
+                    }
+
+                    @Html.HiddenFor(m => m.ArticleId, Model.ArticleId);
+                    for (int i = 0; i < Model.Questions.Count; i++)
+                    {
+                        <div style="display: none;">@Html.EditorFor(m => m.Questions[i])</div>
+                    }
+
+                    <div class="container">
+                        <div class="mr-auto">
+                            <input type="submit" value="Check Answer" />
                         </div>
                     </div>
                 }
-
-                for (int i = 0; i < Model.Questions.Count; i++)
-                {
-                    <div style="display: none;">@Html.EditorFor(m => m.Questions[i])</div>
-                }
-
-                <div class="container">
-                    <div class="mr-auto">
-                        <input  type="submit" value="Check Answer" />
-                    </div>
-                </div>
             }
-        }
-    </div>
+        </div>
+    }
 
     @if (User.IsInRole("Admin"))
     {
