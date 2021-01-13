@@ -26,75 +26,73 @@
             <p class="" hidden id="rawContent">@Model.Content</p>
         </div>
     </div>
-    <div class="container text-center" style="border-top:solid; border-color:#ffe000;">
-        @{
-            if (User.Identity.IsAuthenticated)
-            {
-                <div class="row">
-                            <div class="col-12 text-center">
-                                @using (Html.BeginForm("AnswerQuestion", "Question", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                {
-                                    try
-                                    {
-                                        if (Model.Questions != null)
-                                        {
-                                            for (int i = 0; i < Model.Questions.Count; i++)
-                                            {
-                                                <div class="text-light col-12 text-center">
+    <div class="container text-center mb-4" style="border-top:solid; border-color:#ffe000;">
 
-                                                    <div class="text-center">
-                                                        <h3>@Model.Questions[i].QuestionText</h3>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <div class="m-2">@Html.RadioButtonFor(m => m.GivenAnswers[i], Model.Questions[i].Answer1)</div> <p class="m-1">@Model.Questions[i].Answer1</p>
-                                                        <br />
-                                                        <div class="m-2 ml-4">@Html.RadioButtonFor(m => m.GivenAnswers[i], Model.Questions[i].Answer2)</div> <p class="m-1">@Model.Questions[i].Answer2</p>
-                                                        <br />
-                                                        <br />
-                                                    </div>
-                                                </div>
-
-                                                @Html.HiddenFor(m => m.ArticleId, Model.ArticleId);
-                                                for (int j = 0; j < Model.Questions.Count; j++)
-                                                {
-                                                    <div style="display: none;">@Html.EditorFor(m => m.Questions[j])</div>
-                                                }
-
-
-                                            }
-                                        }
-
-                                        <div class="container">
-                                            <div class="mr-auto">
-                                                <input type="submit" value="Check Answer" />
-                                            </div>
-                                        </div>
-                                    }
-
-                                    catch { }
-                                }
-                            </div>
-                    
-                </div>
-            }
-        }
-
-
-        @if (User.IsInRole("Admin"))
+        @if (User.Identity.IsAuthenticated)
         {
-            <footer class="footer">
-                <div class="border m-2" style="width:230px;">
-                    <div class="m-1">
-                        <h2 class="text-light">Admin Pannel</h2>
-                        <form asp-area="" asp-controller="Home" asp-action="DeletePage" asp-route-id="@Model.ArticleId">
-                            <input type="hidden" asp-for="ArticleId" />
-                            <input type="submit" value="Delete" class="btn btn-danger" /> |
-                            <a asp-action="UpdateArticle" asp-route-id="@Model.ArticleId" class="btn btn-info">Edit</a>
-                        </form>
-                    </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    @using (Html.BeginForm("AnswerQuestion", "Question", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        try
+                        {
+                            if (Model.Questions != null)
+                            {
+                                for (int i = 0; i < Model.Questions.Count; i++)
+                                {
+                                    <div class="text-light col-12 text-center">
+
+                                        <div class="text-center">
+                                            <h3>@Model.Questions[i].QuestionText</h3>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="m-2">@Html.RadioButtonFor(m => m.GivenAnswers[i], Model.Questions[i].Answer1)</div> <p class="m-1">@Model.Questions[i].Answer1</p>
+                                            <br />
+                                            <div class="m-2 ml-4">@Html.RadioButtonFor(m => m.GivenAnswers[i], Model.Questions[i].Answer2)</div> <p class="m-1">@Model.Questions[i].Answer2</p>
+                                            <br />
+                                            <br />
+                                        </div>
+                                    </div>
+
+                                    @Html.HiddenFor(m => m.ArticleId, Model.ArticleId);
+                                    for (int j = 0; j < Model.Questions.Count; j++)
+                                    {
+                                        <div style="display: none;">@Html.EditorFor(m => m.Questions[j])</div>
+                                    }
+                                }
+                                <div class="container mb-5" style="z-index:9;">
+                                    <div class="mr-auto">
+                                        <input type="submit" value="Check Answers" />
+                                    </div>
+                                </div>
+
+                            }
+                        }
+
+                        catch { }
+                    }
                 </div>
-            </footer>
+
+            </div>
         }
+
+    </div>
+
+    @if (User.IsInRole("Admin"))
+    {
+        <footer class="footer mt-5">
+            <div class="border m-2" style="width:230px;">
+                <div class="m-1">
+                    <h2 class="text-light">Admin Pannel</h2>
+                    <form asp-area="" asp-controller="Home" asp-action="DeletePage" asp-route-id="@Model.ArticleId">
+                        <input type="hidden" asp-for="ArticleId" />
+                        <input type="submit" value="Delete" class="btn btn-danger" /> |
+                        <a asp-action="UpdateArticle" asp-route-id="@Model.ArticleId" class="btn btn-info">Edit</a>
+                    </form>
+                </div>
+            </div>
+        </footer>
+    }
 
 </body>
 
