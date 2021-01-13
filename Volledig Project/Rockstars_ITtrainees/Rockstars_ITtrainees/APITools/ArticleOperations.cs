@@ -87,7 +87,6 @@ namespace ITtrainees.MVC.APITools
             if (response.IsSuccessStatusCode)
             {
                 var listJSON = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(listJSON.Length);
                 var list = JsonConvert.DeserializeObject<List<ArticleCard>>(listJSON);
                 return list;
             }
