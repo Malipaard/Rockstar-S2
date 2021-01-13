@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using ITtrainees.Models;
 using ITtrainees.Interface.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace ITtrainees.DataAcces
 {
@@ -64,8 +65,15 @@ namespace ITtrainees.DataAcces
             AnsweredQuestion answeredQuestion = new AnsweredQuestion(username, questionID);
             using (var context = new ArticlesContext())
             {
-                context.AnsweredQuestions.Add(answeredQuestion);
-                context.SaveChanges();
+
+                using (var transaction = context.Database.BeginTransaction())
+                {
+                    context.AnsweredQuestions.Add(answeredQuestion);
+                    context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.AnsweredQuestions ON;");
+                    context.SaveChanges();
+                    context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.AnsweredQuestions OFF");
+                    transaction.Commit();
+                }
             }
         }
         public bool QuestionIsAlreadyAnswered(string username, int questionID)

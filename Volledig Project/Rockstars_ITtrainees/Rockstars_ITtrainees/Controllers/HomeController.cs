@@ -79,7 +79,7 @@ namespace Rockstars_ITtrainees.Controllers
 
         public async Task<IActionResult> ArticleUpload(ArticleUploadViewModel model)
         {
-            ArticleUploadViewModel model = new ArticleUploadViewModel();
+            model = new ArticleUploadViewModel();
             if (!User.Identity.IsAuthenticated) return RedirectToAction("Login","Accounts");
 
             List<Tag> tags = await TagOperations.GetAll();
@@ -116,7 +116,7 @@ namespace Rockstars_ITtrainees.Controllers
             //    return View(model);
             //}
             APIHelper.InitializeClient();
-            /*Question question1 = model.Questions[0];
+            Question question1 = model.Questions[0];
             Question question2 = model.Questions[1];
             
             if (correctAnswer1 == "Answer1")
@@ -135,16 +135,14 @@ namespace Rockstars_ITtrainees.Controllers
             else if (correctAnswer2 == "Answer2")
             {
                 question2.CorrectAnswer = question2.Answer2;
-            }*/
-            
+            }
             await ArticleOperations.Create(model);
-            /*
+
             question1.ArticleId = await ArticleOperations.GetArticleId(model.Author);
             question2.ArticleId = await ArticleOperations.GetArticleId(model.Author);
             
             QuestionOperations.Create(question1);
             QuestionOperations.Create(question2);
-            */
 
 
             ModelState.Clear();
