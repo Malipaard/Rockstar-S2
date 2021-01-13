@@ -54,14 +54,13 @@
 
                 <div>
                     <p class="font-weight-bold">Select correct answer: </p>
-                    <tr>
-                        <td>@Html.RadioButton("q1CorrectAnswer", "Answer1")</td>
-                        <td>Option 1 </td>
-                    </tr>
-                    <tr>
-                        <td>@Html.RadioButton("q1CorrectAnswer", "Answer2")</td>
-                        <td>Option 2 </td>
-                    </tr>
+                    <div class="row">
+                        <p class="ml-3 mr-1">@Html.RadioButton("q1CorrectAnswer", "Answer1")</p>
+                        <p class="mr-3">Option 1 </p>
+                    
+                        <p>@Html.RadioButton("q1CorrectAnswer", "Answer2")</p>
+                        <p class="mr-3">Option 2 </p>
+                    </div>
                 </div>
 
                 <div class="form-group mt-2">
@@ -84,14 +83,13 @@
                 </div>
                 <div>
                     <p class="font-weight-bold">Select correct answer: </p>
-                    <tr>
-                        <td>@Html.RadioButton("q2CorrectAnswer", "Answer1")</td>
-                        <td>Option 1 </td>
-                    </tr>
-                    <tr>
-                        <td>@Html.RadioButton("q2CorrectAnswer", "Answer2")</td>
-                        <td>Option 2 </td>
-                    </tr>
+                    <div class="row">
+                        <p class="ml-3 mr-1">@Html.RadioButton("q2CorrectAnswer", "Answer1")</p>
+                        <p class="mr-3">Option 1 </p>
+
+                        <p>@Html.RadioButton("q2CorrectAnswer", "Answer2")</p>
+                        <p class="mr-3">Option 2 </p>
+                    </div>
                 </div>
 
                 <div class="form-group mt-3">

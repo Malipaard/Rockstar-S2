@@ -30,5 +30,17 @@ namespace ITtrainees.MVC.APITools
             }
             return null;
         }
+
+        public static async Task<List<Account>> GetAll()
+        {
+            HttpResponseMessage response = await ApiClient.GetAsync($"account");
+            if (response.IsSuccessStatusCode)
+            {
+                var listJSON = await response.Content.ReadAsStringAsync();
+                var list = JsonConvert.DeserializeObject<List<Account>>(listJSON);
+                return list;
+            }
+            return null;
+        }
     }
 }

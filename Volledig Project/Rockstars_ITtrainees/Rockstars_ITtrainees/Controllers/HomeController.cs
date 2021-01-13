@@ -12,6 +12,7 @@ using ITtrainees.Logic;
 using System.Net;
 using ITtrainees.MVC.Models.Home;
 using ITtrainees.DataAcces;
+using System.Data;
 
 namespace Rockstars_ITtrainees.Controllers
 {
@@ -35,22 +36,35 @@ namespace Rockstars_ITtrainees.Controllers
             viewModel.FilteredArticles = cardList;
             viewModel.Tags = await TagOperations.GetAll();
 
-            if (!String.IsNullOrEmpty(tag))
+            try
             {
-                viewModel.FilteredArticles = cardList.Where(article => article.Tags.Any(t => t.TagName == tag)).ToList();
+                if (!String.IsNullOrEmpty(tag))
+                {
+                    viewModel.FilteredArticles = cardList.Where(article => article.Tag.Equals(tag)).ToList();
+                }
+                return View(viewModel);
             }
 
-            return View(viewModel);
+            //Add messagebox to user that no articles are found!
+            catch
+            {
+                ViewBag.Message = string.Format("No articles with specified tag found!");
+                return View(viewModel);
+            }
         }
 
         public IActionResult Privacy()
         {
             return View();
         }
+        
 
-        public IActionResult OutEnv()
+        public async Task<IActionResult> Leaderboard()
         {
-            return View();
+            List<Account> accountList = await AccountOperations.GetAll();
+            List<Account> sortedList = accountList.OrderByDescending(o => o.Points).ToList();
+            
+            return View(sortedList);
         }
 
         public async Task<IActionResult> ArticleView(int id)
@@ -84,13 +98,14 @@ namespace Rockstars_ITtrainees.Controllers
 
             List<Tag> tags = await TagOperations.GetAll();
             model.Tags = tags.Select(tag => new ArticleTagModel(tag.TagId, tag.TagName)).ToList();
-
+            model.Author = User.Identity.Name;
+            
             return View(model);
         }
-       
+
         public IActionResult login()
         {
-            if (!User.IsInRole("Admin")) return RedirectToAction("Login","Accounts");
+            if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Accounts");
             return View();
         }
 
@@ -118,7 +133,7 @@ namespace Rockstars_ITtrainees.Controllers
             APIHelper.InitializeClient();
             Question question1 = model.Questions[0];
             Question question2 = model.Questions[1];
-            
+
             if (correctAnswer1 == "Answer1")
             {
                 question1.CorrectAnswer = question1.Answer1;
@@ -140,7 +155,7 @@ namespace Rockstars_ITtrainees.Controllers
 
             question1.ArticleId = await ArticleOperations.GetArticleId(model.Author);
             question2.ArticleId = await ArticleOperations.GetArticleId(model.Author);
-            
+
             QuestionOperations.Create(question1);
             QuestionOperations.Create(question2);
 
@@ -160,7 +175,7 @@ namespace Rockstars_ITtrainees.Controllers
         }
 
         public IActionResult Update(ArticleUpdateModel article)
-        {          
+        {
             ArticleOperations.Update(article);
 
             return RedirectToAction("Index");
@@ -206,11 +221,11 @@ namespace Rockstars_ITtrainees.Controllers
 
             if (questions.q2CorrectAnswer == "Answer1")
             {
-                questions.q2CorrectAnswer = questions.q1Answer1;
+                questions.q2CorrectAnswer = questions.q2Answer1;
             }
             else if (questions.q2CorrectAnswer == "Answer2")
             {
-                questions.q2CorrectAnswer = questions.q1Answer2;
+                questions.q2CorrectAnswer = questions.q2Answer2;
             }
 
             Question question1 = new Question

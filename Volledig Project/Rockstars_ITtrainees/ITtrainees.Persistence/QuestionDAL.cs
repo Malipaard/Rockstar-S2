@@ -59,7 +59,6 @@ namespace ITtrainees.DataAcces
             }
         }
 
-
         public void QuestionAnswered(string username, int questionID)
         {
             AnsweredQuestion answeredQuestion = new AnsweredQuestion(username, questionID);

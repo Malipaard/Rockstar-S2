@@ -17,6 +17,7 @@
     <div class="container-fluid">
         <h2 class="text-light">Recently Added</h2>
         <!--Slideshow-->
+
         <div id="demo" class="carousel slide" data-ride="carousel">
 
             <!-- Indicators -->
@@ -74,7 +75,15 @@
             }
         }
     </div>
-
+    
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+        </script>
+    }
     <div class="container-fluid">
         <h2 class="text-light">Articles</h2>
         <div class="row text-light">

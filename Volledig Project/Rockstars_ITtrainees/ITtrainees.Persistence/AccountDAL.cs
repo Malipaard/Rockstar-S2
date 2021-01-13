@@ -39,5 +39,13 @@ namespace ITtrainees.DataAcces
                 return account;
             }
         }
+        public List<Models.Account> GetAll()
+        {
+            using (var context = new ArticlesContext())
+            {
+                var account = context.Accounts.ToList();
+                return account;
+            }
+        }
     }
 }

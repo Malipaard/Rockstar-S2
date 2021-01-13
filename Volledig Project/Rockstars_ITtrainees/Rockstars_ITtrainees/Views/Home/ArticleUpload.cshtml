@@ -31,7 +31,7 @@
                     <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" style="display:none">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <label asp-for="Author" class="control-label font-weight-bold"><h4>Author</h4></label>
                     <input asp-for="Author" class="form-control" />
@@ -40,7 +40,7 @@
 
                 <div class="form-group">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <label asp-for="Summary" class="control-label font-weight-bold"><h4>Abstract</h4></label>
+                    <label asp-for="Summary" class="control-label font-weight-bold"><h4>Short description</h4></label>
                     <textarea rows="3" asp-for="Summary" class="form-control"></textarea>
                     <span asp-validation-for="Summary" class="text-danger"></span>
                 </div>
