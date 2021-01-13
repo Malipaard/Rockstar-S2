@@ -57,6 +57,21 @@ namespace ITtrainees.DataAcces.Migrations
                     b.ToTable("Accounts");
                 });
 
+            modelBuilder.Entity("ITtrainees.Models.AnsweredQuestion", b =>
+                {
+                    b.Property<int>("QuestionID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("QuestionID");
+
+                    b.ToTable("AnsweredQuestions");
+                });
+
             modelBuilder.Entity("ITtrainees.Models.Article", b =>
                 {
                     b.Property<int>("ArticleId")

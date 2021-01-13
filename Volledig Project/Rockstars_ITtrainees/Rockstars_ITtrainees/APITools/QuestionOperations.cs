@@ -12,9 +12,9 @@ namespace ITtrainees.MVC.APITools
 {
     public static class QuestionOperations
     {
-        public static async Task<string> Validate(int id, string answer)
+        public static async Task<string> Validate(int id, string answer, string userName)
         {
-            HttpResponseMessage response = await ApiClient.GetAsync($"question/{ id }/{ answer }");
+            HttpResponseMessage response = await ApiClient.GetAsync($"question/{ id }/{ answer }/{ userName }");
             if (response.IsSuccessStatusCode)
             {
                 string responseMessage = await response.Content.ReadAsStringAsync();
@@ -39,6 +39,12 @@ namespace ITtrainees.MVC.APITools
         {
             var jsonQuestion = new StringContent(JsonConvert.SerializeObject(question), Encoding.UTF8, "application/json");
             HttpResponseMessage response = await ApiClient.PostAsync($"question", jsonQuestion);
+        }
+
+        public static async void Update(Question question)
+        {
+            var stringContent = new StringContent(JsonConvert.SerializeObject(question), Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await ApiClient.PutAsync($"question", stringContent);
         }
     }
 }

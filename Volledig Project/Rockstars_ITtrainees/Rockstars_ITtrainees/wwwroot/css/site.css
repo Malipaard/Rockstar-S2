@@ -146,14 +146,17 @@ h1 {
     background-image: linear-gradient(90deg, #232323, #282828, #353535) !important;
 }
 
-.nav-link {
+.nav-link  {
     transition: transform 0.3s;
 }
 
-    .nav-link:hover, nav-link:focus {
+    .nav-link:hover:not(.static), nav-link:focus {
         transform: scale(1.1);
         border-bottom: 3px solid #ffe000;
     }
+.static:hover:not(.points) {
+    border-bottom: 3px solid #ffe000;
+}
 
 .card-tag {
     width: 50px;
@@ -164,7 +167,7 @@ h1 {
 }
 
 .card-author:last-child {
-    font-size: 15px;
+    font-size: 13px;
     text-overflow: ellipsis;
 }
 
@@ -229,4 +232,17 @@ h1 {
 
 .title {
     word-wrap: break-word;
+}
+
+.center-page {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.sticky-bottom {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
 }

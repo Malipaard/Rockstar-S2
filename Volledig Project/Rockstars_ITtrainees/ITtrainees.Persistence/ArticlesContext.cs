@@ -20,6 +20,8 @@ namespace ITtrainees.DataAcces
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<ArticleTagJunction> ArticleTagJunctions { get; set; }
+        public DbSet<AnsweredQuestion> AnsweredQuestions { get; private set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

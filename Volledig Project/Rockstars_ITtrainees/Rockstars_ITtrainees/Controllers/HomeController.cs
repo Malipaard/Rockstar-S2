@@ -11,6 +11,7 @@ using Rockstars_ITtrainees.Models;
 using ITtrainees.Logic;
 using System.Net;
 using ITtrainees.MVC.Models.Home;
+using ITtrainees.DataAcces;
 
 namespace Rockstars_ITtrainees.Controllers
 {
@@ -38,7 +39,6 @@ namespace Rockstars_ITtrainees.Controllers
             {
                 viewModel.FilteredArticles = cardList.Where(article => article.Tags.Any(t => t.TagName == tag)).ToList();
             }
-
 
             return View(viewModel);
         }
@@ -79,6 +79,7 @@ namespace Rockstars_ITtrainees.Controllers
 
         public async Task<IActionResult> ArticleUpload(ArticleUploadViewModel model)
         {
+            ArticleUploadViewModel model = new ArticleUploadViewModel();
             if (!User.Identity.IsAuthenticated) return RedirectToAction("Login","Accounts");
 
             List<Tag> tags = await TagOperations.GetAll();
@@ -150,14 +151,6 @@ namespace Rockstars_ITtrainees.Controllers
             return RedirectToAction("Index");
         }
 
-        //[HttpPost]
-        //public IActionResult UpdateArticle(Article article)
-        //{
-        //    APIHelper.InitializeClient();
-        //    ArticleOperations.Update(article);
-        //    return View();
-        //}
-
         [HttpPost]
         public IActionResult ArticleDelete(Article article)
         {
@@ -169,7 +162,7 @@ namespace Rockstars_ITtrainees.Controllers
         }
 
         public IActionResult Update(ArticleUpdateModel article)
-        {
+        {          
             ArticleOperations.Update(article);
 
             return RedirectToAction("Index");
@@ -179,6 +172,70 @@ namespace Rockstars_ITtrainees.Controllers
         {
             Article article = await ArticleOperations.Get(id);
             return View(article);
+        }
+
+        public async Task<IActionResult> QuestionsUpdate(int articleId)
+        {
+            List<Question> Questions = await QuestionOperations.Get(articleId);
+            QuestionsUpdateModel questions = new QuestionsUpdateModel
+            {
+                QuestionId1 = Questions[0].QuestionId,
+                QuestionId2 = Questions[1].QuestionId,
+                ArticleId = Questions[0].ArticleId,
+                QuestionText1 = Questions[0].QuestionText,
+                q1Answer1 = Questions[0].Answer1,
+                q1Answer2 = Questions[0].Answer2,
+                q1CorrectAnswer = Questions[0].CorrectAnswer,
+                QuestionText2 = Questions[1].QuestionText,
+                q2Answer1 = Questions[1].Answer1,
+                q2Answer2 = Questions[1].Answer2,
+                q2CorrectAnswer = Questions[1].CorrectAnswer
+            };
+
+            return View(questions);
+        }
+
+        public IActionResult UpdateQuestion(QuestionsUpdateModel questions)
+        {
+            if (questions.q1CorrectAnswer == "Answer1")
+            {
+                questions.q1CorrectAnswer = questions.q1Answer1;
+            }
+            else if (questions.q1CorrectAnswer == "Answer2")
+            {
+                questions.q1CorrectAnswer = questions.q1Answer2;
+            }
+
+            if (questions.q2CorrectAnswer == "Answer1")
+            {
+                questions.q2CorrectAnswer = questions.q1Answer1;
+            }
+            else if (questions.q2CorrectAnswer == "Answer2")
+            {
+                questions.q2CorrectAnswer = questions.q1Answer2;
+            }
+
+            Question question1 = new Question
+            {
+                QuestionId = questions.QuestionId1,
+                ArticleId = questions.ArticleId,
+                QuestionText = questions.QuestionText1,
+                Answer1 = questions.q1Answer1,
+                Answer2 = questions.q1Answer2,
+                CorrectAnswer = questions.q1CorrectAnswer
+            };
+            QuestionOperations.Update(question1);
+            Question question2 = new Question
+            {
+                QuestionId = questions.QuestionId2,
+                ArticleId = questions.ArticleId,
+                QuestionText = questions.QuestionText2,
+                Answer1 = questions.q2Answer1,
+                Answer2 = questions.q2Answer2,
+                CorrectAnswer = questions.q2CorrectAnswer
+            };
+            QuestionOperations.Update(question2);
+            return RedirectToAction("UpdateArticle", new { id = questions.ArticleId });
         }
     }
 }

@@ -28,6 +28,7 @@ namespace ITtrainees.MVC.Models.Home
         [Required]
         public string Content { get; set; }
 
+
         public ArticleUpdateModel(Article article)
         {
             this.ArticleId = article.ArticleId;

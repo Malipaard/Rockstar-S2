@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ITtrainees.DataAcces.Migrations
 {
     [DbContext(typeof(ArticlesContext))]
-    [Migration("20210106121036_NewInitCreate")]
-    partial class NewInitCreate
+    [Migration("20210107104400_0701")]
+    partial class _0701
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,21 +19,6 @@ namespace ITtrainees.DataAcces.Migrations
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.1");
-
-            modelBuilder.Entity("ArticleTag", b =>
-                {
-                    b.Property<int>("ArticlesArticleId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TagsTagId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ArticlesArticleId", "TagsTagId");
-
-                    b.HasIndex("TagsTagId");
-
-                    b.ToTable("ArticleTag");
-                });
 
             modelBuilder.Entity("ITtrainees.Models.Account", b =>
                 {
@@ -59,6 +44,21 @@ namespace ITtrainees.DataAcces.Migrations
                     b.ToTable("Accounts");
                 });
 
+            modelBuilder.Entity("ITtrainees.Models.AnsweredQuestion", b =>
+                {
+                    b.Property<int>("QuestionID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("QuestionID");
+
+                    b.ToTable("AnsweredQuestions");
+                });
+
             modelBuilder.Entity("ITtrainees.Models.Article", b =>
                 {
                     b.Property<int>("ArticleId")
@@ -78,6 +78,9 @@ namespace ITtrainees.DataAcces.Migrations
                     b.Property<string>("Summary")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Tag")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
@@ -93,8 +96,22 @@ namespace ITtrainees.DataAcces.Migrations
                             Content = "Encoded PDF",
                             HeaderImage = "Encoded Image",
                             Summary = "Description of the article",
+                            Tag = "Tag",
                             Title = "First Article"
                         });
+                });
+
+            modelBuilder.Entity("ITtrainees.Models.ArticleTagJunction", b =>
+                {
+                    b.Property<int>("ArticleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ArticleId", "TagId");
+
+                    b.ToTable("ArticleTagJunctions");
                 });
 
             modelBuilder.Entity("ITtrainees.Models.Question", b =>
@@ -158,21 +175,6 @@ namespace ITtrainees.DataAcces.Migrations
                     b.HasKey("TagId");
 
                     b.ToTable("Tags");
-                });
-
-            modelBuilder.Entity("ArticleTag", b =>
-                {
-                    b.HasOne("ITtrainees.Models.Article", null)
-                        .WithMany()
-                        .HasForeignKey("ArticlesArticleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ITtrainees.Models.Tag", null)
-                        .WithMany()
-                        .HasForeignKey("TagsTagId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

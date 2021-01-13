@@ -13,31 +13,39 @@
 <link rel="stylesheet" href="~/css/NavBar.css" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-
+<h1 class="text-light text-center">Create a new article!</h1>
+<h3 class="text-light text-center">Fill in the details below and upload your article</h3>
 <body>
-    <div class="container text-light pt-3 ml-3">
-        <div class="column align-items-center">
 
-            <form asp-controller="Home" asp-action="Upload" onsubmit="setContent()" enctype="multipart/form-data">
+
+
+
+    <div class="container text-light pt-3" style="border-top:solid; border-color:#ffe000;">
+        <div class="column center-page">
+
+            <form class="mt-3" style="width:100%;" asp-controller="Home" asp-action="ArticleUpload" onsubmit="setContent()" enctype="multipart/form-data">
                 <div class="form-group">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <label asp-for="HeaderImage" class="control-label"></label>
-                    <input asp-for="HeaderImage" class="" type="file" />
-                    <span asp-validation-for="HeaderImage" class="text-danger"></span>
+                    <label asp-for="Title" class="control-label font-weight-bold"><h4>Title</h4></label>
+                    <textarea rows="2" asp-for="Title" class="form-control"></textarea>
+                    <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
-                <div class="form-group" hidden>
+
+                <div class="form-group">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <label asp-for="Author" class="control-label"></label>
-                    <input asp-for="Author" class="form-control" readonly="readonly" value="@User.Identity.Name"/>
+                    <label asp-for="Author" class="control-label font-weight-bold"><h4>Author</h4></label>
+                    <input asp-for="Author" class="form-control" />
                     <span asp-validation-for="Author" class="text-danger"></span>
                 </div>
+
                 <div class="form-group">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <label asp-for="Summary" class="control-label"></label>
-                    <input asp-for="Summary" class="form-control" />
+                    <label asp-for="Summary" class="control-label font-weight-bold"><h4>Abstract</h4></label>
+                    <textarea rows="3" asp-for="Summary" class="form-control"></textarea>
                     <span asp-validation-for="Summary" class="text-danger"></span>
                 </div>
-
+                
+                <div>
                 @for (int i = 0; i < Model.Tags.Count; i++)
                 {
                     <input type="checkbox" asp-for="@Model.Tags[i].IsSelected" />
@@ -46,33 +54,89 @@
                     <input type="hidden" asp-for="@Model.Tags[i].TagName" />
                     <br />
                 }
+                    </div>
 
+
+                <h4 class=" mt-3">Header Image: </h4>
+                <div>@Html.TextBoxFor(m => m.HeaderImage, null, new { @type = "file", @class = "input-file" })</div>
+
+                <h4 class=" mt-3">Article Content: </h4>
+                <p>Use the editor below to format your article.</p>
+                <div>
+                    <div style="min-width:500px; min-height:500px;" id="editor"></div>
+                    @Html.TextBoxFor(m => m.Content, new { style = "display: none;", id = "content", value = "" })
+                </div>
+
+                <div class="mt-3" style="border-top:solid; border-color:#ffe000;">
+                    <h2 class="text-light text-center mt-2">Add questions about your article</h2>
+                    <h4 class="text-light text-center">Other users can answer these and earn points!</h4>
+                </div>
                 <div class="form-group">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <label asp-for="Title" class="control-label"></label>
-                    <input asp-for="Title" class="form-control" />
-                    <span asp-validation-for="Title" class="text-danger"></span>
+                    <label asp-for="Questions[0].QuestionText" class="control-label font-weight-bold">Question 1</label>
+                    <input asp-for="Questions[0].QuestionText" class="form-control" />
+                    <span asp-validation-for="Questions[0].QuestionText" class="text-danger"></span>
                 </div>
-
-                <div class="form-group">Content: </div>
-                <div id="editor">
+                <div class="row">
+                    <div class="form-group m-3">
+                        <div asp-validation-summary="ModelOnly" class="text-danger "></div>
+                        <label asp-for="Questions[0].Answer1" class="control-label font-weight-bold">Option 1</label>
+                        <input asp-for="Questions[0].Answer1" class="form-control" />
+                        <span asp-validation-for="Questions[0].Answer1" class="text-danger"></span>
+                    </div>
+                    <div class="form-group m-3">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <label asp-for="Questions[0].Answer2" class="control-label font-weight-bold">Option 2</label>
+                        <input asp-for="Questions[0].Answer2" class="form-control" />
+                        <span asp-validation-for="Questions[0].Answer2" class="text-danger"></span>
+                    </div>
                 </div>
+                <p class="font-weight-bold">Select correct answer: </p>
+                <tr>
+                    <td>@Html.RadioButton("CorrectAnswer1", "Answer1")</td>
+                    <td>Option 1 </td>
+                </tr>
+                <tr>
+                    <td>@Html.RadioButton("CorrectAnswer1", "Answer2")</td>
+                    <td>Option 2 </td>
 
-                <div class="form-group" style="display:none">
+                </tr>
+                <br />
+                <br />
+                <div class="form-group">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <label asp-for="Content" class="control-label"></label>
-                    <input asp-for="Content" class="form-control" id="content" />
-                    <span asp-validation-for="Content" class="text-danger"></span>
+                    <label asp-for="Questions[1].QuestionText" class="control-label font-weight-bold">Question 2</label>
+                    <input asp-for="Questions[1].QuestionText" class="form-control" />
+                    <span asp-validation-for="Questions[1].QuestionText" class="text-danger"></span>
                 </div>
-
-                <div class="form-group mt-3">
-                    <input type="submit" value="Upload" class="btn btn-primary yellow_bg text-dark" />
+                <div class="row">
+                    <div class="form-group m-3">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <label asp-for="Questions[1].Answer1" class="control-label font-weight-bold">Option 1</label>
+                        <input asp-for="Questions[1].Answer1" class="form-control" />
+                        <span asp-validation-for="Questions[1].Answer1" class="text-danger"></span>
+                    </div>
+                    <div class="form-group m-3">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <label asp-for="Questions[1].Answer2" class="control-label font-weight-bold">Option 2</label>
+                        <input asp-for="Questions[1].Answer2" class="form-control" />
+                        <span asp-validation-for="Questions[1].Answer2" class="text-danger"></span>
+                    </div>
                 </div>
-
-
+                <p class="font-weight-bold">Select correct answer: </p>
+                <tr>
+                    <td>@Html.RadioButton("correctAnswer2", "Answer1")</td>
+                    <td>Option 1 </td>
+                </tr>
+                <tr>
+                    <td>@Html.RadioButton("correctAnswer2", "Answer2")</td>
+                    <td>Option 2 </td>
+                </tr>
+                <div class="form-group mt-3 mb-4">
+                    <input type="submit" value="Upload" class="btn btn-primary yellow_bg text-dark" /> |
+                    <a asp-action="Index">Back to Home</a>
+                </div>
             </form>
-
-
         </div>
     </div>
 </body>

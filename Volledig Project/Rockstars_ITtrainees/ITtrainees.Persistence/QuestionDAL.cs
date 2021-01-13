@@ -40,5 +40,49 @@ namespace ITtrainees.DataAcces
                 return question;
             }
         }
+
+        public void Update(Question question)
+        {
+            using (var context = new ArticlesContext())
+            {
+                var dbQuestion = context.Questions.Single(q => q.QuestionId == question.QuestionId);
+
+                dbQuestion.Answer1 = question.Answer1;
+                dbQuestion.Answer2 = question.Answer2;
+                dbQuestion.ArticleId = question.ArticleId;
+                dbQuestion.CorrectAnswer = question.CorrectAnswer;
+                dbQuestion.QuestionId = question.QuestionId;
+                dbQuestion.QuestionText = question.QuestionText;
+
+                context.SaveChanges();
+            }
+        }
+
+
+        public void QuestionAnswered(string username, int questionID)
+        {
+            AnsweredQuestion answeredQuestion = new AnsweredQuestion(username, questionID);
+            using (var context = new ArticlesContext())
+            {
+                context.AnsweredQuestions.Add(answeredQuestion);
+                context.SaveChanges();
+            }
+        }
+        public bool QuestionIsAlreadyAnswered(string username, int questionID)
+        {
+            AnsweredQuestion answeredQuestion = new AnsweredQuestion(username, questionID);
+            using (var context = new ArticlesContext())
+            {
+                if (context.AnsweredQuestions.Any(a => a.Username == answeredQuestion.Username && a.QuestionID == answeredQuestion.QuestionID))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
     }
 }

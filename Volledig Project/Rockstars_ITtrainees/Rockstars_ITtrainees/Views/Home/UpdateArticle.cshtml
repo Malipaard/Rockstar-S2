@@ -20,12 +20,20 @@
 <link rel="stylesheet" href="~/css/NavBar.css" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+<h1 class="text-light text-center mb-3">Edit an existing article</h1>
 
 <body>
-    <div class="container text-light pt-3 ml-3">
-        <div class="column align-items-center">
+    <div class="container text-light pt-3 " style="border-top:solid; border-color:#ffe000;">
 
-            <form asp-controller="Home" asp-action="Update" onsubmit="setContent()" enctype="multipart/form-data">
+        <div class="column align-items-center center-page">
+            <p class="text-light font-weight-bold mt-2">Edit the questions: </p>
+            <form asp-area="" asp-controller="Home" asp-action="QuestionsUpdate" asp-route-id="@Model.ArticleId">
+                <input type="hidden" asp-for="ArticleId" />
+                <input type="submit" value="Edit Questions" class="btn btn-light" />
+
+            </form>
+
+            <form style="width:100%;" asp-controller="Home" asp-action="Update" onsubmit="setContent()" enctype="multipart/form-data">
 
                 <div class="form-group" style="display:none">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -35,34 +43,35 @@
                 </div>
                 <div class="form-group">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <label asp-for="HeaderImage" class="control-label"></label>
+                    <label asp-for="HeaderImage" class="control-label font-weight-bold mt-3">Choose new header image</label>
+                    </br>
                     <input asp-for="HeaderImage" class="" type="file" />
                     <span asp-validation-for="HeaderImage" class="text-danger"></span>
                 </div>
 
-                <div class="form-group">Current Header image: </div>
+                <div class="form-group font-weight-bold">Current Header image: </div>
                 <img style="max-width:300px;" src="data:image/png;base64, @Model.HeaderImageString" alt="placeholder">
 
 
                 <div class="form-group" style="display:none">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <label asp-for="HeaderImageString" class="control-label"></label>
-                    <input asp-for="HeaderImageString" class="form-control"/>
+                    <label asp-for="HeaderImageString" class="control-label font-weight-bold"></label>
+                    <input asp-for="HeaderImageString" class="form-control" />
                     <span asp-validation-for="HeaderImageString" class="text-danger"></span>
                 </div>
-                <div class="form-group">
+                <div class="form-group mt-2">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <label asp-for="Author" class="control-label"></label>
-                    <input asp-for="Author" class="form-control" readonly="readonly"/>
+                    <label asp-for="Author" class="control-label font-weight-bold"></label>
+                    <input asp-for="Author" class="form-control" readonly="readonly" />
                     <span asp-validation-for="Author" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <label asp-for="Summary" class="control-label"></label>
-                    <input asp-for="Summary" class="form-control" />
+                    <label asp-for="Summary" class="control-label font-weight-bold"></label>
+                    <textarea rows="3" asp-for="Summary" class="form-control"></textarea>
                     <span asp-validation-for="Summary" class="text-danger"></span>
                 </div>
-                <div class="form-group" style="display:none">
+                <div class="form-group">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <label asp-for="Tags" class="control-label"></label>
                     <input asp-for="Tags" class="form-control" />
@@ -71,38 +80,34 @@
 
                 <div class="form-group">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <label asp-for="Title" class="control-label"></label>
-                    <input asp-for="Title" class="form-control" />
+                    <label asp-for="Title" class="control-label font-weight-bold"></label>
+                    <textarea rows="2" asp-for="Title" class="form-control"></textarea>
                     <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
 
-                <div class="form-group">Content: </div>
-                <div id="editor">
-                </div>
+                <div class="form-group font-weight-bold">Content: </div>
+                <div style="min-width:500px; min-height:500px;" id="editor"></div>
 
                 <div class="form-group" style="display:none">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <label asp-for="Content" class="control-label"></label>
+                    <label asp-for="Content" class="control-label font-weight-bold"></label>
                     <input asp-for="Content" class="form-control" id="content" />
                     <span asp-validation-for="Content" class="text-danger"></span>
                 </div>
 
                 <div class="form-group mt-3">
-                    <input type="submit" value="Update" class="btn btn-primary yellow_bg text-dark" /> | 
+                    <input type="submit" value="Update" class="btn btn-primary yellow_bg text-dark" /> |
                     <a asp-action="ArticleView" asp-route-id="@Model.ArticleId">Back to Article</a>
                 </div>
-
-                
             </form>
-
-           
         </div>
     </div>
+
 </body>
 
 <script>
     var toolbarOptions = [
-        [ { 'header': 2 }],               // custom button values
+        [{ 'header': 2 }],               // custom button values
         ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
         ['code-block'],
 
