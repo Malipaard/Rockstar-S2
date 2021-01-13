@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using ITtrainees.Models;
@@ -25,7 +26,11 @@ namespace ITtrainees.DataAcces
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server = localhost; Database = master; Trusted_Connection = True;");
+            var builder = new
+                ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json",
+                optional: true, reloadOnChange: true);
+
+            optionsBuilder.UseSqlServer(builder.Build().GetConnectionString("ConnectionString"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

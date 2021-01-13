@@ -96,11 +96,20 @@ namespace ITtrainees.MVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (!User.IsInRole("Admin")) return RedirectToAction("Login");
 
             if (!ModelState.IsValid) return View(model);
+
+            Account account = await AccountOperations.Get(model.Username);
+
+            if (account != null)
+            {
+                ModelState.AddModelError("Username", "Username is already in use");
+                return View(model);
+            }
+
             if (model.Password == model.PasswordCheck)
             {
                 var hasher = new PasswordHasher<Account>();
