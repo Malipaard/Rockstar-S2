@@ -14,49 +14,47 @@ namespace ITtrainees.MVC.APITools
 {
     public class TagOperations
     {
-        public static async void Create(ArticleUploadViewModel model)
+        public static async void Create(string tagName)
         {
-            string encodedHeader = FileEncoder.EncodeImage(model.HeaderImage);
-            Article article = new Article(0, model.Title, model.Author, model.Summary, model.Tag, encodedHeader, model.Content); ;
-
-            var stringContent = new StringContent(JsonConvert.SerializeObject(article), Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await ApiClient.PostAsync($"article", stringContent);
+            Tag tag = new Tag() { TagId = 0, TagName = tagName };
+            var stringContent = new StringContent(JsonConvert.SerializeObject(tag), Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await ApiClient.PostAsync($"tag", stringContent);
             Console.WriteLine(response.StatusCode.ToString());
         }
 
-        public static async Task<List<Article>> GetAll()
+        public static async Task<List<Tag>> GetAll()
         {
-            HttpResponseMessage response = await ApiClient.GetAsync($"article");
+            HttpResponseMessage response = await ApiClient.GetAsync($"tag");
             if (response.IsSuccessStatusCode)
             {
                 var listJSON = await response.Content.ReadAsStringAsync();
-                var list = JsonConvert.DeserializeObject<List<Article>>(listJSON);
+                var list = JsonConvert.DeserializeObject<List<Tag>>(listJSON);
                 return list;
             }
             return null;
         }
 
-        public static async Task<Article> Get(int id)
+        public static async Task<Tag> Get(int id)
         {
-            HttpResponseMessage response = await ApiClient.GetAsync($"article/{ id }");
+            HttpResponseMessage response = await ApiClient.GetAsync($"tag/{ id }");
             if (response.IsSuccessStatusCode)
             {
-                var articleJSON = await response.Content.ReadAsStringAsync();
-                var article = JsonConvert.DeserializeObject<Article>(articleJSON);
-                return article;
+                var tagJSON = await response.Content.ReadAsStringAsync();
+                var tag = JsonConvert.DeserializeObject<Tag>(tagJSON);
+                return tag;
             }
             return null;
         }
 
-        public static async void Update(Article article)
+        public static async void Update(Tag tag)
         {
-            var stringContent = new StringContent(JsonConvert.SerializeObject(article), Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await ApiClient.PutAsync($"article", stringContent);
+            var stringContent = new StringContent(JsonConvert.SerializeObject(tag), Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await ApiClient.PutAsync($"tag", stringContent);
         }
 
         public static async void Delete(int id)
         {
-            HttpResponseMessage response = await ApiClient.DeleteAsync($"article/{ id }");
+            HttpResponseMessage response = await ApiClient.DeleteAsync($"tag/{ id }");
         }
     }
 }

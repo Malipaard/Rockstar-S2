@@ -13,17 +13,17 @@ namespace ITtrainees.Models
         public string Title { get; set; }
         public string Author { get; set; }
         public string Summary { get; set; }
-        public string Tag { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; }
         public string HeaderImage { get; set; }
 
         [JsonConstructor]
-        public ArticleCard(int id, string title, string author, string summary, string tag, string headerImage) 
+        public ArticleCard(int id, string title, string author, string summary, ICollection<Tag> tags, string headerImage) 
         {
             this.ArticleId = id;
             this.Title = title;
             this.Author = author;
             this.Summary = summary;
-            this.Tag = tag;
+            this.Tags = tags;
             this.HeaderImage = headerImage;
         }
 
@@ -33,7 +33,7 @@ namespace ITtrainees.Models
             this.Title = article.Title;
             this.Author = article.Author;
             this.Summary = article.Summary;
-            this.Tag = article.Tag;
+            this.Tags = article.Tags;
             this.HeaderImage = article.HeaderImage;
         }
     }

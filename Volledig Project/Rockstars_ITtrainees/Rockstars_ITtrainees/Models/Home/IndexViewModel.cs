@@ -10,5 +10,6 @@ namespace ITtrainees.MVC.Models.Home
     {
         public List<ArticleCard> RecentArticles { get; set; }
         public List<ArticleCard> FilteredArticles { get; set; }
+        public List<ITtrainees.Models.Tag> Tags { get; set; }
     }
 }

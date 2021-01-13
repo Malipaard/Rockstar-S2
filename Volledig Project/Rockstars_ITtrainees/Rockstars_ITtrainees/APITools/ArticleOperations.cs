@@ -17,7 +17,15 @@ namespace ITtrainees.MVC.APITools
         public static async Task Create(ArticleUploadViewModel model)
         {
             string encodedHeader = FileEncoder.EncodeImage(model.HeaderImage);
-            Article article = new Article(0, model.Title, model.Author, model.Summary, model.Tag, encodedHeader, model.Content);
+            ICollection<Tag> tags = new List<Tag>();
+            foreach(ArticleTagModel tagModel in model.Tags)
+            {
+                if (tagModel.IsSelected)
+                {
+                    tags.Add(new Tag(tagModel.TagId, tagModel.TagName));
+                }
+            }
+            Article article = new Article(0, model.Title, model.Author, model.Summary, tags, encodedHeader, model.Content);
 
             var stringContent = new StringContent(JsonConvert.SerializeObject(article), Encoding.UTF8, "application/json");
             HttpResponseMessage response = await ApiClient.PostAsync($"article", stringContent);
@@ -61,7 +69,7 @@ namespace ITtrainees.MVC.APITools
                 encodedHeader = model.HeaderImageString;
             }
             
-            Article article = new Article(model.ArticleId, model.Title, model.Author, model.Summary, model.Tag, encodedHeader, model.Content);
+            Article article = new Article(model.ArticleId, model.Title, model.Author, model.Summary, model.Tags, encodedHeader, model.Content);
 
             
             var stringContent = new StringContent(JsonConvert.SerializeObject(article), Encoding.UTF8, "application/json");
@@ -79,6 +87,7 @@ namespace ITtrainees.MVC.APITools
             if (response.IsSuccessStatusCode)
             {
                 var listJSON = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(listJSON.Length);
                 var list = JsonConvert.DeserializeObject<List<ArticleCard>>(listJSON);
                 return list;
             }

@@ -29,12 +29,14 @@ namespace Rockstars_ITtrainees.Controllers
             APIHelper.InitializeClient();
             List<ArticleCard> cardList = await ArticleOperations.GetAllCards();
             cardList.Reverse();
+
             viewModel.RecentArticles = cardList;
             viewModel.FilteredArticles = cardList;
+            viewModel.Tags = await TagOperations.GetAll();
 
             if (!String.IsNullOrEmpty(tag))
             {
-                viewModel.FilteredArticles = cardList.Where(article => article.Tag.Equals(tag)).ToList();
+                viewModel.FilteredArticles = cardList.Where(article => article.Tags.Any(t => t.TagName == tag)).ToList();
             }
 
 
@@ -55,13 +57,14 @@ namespace Rockstars_ITtrainees.Controllers
         {
             Article article = await ArticleOperations.Get(id);
             List<Question> questions = await QuestionOperations.Get(id);
+
             ArticleViewViewModel articleViewViewModel = new ArticleViewViewModel
             {
                 ArticleId = article.ArticleId,
                 Title = article.Title,
                 Author = article.Author,
                 Summary = article.Summary,
-                Tag = article.Tag,
+                Tags = article.Tags.ToList(),
                 HeaderImage = article.HeaderImage,
                 Content = article.Content,
                 Questions = questions
@@ -74,10 +77,13 @@ namespace Rockstars_ITtrainees.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult ArticleUpload(ArticleUploadViewModel model)
+        public async Task<IActionResult> ArticleUpload(ArticleUploadViewModel model)
         {
             if (!User.Identity.IsAuthenticated) return RedirectToAction("Login","Accounts");
-            model.Author = User.Identity.Name;
+
+            List<Tag> tags = await TagOperations.GetAll();
+            model.Tags = tags.Select(tag => new ArticleTagModel(tag.TagId, tag.TagName)).ToList();
+
             return View(model);
         }
        
@@ -101,8 +107,7 @@ namespace Rockstars_ITtrainees.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
         
-        [HttpPost]
-        public async Task<IActionResult> ArticleUpload(ArticleUploadViewModel model, string correctAnswer1, string correctAnswer2)
+        public async Task<IActionResult> Upload(ArticleUploadViewModel model, string correctAnswer1, string correctAnswer2)
         {
             if (!User.Identity.IsAuthenticated) return RedirectToAction("Login", "Accounts");
             //if (ModelState.IsValid != true)
@@ -110,7 +115,7 @@ namespace Rockstars_ITtrainees.Controllers
             //    return View(model);
             //}
             APIHelper.InitializeClient();
-            Question question1 = model.Questions[0];
+            /*Question question1 = model.Questions[0];
             Question question2 = model.Questions[1];
             
             if (correctAnswer1 == "Answer1")
@@ -129,15 +134,18 @@ namespace Rockstars_ITtrainees.Controllers
             else if (correctAnswer2 == "Answer2")
             {
                 question2.CorrectAnswer = question2.Answer2;
-            }
-
-            await ArticleOperations.Create(model);
+            }*/
             
+            await ArticleOperations.Create(model);
+            /*
             question1.ArticleId = await ArticleOperations.GetArticleId(model.Author);
             question2.ArticleId = await ArticleOperations.GetArticleId(model.Author);
             
             QuestionOperations.Create(question1);
             QuestionOperations.Create(question2);
+            */
+
+
             ModelState.Clear();
             return RedirectToAction("Index");
         }

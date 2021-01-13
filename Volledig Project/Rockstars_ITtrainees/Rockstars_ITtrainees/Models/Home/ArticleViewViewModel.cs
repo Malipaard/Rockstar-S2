@@ -12,7 +12,7 @@ namespace ITtrainees.MVC.Models.Home
         public string Title { get; set; }
         public string Author { get; set; }
         public string Summary { get; set; }
-        public string Tag { get; set; }
+        public List<ITtrainees.Models.Tag> Tags { get; set; }
         public string HeaderImage { get; set; }
         public string Content { get; set; }
         public List<Question> Questions { get; set; }

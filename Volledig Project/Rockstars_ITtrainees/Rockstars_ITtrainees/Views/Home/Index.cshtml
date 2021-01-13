@@ -63,10 +63,16 @@
     </div>
 
     <div id="buttons">
-            <a asp-controller="" asp-action="" asp-route-tag="" class=" btn btn-light" role="button">Show All</a>
-            <a asp-controller="" asp-action="" asp-route-tag="C#" class=" btn btn-light" role="button">C#</a>
-            <a asp-controller="" asp-action="" asp-route-tag="JAVA" class=" btn btn-light" role="button">JAVA</a>
-            <a asp-controller="" asp-action="" asp-route-tag="Python" class=" btn btn-light" role="button">Python</a>
+        <a asp-controller="" asp-action="" asp-route-tag="" class=" btn btn-light" role="button">Show All</a>
+        @{
+            if (Model.Tags != null)
+            {
+                foreach (var tag in Model.Tags)
+                {
+                    <a asp-controller="" asp-action="" asp-route-tag="@tag.TagName" class=" btn btn-light" role="button">@tag.TagName</a>
+                }
+            }
+        }
     </div>
 
     <div class="container-fluid">
@@ -78,8 +84,13 @@
                     <div class="col-12 col-md-3">
                         <a asp-area="" asp-controller="Home" asp-action="ArticleView" asp-route-id="@article.ArticleId" class="btn-dark text-deco-none">
                             <div class="card card-scale mb-4 h-80" id="ArticleItem">
-                                @{if (article.Tag != null)
-                                    { <h3 class="card-tag text-light p-1">@article.Tag</h3>}
+                                @{if (article.Tags != null)
+                                    {
+                                        foreach (var tag in article.Tags)
+                                        {
+                                            <h3 class="card-tag text-light p-1">@tag.TagName</h3>
+                                        }
+                                    }
                                 }
                                 <img class="card-img-top card-image" src="data:image/png;base64, @article.HeaderImage" alt="placeholder">
                                 <div class="card-body d-inline-flex flex-column">

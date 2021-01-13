@@ -14,7 +14,6 @@ namespace ITtrainees.Logic
     [ApiController]
     public class AccountAPI : ControllerBase
     {
-
         [HttpPost]
         public IActionResult Create(Account account)
         {

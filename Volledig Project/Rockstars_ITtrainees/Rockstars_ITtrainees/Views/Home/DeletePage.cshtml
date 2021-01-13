@@ -29,10 +29,10 @@
             @Html.DisplayFor(model => model.Summary)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Tag)
+            @Html.DisplayNameFor(model => model.Tags)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Tag)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tags.Select(tag => tag.TagName).ToList())
         </dd>    
         @*<dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Content)

@@ -18,6 +18,21 @@ namespace ITtrainees.DataAcces.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.1");
 
+            modelBuilder.Entity("ArticleTag", b =>
+                {
+                    b.Property<int>("ArticlesArticleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagsTagId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ArticlesArticleId", "TagsTagId");
+
+                    b.HasIndex("TagsTagId");
+
+                    b.ToTable("ArticleTag");
+                });
+
             modelBuilder.Entity("ITtrainees.Models.Account", b =>
                 {
                     b.Property<int>("AccountID")
@@ -61,9 +76,6 @@ namespace ITtrainees.DataAcces.Migrations
                     b.Property<string>("Summary")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Tag")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
@@ -79,22 +91,8 @@ namespace ITtrainees.DataAcces.Migrations
                             Content = "Encoded PDF",
                             HeaderImage = "Encoded Image",
                             Summary = "Description of the article",
-                            Tag = "Tag",
                             Title = "First Article"
                         });
-                });
-
-            modelBuilder.Entity("ITtrainees.Models.ArticleTagJunction", b =>
-                {
-                    b.Property<int>("ArticleId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TagId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ArticleId", "TagId");
-
-                    b.ToTable("ArticleTagJunctions");
                 });
 
             modelBuilder.Entity("ITtrainees.Models.Question", b =>
@@ -158,6 +156,21 @@ namespace ITtrainees.DataAcces.Migrations
                     b.HasKey("TagId");
 
                     b.ToTable("Tags");
+                });
+
+            modelBuilder.Entity("ArticleTag", b =>
+                {
+                    b.HasOne("ITtrainees.Models.Article", null)
+                        .WithMany()
+                        .HasForeignKey("ArticlesArticleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ITtrainees.Models.Tag", null)
+                        .WithMany()
+                        .HasForeignKey("TagsTagId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

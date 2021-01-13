@@ -32,17 +32,20 @@
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="ArticleUpload">Upload Article <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
                         </li>
                     }
-                    
+
                     @if (User.IsInRole("Admin"))
                     {
                         <li class="nav-item mr-4 d-inline-flex">
                             <a class="nav-link text-light font-weight-bold" asp-area="" asp-controller="Accounts" asp-action="Register">Add Account <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
                         </li>
+                        <li class="nav-item mr-4 d-inline-flex">
+                            <a class="nav-link text-light font-weight-bold" asp-area="" asp-controller="Tag" asp-action="">Manage Tags <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
+                        </li>
                     }
 
                     @*<li class="nav-item mr-4 d-inline-flex">
-                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="OutEnv">Outsource environment <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
-                    </li>*@
+            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="OutEnv">Outsource environment <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
+        </li>*@
                 </ul>
                 <div class="login-container ml-auto d-inline-flex">
                     @if (User.Identity.IsAuthenticated)

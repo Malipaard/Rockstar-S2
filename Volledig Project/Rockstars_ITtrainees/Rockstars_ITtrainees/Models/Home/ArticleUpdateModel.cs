@@ -20,12 +20,11 @@ namespace ITtrainees.MVC.Models.Home
         [Required]
         public string Summary { get; set; }
         [Required]
-        public string Tag { get; set; }
+        public List<ITtrainees.Models.Tag> Tags { get; set; }
         
         public IFormFile HeaderImage { get; set; }
         [Required]
         public string HeaderImageString { get; set; }
-
         [Required]
         public string Content { get; set; }
 
@@ -35,7 +34,7 @@ namespace ITtrainees.MVC.Models.Home
             this.Title = article.Title;
             this.Author = article.Author;
             this.Summary = article.Summary;
-            this.Tag = article.Tag;
+            this.Tags = article.Tags.ToList();
             this.HeaderImageString = article.HeaderImage;
             this.Content = article.Content;
         }

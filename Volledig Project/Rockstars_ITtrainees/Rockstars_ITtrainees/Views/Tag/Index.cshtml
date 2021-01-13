@@ -1,1 +1,42 @@
 ﻿@model List<ITtrainees.Models.Tag>
+@{
+    ViewData["Title"] = "ArticleDelete";
+}
+<body>
+
+    <div class="container-fluid">
+        <h2 class="text-light">Manage Tags</h2>
+        <form asp-action="Create" method="post">
+            <table class="table text-light">
+                <thead>
+                    <tr>
+                        <th scope="col">Tag Id</th>
+                        <th scope="col">Tag Name</th>
+                        <th scope="col"></th>
+                    </tr>
+                    <tr>
+                        <td>New Tag</td>
+                        <td>
+                            <input type="text" name="tagName" value="Name" />
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-primary yellow_bg text-dark">Create</button>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var tag in Model)
+                    {
+                        <tr>
+                            <th scope="row">@tag.TagId</th>
+                            <td>@tag.TagName</td>
+                            <td>
+                                <a asp-controller="Tag" asp-action="Delete" asp-route-tagId="@tag.TagId" class="yellow_bg btn text-dark" role="button">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </form>
+    </div>
+</body>

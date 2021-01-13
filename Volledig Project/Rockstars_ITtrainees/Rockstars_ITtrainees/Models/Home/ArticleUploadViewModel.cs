@@ -18,7 +18,7 @@ namespace ITtrainees.MVC.Models.Home
         [Required]
         public string Summary { get; set; }
         [Required]
-        public string Tag { get; set; }
+        public List<ArticleTagModel> Tags { get; set; }
         [Required]
         public IFormFile HeaderImage { get; set; }
         [Required]

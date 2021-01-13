@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 using ITtrainees.Interface.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace ITtrainees.DataAcces
 {
@@ -12,7 +15,7 @@ namespace ITtrainees.DataAcces
         {
             using (var context = new ArticlesContext())
             {
-                var articles = context.Articles.ToList();
+                var articles = context.Articles.Include(a => a.Tags).ToList();
                 return articles;
             }
         }
@@ -39,6 +42,11 @@ namespace ITtrainees.DataAcces
             using (var context = new ArticlesContext())
             {
                 context.Articles.Add(article);
+
+                foreach(var tag in article.Tags)
+                {
+                    context.Entry(tag).State = EntityState.Unchanged;
+                }
                 context.SaveChanges();
             }
         }
@@ -47,15 +55,19 @@ namespace ITtrainees.DataAcces
         {
             using (var context = new ArticlesContext())
             {
-                var dbArticle = context.Articles.Single(a => a.ArticleId == article.ArticleId);
+                var dbArticle = context.Articles.Include(a => a.Tags).Single(a => a.ArticleId == article.ArticleId);
 
                 dbArticle.Author = article.Author;
                 dbArticle.Summary = article.Summary;
-                dbArticle.Tag = article.Tag;
+                dbArticle.Tags = article.Tags;
                 dbArticle.Title = article.Title;
                 dbArticle.HeaderImage = article.HeaderImage;
                 dbArticle.Content = article.Content;
 
+                foreach (var tag in article.Tags)
+                {
+                    context.Entry(tag).State = EntityState.Unchanged;
+                }
                 context.SaveChanges();
             }
         }
@@ -64,7 +76,7 @@ namespace ITtrainees.DataAcces
         {
             using (var context = new ArticlesContext())
             {
-                var article = context.Articles.Single(a => a.ArticleId == id);
+                var article = context.Articles.Include(a => a.Tags).Single(a => a.ArticleId == id);
                 return article;
             }
         }
@@ -74,7 +86,7 @@ namespace ITtrainees.DataAcces
         {
             using (var context = new ArticlesContext())
             {
-                var articles = context.Articles.ToList();
+                var articles = context.Articles.Include(a => a.Tags).ToList();
 
                 //articles omzetten naar cards
                 List<Models.ArticleCard> cards = new List<Models.ArticleCard>();
@@ -91,7 +103,7 @@ namespace ITtrainees.DataAcces
         {
             using (var context = new ArticlesContext())
             {
-                var card = new Models.ArticleCard(context.Articles.Single(a => a.ArticleId == id));
+                var card = new Models.ArticleCard(context.Articles.Include(a => a.Tags).Single(a => a.ArticleId == id));
                 return card;
             }
         }
