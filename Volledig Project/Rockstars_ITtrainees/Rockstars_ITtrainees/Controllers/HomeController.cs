@@ -103,11 +103,6 @@ namespace Rockstars_ITtrainees.Controllers
             return View(model);
         }
 
-        public IActionResult login()
-        {
-            if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Accounts");
-            return View();
-        }
 
         [Route("/article")]
         public async Task<IActionResult> UpdateArticleAsync(int id)

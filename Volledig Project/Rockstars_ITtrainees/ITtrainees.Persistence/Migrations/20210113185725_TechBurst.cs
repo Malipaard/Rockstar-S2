@@ -2,7 +2,7 @@
 
 namespace ITtrainees.DataAcces.Migrations
 {
-    public partial class _13012 : Migration
+    public partial class TechBurst : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -122,9 +122,9 @@ namespace ITtrainees.DataAcces.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Articles",
-                columns: new[] { "ArticleId", "Author", "Content", "HeaderImage", "Summary", "Title" },
-                values: new object[] { 1, "Sem", "Encoded PDF", "Encoded Image", "Description of the article", "First Article" });
+                table: "Accounts",
+                columns: new[] { "AccountID", "IsAdmin", "Name", "Password", "Points" },
+                values: new object[] { 1, true, "Admin", "AQAAAAEAACcQAAAAEHxCjFQrkYdJTsZIZMpEdP/jWOcIUgIa3KF0KXiJoVU43x9cKpVSm9mxUONqmiv+Fg==", 0 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ArticleTag_TagsTagId",

@@ -7,6 +7,7 @@ using ITtrainees.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 
 namespace ITtrainees.DataAcces
 {
@@ -35,8 +36,14 @@ namespace ITtrainees.DataAcces
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Article>().HasData(
-                new Article(1, "First Article", "Sem", "Description of the article", null, "Encoded Image", "Encoded PDF"));
+
+            var hasher = new PasswordHasher<Account>();
+            
+            var Admin = new Account(1,"Admin",0,true,"temp");
+
+            Admin.Password = hasher.HashPassword(Admin, "Admin123");
+
+            modelBuilder.Entity<Account>().HasData(Admin);
         }
     }
 }

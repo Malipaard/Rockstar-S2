@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ITtrainees.DataAcces.Migrations
 {
     [DbContext(typeof(ArticlesContext))]
-    [Migration("20210113135914_1301.2")]
-    partial class _13012
+    [Migration("20210113185725_TechBurst")]
+    partial class TechBurst
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -57,6 +57,16 @@ namespace ITtrainees.DataAcces.Migrations
                     b.HasKey("AccountID");
 
                     b.ToTable("Accounts");
+
+                    b.HasData(
+                        new
+                        {
+                            AccountID = 1,
+                            IsAdmin = true,
+                            Name = "Admin",
+                            Password = "AQAAAAEAACcQAAAAEHxCjFQrkYdJTsZIZMpEdP/jWOcIUgIa3KF0KXiJoVU43x9cKpVSm9mxUONqmiv+Fg==",
+                            Points = 0
+                        });
                 });
 
             modelBuilder.Entity("ITtrainees.Models.AnsweredQuestion", b =>
@@ -99,17 +109,6 @@ namespace ITtrainees.DataAcces.Migrations
                     b.HasKey("ArticleId");
 
                     b.ToTable("Articles");
-
-                    b.HasData(
-                        new
-                        {
-                            ArticleId = 1,
-                            Author = "Sem",
-                            Content = "Encoded PDF",
-                            HeaderImage = "Encoded Image",
-                            Summary = "Description of the article",
-                            Title = "First Article"
-                        });
                 });
 
             modelBuilder.Entity("ITtrainees.Models.Question", b =>
