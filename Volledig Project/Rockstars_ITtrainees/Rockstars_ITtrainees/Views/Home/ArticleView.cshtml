@@ -31,43 +31,50 @@
             if (User.Identity.IsAuthenticated)
             {
                 <div class="row">
-                    @using (Html.BeginForm("AnswerQuestion", "Question", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        try
-                        {
-                            if (Model.Questions != null)
-                            {
-                                for (int i = 0; i < Model.Questions.Count; i++)
+                            <div class="col-12 text-center">
+                                @using (Html.BeginForm("AnswerQuestion", "Question", FormMethod.Post, new { enctype = "multipart/form-data" }))
                                 {
-                                    <div class="text-light">
+                                    try
+                                    {
+                                        if (Model.Questions != null)
+                                        {
+                                            for (int i = 0; i < Model.Questions.Count; i++)
+                                            {
+                                                <div class="text-light col-12 text-center">
 
-                                        <div class="row">
-                                            <h3>@Model.Questions[i].QuestionText</h3>
+                                                    <div class="text-center">
+                                                        <h3>@Model.Questions[i].QuestionText</h3>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div class="m-2">@Html.RadioButtonFor(m => m.GivenAnswers[i], Model.Questions[i].Answer1)</div> <p class="m-1">@Model.Questions[i].Answer1</p>
+                                                        <br />
+                                                        <div class="m-2 ml-4">@Html.RadioButtonFor(m => m.GivenAnswers[i], Model.Questions[i].Answer2)</div> <p class="m-1">@Model.Questions[i].Answer2</p>
+                                                        <br />
+                                                        <br />
+                                                    </div>
+                                                </div>
+
+                                                @Html.HiddenFor(m => m.ArticleId, Model.ArticleId);
+                                                for (int j = 0; j < Model.Questions.Count; j++)
+                                                {
+                                                    <div style="display: none;">@Html.EditorFor(m => m.Questions[j])</div>
+                                                }
+
+
+                                            }
+                                        }
+
+                                        <div class="container">
+                                            <div class="mr-auto">
+                                                <input type="submit" value="Check Answer" />
+                                            </div>
                                         </div>
-                                        <div class="row" style="max-width:400px;">
-                                            <div class="m-2">@Html.RadioButtonFor(m => m.GivenAnswers[i], Model.Questions[i].Answer1)</div> <p class="m-1">@Model.Questions[i].Answer1</p>
-                                            <div class="m-2 ml-4">@Html.RadioButtonFor(m => m.GivenAnswers[i], Model.Questions[i].Answer2)</div> <p class="m-1">@Model.Questions[i].Answer2</p>
-                                            <br />
-                                            <br />
-                                        </div>
-                                    </div>
+                                    }
 
-                                @Html.HiddenFor(m => m.ArticleId, Model.ArticleId);
-                                for (int j = 0; j < Model.Questions.Count; j++)
-                                {
-                                    <div style="display: none;">@Html.EditorFor(m => m.Questions[j])</div>
+                                    catch { }
                                 }
-
-                                <div class="container">
-                                    <div class="mr-auto">
-                                        <input type="submit" value="Check Answer" />
-                                    </div>
-                                </div>
-                                }
-                            }
-                        }
-                        catch { }
-                    }
+                            </div>
+                    
                 </div>
             }
         }
