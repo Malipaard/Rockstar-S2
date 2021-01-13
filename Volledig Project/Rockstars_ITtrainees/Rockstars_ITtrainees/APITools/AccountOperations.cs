@@ -30,5 +30,18 @@ namespace ITtrainees.MVC.APITools
             }
             return null;
         }
+
+        public static async Task<Account> GetId(int id)
+        {
+            HttpResponseMessage response = await ApiClient.GetAsync($"account/{ id }");
+            if (response.IsSuccessStatusCode)
+            {
+                var accountJSON = await response.Content.ReadAsStringAsync();
+                var account = JsonConvert.DeserializeObject<Account>(accountJSON);
+                return account;
+            }
+            return null;
+        }
+
     }
 }

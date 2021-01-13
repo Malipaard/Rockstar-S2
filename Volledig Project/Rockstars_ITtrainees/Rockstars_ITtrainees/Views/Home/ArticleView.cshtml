@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <body>
-    <div class="container" style="border-bottom:solid;">
+    <div class="container" style="border-bottom:solid; border-color:#6a6a6a;">
         <div class="text-light">
             <img class=" card-img-top card-image" src="data:image/png;base64, @Model.HeaderImage" alt="placeholder" , style="max-height:400px;">
 
@@ -28,51 +28,56 @@
     </div>
 
     <div class="container text-center" style="border-top:solid; border-color:#ffe000;">
-        @using (Html.BeginForm("AnswerQuestion", "Question", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            if (Model.Questions != null)
+        <div class="row">
+            @using (Html.BeginForm("AnswerQuestion", "Question", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
-                for (int i = 0; i < Model.Questions.Count; i++)
+                if (Model.Questions != null)
                 {
-                    <div class="text-light">
-                        <div class="row">
-                            <h3>@Model.Questions[i].QuestionText</h3>
+                    for (int i = 0; i < Model.Questions.Count; i++)
+                    {
+                        <div class="text-light">
+
+                            <div class="row">
+                                <h3>@Model.Questions[i].QuestionText</h3>
+                            </div>
+                            <div class="row" style="max-width:400px;">
+                                <div class="m-2">@Html.RadioButtonFor(m => m.GivenAnswers[i], Model.Questions[i].Answer1)</div> <p class="m-1">@Model.Questions[i].Answer1</p>
+                                <div class="m-2 ml-4">@Html.RadioButtonFor(m => m.GivenAnswers[i], Model.Questions[i].Answer2)</div> <p class="m-1">@Model.Questions[i].Answer2</p>
+                                <br />
+                                <br />
+                            </div>
                         </div>
-                        <div class="row">
-                            <div class="m-2">@Html.RadioButtonFor(m => m.GivenAnswers[i], Model.Questions[i].Answer1)</div> <p class="m-1">@Model.Questions[i].Answer1</p>
-                            <div class="m-2 ml-4">@Html.RadioButtonFor(m => m.GivenAnswers[i], Model.Questions[i].Answer2)</div> <p class="m-1">@Model.Questions[i].Answer2</p>
-                            <br />
-                            <br />
+                    }
+
+                    for (int i = 0; i < Model.Questions.Count; i++)
+                    {
+                        <div style="display: none;">@Html.EditorFor(m => m.Questions[i])</div>
+                    }
+
+                    <div class="container">
+                        <div class="mr-auto">
+                            <input type="submit" value="Check Answers" />
                         </div>
                     </div>
                 }
-
-                for (int i = 0; i < Model.Questions.Count; i++)
-                {
-                    <div style="display: none;">@Html.EditorFor(m => m.Questions[i])</div>
-                }
-
-                <div class="container">
-                    <div class="mr-auto">
-                        <input  type="submit" value="Check Answer" />
-                    </div>
-                </div>
             }
-        }
+        </div>
     </div>
 
     @if (User.IsInRole("Admin"))
     {
-        <div class="border m-2" style="width:250px;">
-            <div class="text-light m-2">
-                <h2 class="text-light">Admin Control</h2>
-                <form asp-area="" asp-controller="Home" asp-action="DeletePage" asp-route-id="@Model.ArticleId">
-                    <input type="hidden" asp-for="ArticleId" />
-                    <input type="submit" value="Delete" class="btn btn-danger" /> |
-                    <a asp-action="UpdateArticle" asp-route-id="@Model.ArticleId">Edit</a>
-                </form>
+        <footer class="footer">
+            <div class="border m-2" style="width:230px;">
+                <div class="m-1">
+                    <h2 class="text-light">Admin Pannel</h2>
+                    <form asp-area="" asp-controller="Home" asp-action="DeletePage" asp-route-id="@Model.ArticleId">
+                        <input type="hidden" asp-for="ArticleId" />
+                        <input type="submit" value="Delete" class="btn btn-danger" /> |
+                        <a asp-action="UpdateArticle" asp-route-id="@Model.ArticleId"  class="btn btn-info">Edit</a>
+                    </form>
+                </div>
             </div>
-        </div>
+        </footer>
     }
 
 </body>

@@ -63,13 +63,22 @@
         </div>
     </div>
 
-    <div class="mb-3" id="buttons">
-            <a asp-controller="" asp-action="" asp-route-tag="" class=" btn btn-light" role="button">Show All</a>
+    <div class="dropdown mb-3">
+        <button class="dropbtn text-dark">Filter by Tag</button>
+        <div class="dropdown-content">
             <a asp-controller="" asp-action="" asp-route-tag="C#" class=" btn btn-light" role="button">C#</a>
             <a asp-controller="" asp-action="" asp-route-tag="JAVA" class=" btn btn-light" role="button">JAVA</a>
             <a asp-controller="" asp-action="" asp-route-tag="Python" class=" btn btn-light" role="button">Python</a>
+        </div>
     </div>
-
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+        </script>
+    }
     <div class="container-fluid">
         <h2 class="text-light">Articles</h2>
         <div class="row text-light">

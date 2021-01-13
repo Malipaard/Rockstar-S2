@@ -33,13 +33,21 @@ namespace Rockstars_ITtrainees.Controllers
             viewModel.RecentArticles = cardList;
             viewModel.FilteredArticles = cardList;
 
-            if (!String.IsNullOrEmpty(tag))
+            try
             {
-                viewModel.FilteredArticles = cardList.Where(article => article.Tag.Equals(tag)).ToList();
-                
+                if (!String.IsNullOrEmpty(tag))
+                {
+                    viewModel.FilteredArticles = cardList.Where(article => article.Tag.Equals(tag)).ToList();
+                }
+                return View(viewModel);
             }
 
-            return View(viewModel);
+            //Add messagebox to user that no articles are found!
+            catch
+            {
+                ViewBag.Message = string.Format("No articles with specified tag found!");
+                return View(viewModel);
+            }
         }
 
         public IActionResult Privacy()
@@ -77,14 +85,14 @@ namespace Rockstars_ITtrainees.Controllers
         public IActionResult ArticleUpload()
         {
             ArticleUploadViewModel model = new ArticleUploadViewModel();
-            if (!User.Identity.IsAuthenticated) return RedirectToAction("Login","Accounts");
+            if (!User.Identity.IsAuthenticated) return RedirectToAction("Login", "Accounts");
             model.Author = User.Identity.Name;
             return View(model);
         }
-       
+
         public IActionResult login()
         {
-            if (!User.IsInRole("Admin")) return RedirectToAction("Login","Accounts");
+            if (!User.IsInRole("Admin")) return RedirectToAction("Login", "Accounts");
             return View();
         }
 
@@ -101,7 +109,7 @@ namespace Rockstars_ITtrainees.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> ArticleUpload(ArticleUploadViewModel model, string correctAnswer1, string correctAnswer2)
         {
@@ -113,7 +121,7 @@ namespace Rockstars_ITtrainees.Controllers
             APIHelper.InitializeClient();
             Question question1 = model.Questions[0];
             Question question2 = model.Questions[1];
-            
+
             if (correctAnswer1 == "Answer1")
             {
                 question1.CorrectAnswer = question1.Answer1;
@@ -133,10 +141,10 @@ namespace Rockstars_ITtrainees.Controllers
             }
 
             await ArticleOperations.Create(model);
-            
+
             question1.ArticleId = await ArticleOperations.GetArticleId(model.Author);
             question2.ArticleId = await ArticleOperations.GetArticleId(model.Author);
-            
+
             QuestionOperations.Create(question1);
             QuestionOperations.Create(question2);
             ModelState.Clear();
@@ -154,7 +162,7 @@ namespace Rockstars_ITtrainees.Controllers
         }
 
         public IActionResult Update(ArticleUpdateModel article)
-        {          
+        {
             ArticleOperations.Update(article);
 
             return RedirectToAction("Index");
@@ -200,11 +208,11 @@ namespace Rockstars_ITtrainees.Controllers
 
             if (questions.q2CorrectAnswer == "Answer1")
             {
-                questions.q2CorrectAnswer = questions.q1Answer1;
+                questions.q2CorrectAnswer = questions.q2Answer1;
             }
             else if (questions.q2CorrectAnswer == "Answer2")
             {
-                questions.q2CorrectAnswer = questions.q1Answer2;
+                questions.q2CorrectAnswer = questions.q2Answer2;
             }
 
             Question question1 = new Question

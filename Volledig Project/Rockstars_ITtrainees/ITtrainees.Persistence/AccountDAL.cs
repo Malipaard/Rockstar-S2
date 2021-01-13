@@ -39,5 +39,16 @@ namespace ITtrainees.DataAcces
                 return account;
             }
         }
+
+        public Account GetId(int id)
+        {
+            using (var context = new ArticlesContext())
+            {
+                var account = context.Accounts.Single(a => a.AccountID == id);
+                return account;
+            }
+        }
     }
+
+
 }
