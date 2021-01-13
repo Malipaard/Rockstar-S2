@@ -31,6 +31,7 @@
         <div class="row">
             @using (Html.BeginForm("AnswerQuestion", "Question", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
+                try { 
                 if (Model.Questions != null)
                 {
                     for (int i = 0; i < Model.Questions.Count; i++)
@@ -59,7 +60,9 @@
                             <input type="submit" value="Check Answers" />
                         </div>
                     </div>
+                    }
                 }
+                catch {}
             }
         </div>
     </div>

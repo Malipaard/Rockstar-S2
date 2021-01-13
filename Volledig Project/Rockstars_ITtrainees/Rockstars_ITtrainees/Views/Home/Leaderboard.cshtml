@@ -7,21 +7,28 @@
         <div>
             <h1>Leaderboard</h1>
 
-            <h4>Upload articles or answer questions about existing articles to earn points!</h4>
+            <h4 class="mb-4">Upload articles or answer questions about existing articles to earn points!</h4>
         </div>
         <table class="center" style="width:20%; border:2px solid #ffe000;">
             <tbody>
-                <tr style="font-size:20px;">
+                <tr style="font-size:18px;">
+                    <th>Rank</th>
                     <th>Username</th>
                     <th>Points</th>
                 </tr>
+                @{
+                    int rank = 1;
+                }
                 @foreach (var user in Model.Take(10))
                 {
 
                     <tr>
+                        <td>@rank</td>
                         <td>@user.Name</td>
                         <td>@user.Points</td>
                     </tr>
+                    rank++;
+                    
                 }
             </tbody>
         </table>
