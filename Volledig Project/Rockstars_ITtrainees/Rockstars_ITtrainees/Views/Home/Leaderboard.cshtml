@@ -1,8 +1,29 @@
-﻿
+﻿@model List<ITtrainees.Models.Account>;
+
+@using ITtrainees.MVC.APITools;
+@using ITtrainees.Models;
 <body>
-    <div class="text-light">
-        <h1>Leaderboard</h1>
+    <div class="text-light container text-center">
+        <div>
+            <h1>Leaderboard</h1>
+
+            <h4>Upload articles or answer questions about existing articles to earn points!</h4>
+        </div>
+        <table class="center" style="width:20%; border:2px solid #ffe000;">
+            <tbody>
+                <tr style="font-size:20px;">
+                    <th>Username</th>
+                    <th>Points</th>
+                </tr>
+                @foreach (var user in Model.Take(10))
+                {
+
+                    <tr>
+                        <td>@user.Name</td>
+                        <td>@user.Points</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
-
-
 </body>

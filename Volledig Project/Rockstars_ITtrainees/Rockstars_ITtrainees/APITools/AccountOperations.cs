@@ -31,17 +31,16 @@ namespace ITtrainees.MVC.APITools
             return null;
         }
 
-        public static async Task<Account> GetId(int id)
+        public static async Task<List<Account>> GetAll()
         {
-            HttpResponseMessage response = await ApiClient.GetAsync($"account/{ id }");
+            HttpResponseMessage response = await ApiClient.GetAsync($"account");
             if (response.IsSuccessStatusCode)
             {
-                var accountJSON = await response.Content.ReadAsStringAsync();
-                var account = JsonConvert.DeserializeObject<Account>(accountJSON);
-                return account;
+                var listJSON = await response.Content.ReadAsStringAsync();
+                var list = JsonConvert.DeserializeObject<List<Account>>(listJSON);
+                return list;
             }
             return null;
         }
-
     }
 }

@@ -12,6 +12,7 @@ using ITtrainees.Logic;
 using System.Net;
 using ITtrainees.MVC.Models.Home;
 using ITtrainees.DataAcces;
+using System.Data;
 
 namespace Rockstars_ITtrainees.Controllers
 {
@@ -54,9 +55,14 @@ namespace Rockstars_ITtrainees.Controllers
         {
             return View();
         }
-        public IActionResult Leaderboard()
+        
+
+        public async Task<IActionResult> Leaderboard()
         {
-            return View();
+            List<Account> accountList = await AccountOperations.GetAll();
+            List<Account> sortedList = accountList.OrderByDescending(o => o.Points).ToList();
+            
+            return View(sortedList);
         }
 
         public async Task<IActionResult> ArticleView(int id)

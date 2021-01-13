@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using ITtrainees.Models;
+@using ITtrainees.MVC.APITools;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -39,16 +41,17 @@
                             <a class="nav-link text-light font-weight-bold" asp-area="" asp-controller="Accounts" asp-action="Register">Add Account <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
                         </li>
                     }
-                   
+
                 </ul>
 
                 <div class="login-container ml-auto d-inline-flex">
                     @if (User.Identity.IsAuthenticated)
                     {
+                        Account userAccount = await AccountOperations.Get(User.Identity.Name);
                         <div class="row mt-2">
-                            <a class="nav-link static text-light font-weight-bold" asp-area="" asp-controller="Home" asp-action="Leaderboard">Points: POINTS!</a>
+                            <a class="nav-link static text-light font-weight-bold" asp-area="" asp-controller="Home" asp-action="Leaderboard">You have @userAccount.Points Points!</a>
                             <a class="nav-link static text-light font-weight-bold mr-4" asp-area="" asp-controller="Accounts" asp-action="Account">Welcome: @User.Identity.Name!</a>
-                            
+
                             <a class="nav-link text-light font-weight-bold mr-2" asp-area="" asp-controller="Accounts" asp-action="Logout">Logout <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
                         </div>
                     }

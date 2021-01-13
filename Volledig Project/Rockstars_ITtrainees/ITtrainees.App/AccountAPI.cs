@@ -37,5 +37,13 @@ namespace ITtrainees.Logic
                 return null;
             }
         }
+
+        [HttpGet]
+        public IEnumerable<Account> GetAll()
+        {
+            IAccountDAL dal = AccountFactory.GetAccountDAL();
+            List<Account> accounts = dal.GetAll();
+            return accounts;
+        }
     }
 }
