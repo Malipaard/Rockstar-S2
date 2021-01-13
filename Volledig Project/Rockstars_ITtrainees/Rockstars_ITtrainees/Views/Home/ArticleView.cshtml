@@ -53,6 +53,15 @@
                                             <br />
                                         </div>
                                     </div>
+                                    <div class="row text-light">
+                                        <div class="col-12 text-center">
+                                            @if (TempData["Response"] != null)
+                                            {
+                                                IList<string> responses = (IList<string>)TempData["Response"];
+                                                <p>@responses[i].ToString().Trim('"')</p>
+                                            }
+                                        </div>
+                                    </div>
 
                                     @Html.HiddenFor(m => m.ArticleId, Model.ArticleId);
                                     for (int j = 0; j < Model.Questions.Count; j++)
