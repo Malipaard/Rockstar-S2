@@ -55,18 +55,17 @@
 
         </div>
     </div>
-
-    <div id="buttons">
-        <a asp-controller="" asp-action="" asp-route-tag="" class=" btn btn-light" role="button">Show All</a>
-        @{
-            if (Model.Tags != null)
+    <div class="dropdown mb-3">
+        <button class="dropbtn text-dark">Filter by Tag</button>
+        <div class="dropdown-content">
+            @if (Model.Tags != null)
             {
-                foreach (var tag in Model.Tags)
+                @foreach (var tag in Model.Tags)
                 {
                     <a asp-controller="" asp-action="" asp-route-tag="@tag.TagName" class=" btn btn-light" role="button">@tag.TagName</a>
                 }
             }
-        }
+        </div>
     </div>
 
     @if (ViewBag.Message != null)
