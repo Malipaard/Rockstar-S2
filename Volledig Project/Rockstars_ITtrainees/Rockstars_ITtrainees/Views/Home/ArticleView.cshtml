@@ -27,44 +27,51 @@
         </div>
     </div>
     <div class="container text-center" style="border-top:solid; border-color:#ffe000;">
-        <div class="row">
-            @using (Html.BeginForm("AnswerQuestion", "Question", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        @{
+            if (User.Identity.IsAuthenticated)
             {
-                try { 
-                if (Model.Questions != null)
-                {
-                    for (int i = 0; i < Model.Questions.Count; i++)
+                <div class="row">
+                    @using (Html.BeginForm("AnswerQuestion", "Question", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
-                        <div class="text-light">
+                        try
+                        {
+                            if (Model.Questions != null)
+                            {
+                                for (int i = 0; i < Model.Questions.Count; i++)
+                                {
+                                    <div class="text-light">
 
-                            <div class="row">
-                                <h3>@Model.Questions[i].QuestionText</h3>
-                            </div>
-                            <div class="row" style="max-width:400px;">
-                                <div class="m-2">@Html.RadioButtonFor(m => m.GivenAnswers[i], Model.Questions[i].Answer1)</div> <p class="m-1">@Model.Questions[i].Answer1</p>
-                                <div class="m-2 ml-4">@Html.RadioButtonFor(m => m.GivenAnswers[i], Model.Questions[i].Answer2)</div> <p class="m-1">@Model.Questions[i].Answer2</p>
-                                <br />
-                                <br />
-                            </div>
-                        </div>
-                    }
+                                        <div class="row">
+                                            <h3>@Model.Questions[i].QuestionText</h3>
+                                        </div>
+                                        <div class="row" style="max-width:400px;">
+                                            <div class="m-2">@Html.RadioButtonFor(m => m.GivenAnswers[i], Model.Questions[i].Answer1)</div> <p class="m-1">@Model.Questions[i].Answer1</p>
+                                            <div class="m-2 ml-4">@Html.RadioButtonFor(m => m.GivenAnswers[i], Model.Questions[i].Answer2)</div> <p class="m-1">@Model.Questions[i].Answer2</p>
+                                            <br />
+                                            <br />
+                                        </div>
+                                    </div>
 
-                    @Html.HiddenFor(m => m.ArticleId, Model.ArticleId);
-                    for (int i = 0; i < Model.Questions.Count; i++)
-                    {
-                        <div style="display: none;">@Html.EditorFor(m => m.Questions[i])</div>
-                    }
+                                @Html.HiddenFor(m => m.ArticleId, Model.ArticleId);
+                                for (int j = 0; j < Model.Questions.Count; j++)
+                                {
+                                    <div style="display: none;">@Html.EditorFor(m => m.Questions[j])</div>
+                                }
 
-                    <div class="container">
-                        <div class="mr-auto">
-                            <input type="submit" value="Check Answer" />
-                        </div>
-                    </div>
+                                <div class="container">
+                                    <div class="mr-auto">
+                                        <input type="submit" value="Check Answer" />
+                                    </div>
+                                </div>
+                                }
+                            }
+                        }
+                        catch { }
                     }
-                }
-                catch {}
+                </div>
             }
-        </div>
+        }
+
 
         @if (User.IsInRole("Admin"))
         {

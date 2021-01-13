@@ -18,11 +18,14 @@ namespace ITtrainees.MVC.APITools
         {
             string encodedHeader = FileEncoder.EncodeImage(model.HeaderImage);
             ICollection<Tag> tags = new List<Tag>();
-            foreach(ArticleTagModel tagModel in model.Tags)
+            if (model.Tags != null)
             {
-                if (tagModel.IsSelected)
+                foreach (ArticleTagModel tagModel in model.Tags)
                 {
-                    tags.Add(new Tag(tagModel.TagId, tagModel.TagName));
+                    if (tagModel.IsSelected)
+                    {
+                        tags.Add(new Tag(tagModel.TagId, tagModel.TagName));
+                    }
                 }
             }
             Article article = new Article(0, model.Title, model.Author, model.Summary, tags, encodedHeader, model.Content);
