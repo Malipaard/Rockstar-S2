@@ -70,6 +70,12 @@
                         }
 
                         catch { }
+                        if (Convert.ToBoolean(TempData["EmptyAnswer"]))
+                        {
+                            <script>
+                                alert("Please fill in all the answers");
+                            </script>
+                        }
                     }
                 </div>
 

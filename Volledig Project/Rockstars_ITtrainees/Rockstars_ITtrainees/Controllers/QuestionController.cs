@@ -16,6 +16,19 @@ namespace ITtrainees.MVC.Controllers
             APIHelper.InitializeClient();
             string userName = User.Identity.Name;
             List<string> responses = new List<string>();
+            if (model.GivenAnswers == null)
+            {
+                TempData["EmptyAnswer"] = true;
+                return RedirectToAction("ArticleView", "Home", new { id = model.ArticleId });
+            }
+            foreach (var answer in model.GivenAnswers)
+            {
+                if (String.IsNullOrEmpty(answer))
+                {
+                    TempData["EmptyAnswer"] = true;
+                    return RedirectToAction("ArticleView", "Home", new { id = model.ArticleId });
+                }
+            }
             for (int i = 0; i < model.Questions.Count; i++)
             {
                 string response = await QuestionOperations.Validate(model.Questions[i].QuestionId, model.GivenAnswers[i], userName);
