@@ -60,6 +60,7 @@
         <div class="dropdown-content">
             @if (Model.Tags != null)
             {
+                <a asp-controller="" asp-action="" asp-route-tag="" class=" btn btn-light" role="button">Show All</a>
                 @foreach (var tag in Model.Tags)
                 {
                     <a asp-controller="" asp-action="" asp-route-tag="@tag.TagName" class=" btn btn-light" role="button">@tag.TagName</a>
