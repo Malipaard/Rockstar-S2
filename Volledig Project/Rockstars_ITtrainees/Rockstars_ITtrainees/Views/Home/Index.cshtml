@@ -68,7 +68,7 @@
             }
         }
     </div>
-    
+
     @if (ViewBag.Message != null)
     {
         <script type="text/javascript">
@@ -88,10 +88,13 @@
                             <div class="card card-scale mb-4 h-80" id="ArticleItem">
                                 @{if (article.Tags != null)
                                     {
-                                        foreach (var tag in article.Tags)
-                                        {
-                                            <h3 class="card-tag text-light p-1">@tag.TagName</h3>
-                                        }
+                                        <div class="row" style="">
+                                            @foreach (var tag in article.Tags)
+                                            {
+                                                <h3 class="card-tag text-light p-1">@tag.TagName</h3>
+                                            }
+                                        </div>
+
                                     }
                                 }
                                 <img class="card-img-top card-image" src="data:image/png;base64, @article.HeaderImage" alt="placeholder">

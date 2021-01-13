@@ -2,7 +2,7 @@
 
 namespace ITtrainees.DataAcces.Migrations
 {
-    public partial class NewInitCreate : Migration
+    public partial class _13012 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
