@@ -40,7 +40,7 @@ namespace Rockstars_ITtrainees.Controllers
             {
                 if (!String.IsNullOrEmpty(tag))
                 {
-                    viewModel.FilteredArticles = cardList.Where(article => article.Tag.Equals(tag)).ToList();
+                    viewModel.FilteredArticles = cardList.Where(article => article.Tags.Any(t => t.TagName == tag)).ToList();
                 }
                 return View(viewModel);
             }

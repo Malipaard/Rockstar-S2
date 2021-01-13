@@ -51,12 +51,16 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         Account userAccount = await AccountOperations.Get(User.Identity.Name);
-                        <div class="row mt-2">
-                            <a class="nav-link static text-light font-weight-bold" asp-area="" asp-controller="Home" asp-action="Leaderboard">You have @userAccount.Points Points!</a>
-                            <a class="nav-link static text-light font-weight-bold mr-4" asp-area="" asp-controller="Accounts" asp-action="Account">Welcome: @User.Identity.Name!</a>
+                    <div class="row mt-2">
+                        @{ if (userAccount != null)
+                            {
+                                <a class="nav-link static text-light font-weight-bold" asp-area="" asp-controller="Home" asp-action="Leaderboard">You have @userAccount.Points Points!</a>
+                            }
+                        }
+                        <a class="nav-link static text-light font-weight-bold mr-4" asp-area="" asp-controller="Accounts" asp-action="Account">Welcome: @User.Identity.Name!</a>
 
-                            <a class="nav-link text-light font-weight-bold mr-2" asp-area="" asp-controller="Accounts" asp-action="Logout">Logout <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
-                        </div>
+                        <a class="nav-link text-light font-weight-bold mr-2" asp-area="" asp-controller="Accounts" asp-action="Logout">Logout <img class="menuArrow" src="~/Assets/MenuArrow.png" height="25" /></a>
+                    </div>
                     }
                     else
                     {
